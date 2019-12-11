@@ -1,0 +1,9 @@
+﻿  ImGuiUIManager.cpp
+  ImGuiWindow.cpp
+  MainManager.cpp
+  RenderManager.cpp
+  Trixs.cpp
+  UIManager.cpp
+  UIWindow.cpp
+  Generating Code...
+  Trixs.vcxproj -> C:\Users\Ruurd\source\repos\Trixs\x64\Debug\Trixs.exe

@@ -159,7 +159,13 @@
   <ItemGroup>
     <ClInclude Include="external\imgui\imgui_impl_glfw.h" />
     <ClInclude Include="external\stb_image.h" />
+    <ClInclude Include="ImGuiUIManager.h" />
+    <ClInclude Include="ImGuiWindow.h" />
+    <ClInclude Include="MainManager.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="RenderManager.h" />
+    <ClInclude Include="UIManager.h" />
+    <ClInclude Include="UIWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\packages\glad.c" />
@@ -169,13 +175,19 @@
     <ClCompile Include="external\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="external\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="external\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="ImGuiUIManager.cpp" />
+    <ClCompile Include="ImGuiWindow.cpp" />
+    <ClCompile Include="MainManager.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="Trixs.cpp" />
+    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="UIWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
