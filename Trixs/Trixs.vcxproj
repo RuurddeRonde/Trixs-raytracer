@@ -159,11 +159,14 @@
   <ItemGroup>
     <ClInclude Include="external\imgui\imgui_impl_glfw.h" />
     <ClInclude Include="external\stb_image.h" />
+    <ClInclude Include="IGStartupWindow.h" />
     <ClInclude Include="ImGuiUIManager.h" />
     <ClInclude Include="ImGuiWindow.h" />
     <ClInclude Include="MainManager.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Project.h" />
     <ClInclude Include="RenderManager.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="UIWindow.h" />
   </ItemGroup>
@@ -184,7 +187,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Project.cpp" />
     <ClCompile Include="RenderManager.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Trixs.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="UIWindow.cpp" />
