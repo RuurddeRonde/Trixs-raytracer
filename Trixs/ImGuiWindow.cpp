@@ -1,6 +1,5 @@
 #include "ImGuiWindow.h"
 
-
 namespace Trixs
 {
 	ImGuiWindow::ImGuiWindow()

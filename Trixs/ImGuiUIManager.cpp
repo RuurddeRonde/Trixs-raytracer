@@ -1,5 +1,7 @@
 #include "ImGuiUIManager.h"
 #include "IGStartupWindow.h"
+#include "IGViewPortWindow.h"
+#include "RenderWindow.h"
 namespace Trixs
 {
 
@@ -22,7 +24,6 @@ namespace Trixs
 		const char* glsl_version = "#version 410";
 		ImGui_ImplOpenGL3_Init(glsl_version);
 
-		initWindows();
 	}
 
 	ImGuiUIManager::~ImGuiUIManager()
@@ -102,6 +103,7 @@ namespace Trixs
 		{
 			windows.at(i)->update();
 		}
+		ImGui::ShowDemoWindow();
 
 		ImGui::Render();
 
@@ -119,9 +121,14 @@ namespace Trixs
 	{
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	}
-	void ImGuiUIManager::initWindows()
+	void ImGuiUIManager::initWindows(RenderManager* renderman)
 	{
 		windows.push_back(new IGStartupWindow());
+		IGViewPortWindow* viewport = new IGViewPortWindow();
+		viewport->setRenderManager(renderman);
+		windows.push_back(viewport);
+		windows.push_back(new IGRenderWindow());
+
 	}
 	void ImGuiUIManager::setstyle()
 	{

@@ -157,18 +157,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Dielectric.h" />
     <ClInclude Include="external\imgui\imgui_impl_glfw.h" />
     <ClInclude Include="external\stb_image.h" />
+    <ClInclude Include="Hitable.h" />
+    <ClInclude Include="HitableList.h" />
     <ClInclude Include="IGStartupWindow.h" />
+    <ClInclude Include="IGViewPortWindow.h" />
     <ClInclude Include="ImGuiUIManager.h" />
     <ClInclude Include="ImGuiWindow.h" />
+    <ClInclude Include="Lambertian.h" />
     <ClInclude Include="MainManager.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="Metal.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Project.h" />
+    <ClInclude Include="Random.h" />
+    <ClInclude Include="Ray.h" />
+    <ClInclude Include="RayTrixser.h" />
     <ClInclude Include="RenderManager.h" />
+    <ClInclude Include="RenderWindow.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Sphere.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="UIWindow.h" />
+    <ClInclude Include="Vec3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\packages\glad.c" />
@@ -188,6 +202,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Project.cpp" />
+    <ClCompile Include="Ray.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Trixs.cpp" />

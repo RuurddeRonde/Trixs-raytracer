@@ -1,6 +1,7 @@
 #pragma once
 #include "UIManager.h"
 #include "UIWindow.h"
+#include "RenderManager.h"
 #include <vector>
 #include <memory>
 namespace Trixs
@@ -13,12 +14,12 @@ namespace Trixs
 		~ImGuiUIManager();
 		void update() override;
 		void render() override;
+		void initWindows(RenderManager* renderman) override;
 	private:
 		std::vector<UIWindow*> windows;
 
 		ImGuiWindowFlags window_flags;
 		void ShowDockSpace(bool* p_open);
-		void initWindows();
 		void setstyle();
 	};
 

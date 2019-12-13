@@ -19,6 +19,15 @@
     <Filter Include="external">
       <UniqueIdentifier>{6ad60ab8-04a1-4982-a343-2fd4383e47ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="rayTrixser">
+      <UniqueIdentifier>{bfd62524-bd14-4d95-a090-543088a88e7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{604b3849-4de6-4843-87aa-bbcadc09ac8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rayTrixser\Materials">
+      <UniqueIdentifier>{49a85812-971e-4671-97bc-955e10e297ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainManager.h">
@@ -56,6 +65,48 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IGViewPortWindow.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec3.h">
+      <Filter>rayTrixser</Filter>
+    </ClInclude>
+    <ClInclude Include="Ray.h">
+      <Filter>rayTrixser</Filter>
+    </ClInclude>
+    <ClInclude Include="Hitable.h">
+      <Filter>rayTrixser</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>rayTrixser</Filter>
+    </ClInclude>
+    <ClInclude Include="HitableList.h">
+      <Filter>rayTrixser</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>rayTrixser</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>rayTrixser\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Lambertian.h">
+      <Filter>rayTrixser\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Metal.h">
+      <Filter>rayTrixser\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Dielectric.h">
+      <Filter>rayTrixser\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderWindow.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTrixser.h">
+      <Filter>rayTrixser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ray.cpp">
+      <Filter>rayTrixser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

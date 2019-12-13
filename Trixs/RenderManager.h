@@ -8,9 +8,10 @@
 #include "UIManager.h"
 namespace Trixs
 {
-	const unsigned int SCR_WIDTH = 800;
-	const unsigned int SCR_HEIGHT = 600;
+	const unsigned int SCR_WIDTH = 1080;
+	const unsigned int SCR_HEIGHT = 720;
 
+	class UIManager;
 	class RenderManager
 	{
 	public:
@@ -20,11 +21,12 @@ namespace Trixs
 		void render();
 		bool WindowShouldClose();
 		GLFWwindow* getWindow();
+		unsigned int getFrame() { return framebuffer; }
 	private:
 		UIManager* uiManager;
 		int shaderProgram;
 		GLFWwindow* window;
-		unsigned int VBO, VAO, EBO;
+		unsigned int VBO, VAO, EBO , framebuffer;
 		const char *vertexShaderSource = "#version 330 core\n"
 			"layout (location = 0) in vec3 aPos;\n"
 			"void main()\n"

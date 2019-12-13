@@ -7,8 +7,8 @@ class Project
 public:
 	Project();
 	~Project();
-	bool loadProject();
-	bool saveProject();
+	bool loadProject(std::string path);
+	bool saveProject(std::string path);
 private:
 	std::string name;
 	std::vector<Scene> scenes;
