@@ -16,13 +16,14 @@ namespace Trixs
 		void render() override;
 		void initWindows(RenderManager* renderman) override;
 	private:
-		std::vector<UIWindow*> windows;
+		UIWindow* startup;
+		UIWindow* viewPort;
+		UIWindow* renderSettings;
 
 		ImGuiWindowFlags window_flags;
 		void ShowDockSpace(bool* p_open);
 		void setstyle();
+		void updateWindows();
+		void deleteWindows();
 	};
-
-	///windows
-	///[0] startup window
 }

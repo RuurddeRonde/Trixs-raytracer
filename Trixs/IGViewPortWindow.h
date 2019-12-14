@@ -12,7 +12,7 @@ namespace Trixs
 	class IGViewPortWindow : public ImGuiWindow
 	{
 	public:
-		IGViewPortWindow() {}
+		IGViewPortWindow(RenderManager* renderman) { this->renderman = renderman; }
 		void update() override;
 		void setRenderManager(RenderManager* renderman) { this->renderman = renderman; }
 	private:

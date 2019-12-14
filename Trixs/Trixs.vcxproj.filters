@@ -28,6 +28,12 @@
     <Filter Include="rayTrixser\Materials">
       <UniqueIdentifier>{49a85812-971e-4671-97bc-955e10e297ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI\windows">
+      <UniqueIdentifier>{964b504b-32bc-42b5-ab2e-d3d5d61b9242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\windows\core">
+      <UniqueIdentifier>{1b947a58-abf0-4b14-b423-95c5d6717a7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainManager.h">
@@ -48,16 +54,7 @@
     <ClInclude Include="UIManager.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="UIWindow.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="ImGuiUIManager.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGuiWindow.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="IGStartupWindow.h">
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Project.h">
@@ -65,9 +62,6 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IGViewPortWindow.h">
-      <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Vec3.h">
       <Filter>rayTrixser</Filter>
@@ -102,11 +96,23 @@
     <ClInclude Include="Dielectric.h">
       <Filter>rayTrixser\Materials</Filter>
     </ClInclude>
-    <ClInclude Include="RenderWindow.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="RayTrixser.h">
       <Filter>rayTrixser</Filter>
+    </ClInclude>
+    <ClInclude Include="IGStartupWindow.h">
+      <Filter>UI\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="IGViewPortWindow.h">
+      <Filter>UI\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderWindow.h">
+      <Filter>UI\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="UIWindow.h">
+      <Filter>UI\windows\core</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiWindow.h">
+      <Filter>UI\windows\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -146,13 +152,7 @@
     <ClCompile Include="ImGuiUIManager.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="ImGuiWindow.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="MainManager.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UIWindow.cpp">
       <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="Project.cpp">
@@ -163,6 +163,12 @@
     </ClCompile>
     <ClCompile Include="Ray.cpp">
       <Filter>rayTrixser</Filter>
+    </ClCompile>
+    <ClCompile Include="UIWindow.cpp">
+      <Filter>UI\windows\core</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiWindow.cpp">
+      <Filter>UI\windows\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

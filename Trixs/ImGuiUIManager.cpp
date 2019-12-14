@@ -28,7 +28,7 @@ namespace Trixs
 
 	ImGuiUIManager::~ImGuiUIManager()
 	{
-		windows.clear();
+		deleteWindows();
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
@@ -66,7 +66,7 @@ namespace Trixs
 		// We cannot preserve the docking relationship between an active window and an inactive docking, otherwise
 		// any change of dockspace/settings would lead to windows being stuck in limbo and never being visible.
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
-		ImGui::Begin("DockSpace", p_open, window_flags);
+		ImGui::Begin("###DockSpace", p_open, window_flags);
 		ImGui::PopStyleVar();
 
 		if (opt_fullscreen)
@@ -99,10 +99,8 @@ namespace Trixs
 
 		ShowDockSpace(&show);
 
-		for (auto i = 0; i < windows.size(); i++)
-		{
-			windows.at(i)->update();
-		}
+		updateWindows();
+
 		ImGui::ShowDemoWindow();
 
 		ImGui::Render();
@@ -123,12 +121,22 @@ namespace Trixs
 	}
 	void ImGuiUIManager::initWindows(RenderManager* renderman)
 	{
-		windows.push_back(new IGStartupWindow());
-		IGViewPortWindow* viewport = new IGViewPortWindow();
-		viewport->setRenderManager(renderman);
-		windows.push_back(viewport);
-		windows.push_back(new IGRenderWindow());
+		startup = new IGStartupWindow();
+		viewPort = new IGViewPortWindow(renderman);
+		renderSettings = new IGRenderWindow();
 
+	}
+	void ImGuiUIManager::updateWindows()
+	{
+		startup->update();
+		viewPort->update();
+		renderSettings->update();
+	}
+	void ImGuiUIManager::deleteWindows()
+	{
+		delete startup;
+		delete viewPort;
+		delete renderSettings;
 	}
 	void ImGuiUIManager::setstyle()
 	{
