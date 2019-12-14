@@ -1,4 +1,5 @@
 #include "RenderManager.h"
+#include <iostream>
 namespace Trixs
 {
 	//todo move to input manager
@@ -30,8 +31,8 @@ namespace Trixs
 #endif
 
 	// glfw window creation
-	// --------------------
-		window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+	// --------------------	
+		window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Trixs", NULL, NULL);
 		if (window == NULL)
 		{
 			//std::cout << "Failed to create GLFW window" << std::endl;
@@ -117,6 +118,31 @@ namespace Trixs
 		// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
 		// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
 		glBindVertexArray(0);
+
+
+		// framebuffer configuration
+		// -------------------------
+		framebuffer = 0;
+		glGenFramebuffers(1, &framebuffer);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);	
+		unsigned int textureColorbuffer;
+		glGenTextures(1, &textureColorbuffer);
+		glBindTexture(GL_TEXTURE_2D, textureColorbuffer);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureColorbuffer, 0);
+		// create a renderbuffer object for depth and stencil attachment (we won't be sampling these)
+		unsigned int rbo;
+		glGenRenderbuffers(1, &rbo);
+		glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, SCR_WIDTH, SCR_HEIGHT); // use a single renderbuffer object for both a depth AND stencil buffer.
+		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo); // now actually attach it
+		// now that we actually created the framebuffer and added all attachments we want to check if it is actually complete now
+		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+			std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
 	}
 
 
@@ -137,7 +163,9 @@ namespace Trixs
 	void RenderManager::render()
 	{
 		processInput(window);
+		
 
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 		//update ui
 		uiManager->update();
 
@@ -148,6 +176,11 @@ namespace Trixs
 		glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 		//glDrawArrays(GL_TRIANGLES, 0, 6);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		// clear all relevant buffers
+		glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // set clear color to white (not really necessery actually, since we won't be able to see behind the quad anyways)
+		glClear(GL_COLOR_BUFFER_BIT);
 
 		//render ui
 		uiManager->render();
