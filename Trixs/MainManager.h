@@ -8,15 +8,21 @@ namespace Trixs
 	{
 
 	public:
-		MainManager();
+		static MainManager& getInstance() 
+		{ 
+			static MainManager instance;
+			return instance; 
+		}
 		~MainManager();
 		void run();
-		static void SetNewProject(std::string project);
+		void SetNewProject(std::string project);
+		MainManager(MainManager const&) = delete;
+		void operator=(MainManager const&) = delete;
 	private:
+		MainManager();
 		RenderManager* renderManager;
 		UIManager* uiManager;
-		static bool loadnewproject; //indicates if a new project should be loaded
-		static std::string projectPath;
+		std::string projectPath;
 	};
 
 }

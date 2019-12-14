@@ -9,7 +9,6 @@
 
 int main()
 {
-	Trixs::MainManager main;
-	main.run();
+	Trixs::MainManager::getInstance().run();
 	return 0;
 }

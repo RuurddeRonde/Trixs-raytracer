@@ -3,13 +3,9 @@
 #include <iostream>
 namespace Trixs
 {
-	bool MainManager::loadnewproject = false;
-	std::string MainManager::projectPath = "";
 
 	MainManager::MainManager()
 	{
-		loadnewproject = false;
-
 		renderManager = new RenderManager();
 		uiManager = new ImGuiUIManager(renderManager->getWindow());
 		uiManager->initWindows(renderManager);
@@ -32,7 +28,6 @@ namespace Trixs
 	}
 	void MainManager::SetNewProject(std::string project)
 	{
-		MainManager::loadnewproject = true;
 		MainManager::projectPath = project;
 	}
 }
