@@ -13,45 +13,162 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{cfd90ea2-f305-408b-abac-bf9a09f201db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external">
+      <UniqueIdentifier>{6ad60ab8-04a1-4982-a343-2fd4383e47ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rayTrixser">
+      <UniqueIdentifier>{bfd62524-bd14-4d95-a090-543088a88e7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{604b3849-4de6-4843-87aa-bbcadc09ac8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rayTrixser\Materials">
+      <UniqueIdentifier>{49a85812-971e-4671-97bc-955e10e297ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\windows">
+      <UniqueIdentifier>{964b504b-32bc-42b5-ab2e-d3d5d61b9242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\windows\core">
+      <UniqueIdentifier>{1b947a58-abf0-4b14-b423-95c5d6717a7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="MainManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="external\stb_image.h">
+    <ClInclude Include="RenderManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="external\imgui\imgui_impl_glfw.h">
+      <Filter>external</Filter>
+    </ClInclude>
+    <ClInclude Include="external\stb_image.h">
+      <Filter>external</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>external</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiUIManager.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Project.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec3.h">
+      <Filter>rayTrixser</Filter>
+    </ClInclude>
+    <ClInclude Include="Ray.h">
+      <Filter>rayTrixser</Filter>
+    </ClInclude>
+    <ClInclude Include="Hitable.h">
+      <Filter>rayTrixser</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>rayTrixser</Filter>
+    </ClInclude>
+    <ClInclude Include="HitableList.h">
+      <Filter>rayTrixser</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>rayTrixser</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>rayTrixser\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Lambertian.h">
+      <Filter>rayTrixser\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Metal.h">
+      <Filter>rayTrixser\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Dielectric.h">
+      <Filter>rayTrixser\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTrixser.h">
+      <Filter>rayTrixser</Filter>
+    </ClInclude>
+    <ClInclude Include="IGStartupWindow.h">
+      <Filter>UI\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="IGViewPortWindow.h">
+      <Filter>UI\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderWindow.h">
+      <Filter>UI\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="UIWindow.h">
+      <Filter>UI\windows\core</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiWindow.h">
+      <Filter>UI\windows\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Trixs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\packages\glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="external\imgui\imgui_demo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="external\imgui\imgui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="external\imgui\imgui_draw.cpp">
+    <ClCompile Include="RenderManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="external\imgui\imgui_widgets.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="external\imgui\imgui_impl_glfw.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>external</Filter>
     </ClCompile>
     <ClCompile Include="external\imgui\imgui_impl_opengl3.cpp">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="external\imgui\imgui_draw.cpp">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="external\imgui\imgui_impl_glfw.cpp">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="external\imgui\imgui_demo.cpp">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="external\imgui\imgui.cpp">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="..\packages\glad.c">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiUIManager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MainManager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Project.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ray.cpp">
+      <Filter>rayTrixser</Filter>
+    </ClCompile>
+    <ClCompile Include="UIWindow.cpp">
+      <Filter>UI\windows\core</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiWindow.cpp">
+      <Filter>UI\windows\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
