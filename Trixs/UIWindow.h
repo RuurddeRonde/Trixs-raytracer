@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 namespace Trixs
 {
 	class UIWindow
@@ -7,6 +8,9 @@ namespace Trixs
 		UIWindow();
 		~UIWindow();
 		virtual void update() = 0;
+		bool shouldShow() { return show; }
+	protected:
+		bool show;
 	};
 
 }

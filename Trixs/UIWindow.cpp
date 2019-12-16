@@ -5,6 +5,7 @@ namespace Trixs
 
 	UIWindow::UIWindow()
 	{
+		show = true;
 	}
 
 

@@ -1,11 +1,14 @@
 #include "MainManager.h"
 #include "ImGuiUIManager.h"
+#include <iostream>
 namespace Trixs
 {
+
 	MainManager::MainManager()
 	{
 		renderManager = new RenderManager();
 		uiManager = new ImGuiUIManager(renderManager->getWindow());
+		uiManager->initWindows(renderManager);
 		renderManager->setUI(uiManager);
 
 	}
@@ -21,5 +24,10 @@ namespace Trixs
 		{
 			renderManager->render();
 		}
+
+	}
+	void MainManager::SetNewProject(std::string project)
+	{
+		MainManager::projectPath = project;
 	}
 }
