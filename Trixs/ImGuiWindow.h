@@ -17,7 +17,7 @@ namespace Trixs
 		~ImGuiWindow();
 		void update() override;
 	protected:
-		bool begin(std::string name);
+		virtual bool begin(std::string name);
 		void end();
 	};
 

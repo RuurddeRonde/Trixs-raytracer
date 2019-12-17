@@ -1,7 +1,6 @@
 #pragma once
 #include "UIManager.h"
 #include "UIWindow.h"
-#include "RenderManager.h"
 #include <vector>
 #include <memory>
 namespace Trixs
@@ -10,12 +9,12 @@ namespace Trixs
 		public UIManager
 	{
 	public:
-		ImGuiUIManager(GLFWwindow* window);
+		ImGuiUIManager(Window* window);
 		~ImGuiUIManager();
 		void update() override;
 		void render() override;
-		void initWindows(RenderManager* renderman) override;
 	private:
+		void initWindows(Window* window) override;
 		UIWindow* startup;
 		UIWindow* viewPort;
 		UIWindow* renderSettings;

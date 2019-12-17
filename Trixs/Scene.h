@@ -1,6 +1,11 @@
 #pragma once
-#include <vector>
-#include "Hitable.h"
+#include "HitableList.h"
+//
+//#include "Sphere.h"
+//#include "Lambertian.h"
+//#include "Metal.h"
+//#include "Dielectric.h"
+
 namespace Trixs
 {
 
@@ -9,10 +14,10 @@ class Scene
 public:
 	Scene();
 	~Scene();
-	std::vector<Hittable*> getGraph();
+	Hittable* getGraph();
 	void submit(Hittable* nh);
 private:
-	std::vector<Hittable*> hittables;
+	Hittable* hittables;
 };
 
 }

@@ -6,28 +6,29 @@ namespace Trixs
 
 	MainManager::MainManager()
 	{
-		renderManager = new RenderManager();
-		uiManager = new ImGuiUIManager(renderManager->getWindow());
-		uiManager->initWindows(renderManager);
-		renderManager->setUI(uiManager);
-
+		window = new Window(800, 600);
+		uiManager = new ImGuiUIManager(window);
+		//uiManager->initWindows();
 	}
 	MainManager::~MainManager()
 	{
 		delete uiManager;
-		delete renderManager;
+		delete window;
 	}
 
 	void MainManager::run()
 	{
-		while (!renderManager->WindowShouldClose())
+		while (running)
 		{
-			renderManager->render();
+			uiManager->update();
+			uiManager->render();
+			window->render();
 		}
 
 	}
-	void MainManager::SetNewProject(std::string project)
+	
+	void MainManager::stop()
 	{
-		MainManager::projectPath = project;
+		running = false;
 	}
 }

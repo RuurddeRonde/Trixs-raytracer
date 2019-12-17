@@ -1,5 +1,4 @@
 #pragma once
-#include "RenderManager.h"
 #include "UIManager.h"
 #include <string>
 namespace Trixs
@@ -15,14 +14,17 @@ namespace Trixs
 		}
 		~MainManager();
 		void run();
-		void SetNewProject(std::string project);
+		Window* getWindow() { return window; }
+		void stop();
 		MainManager(MainManager const&) = delete;
 		void operator=(MainManager const&) = delete;
 	private:
 		MainManager();
-		RenderManager* renderManager;
+		//RenderManager* renderManager;
+		Window* window;
 		UIManager* uiManager;
-		std::string projectPath;
+
+		bool running = true;
 	};
 
 }

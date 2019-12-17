@@ -1,4 +1,10 @@
+#pragma once
 #include "Scene.h"
+#include "Random.h"
+#include "Sphere.h"
+#include "Lambertian.h"
+#include "Metal.h"
+#include "Dielectric.h"
 
 namespace Trixs
 {
@@ -10,17 +16,55 @@ namespace Trixs
 
 	Scene::~Scene()
 	{
-		hittables.clear();
+		//delete hittables;
 	}
 
 
-	std::vector<Hittable*> Scene::getGraph()
+	Hittable* Scene::getGraph()
 	{
-		return hittables;
+		int n = 500;
+		Hittable **list = new Hittable*[n + 1];
+		list[0] = new Sphere(vec3(0, -1000, 0), 1000, new Lambertian(vec3(0.5, 0.5, 0.5)));
+		int i = 1;
+
+		for (int a = -11; a < 11; a++)
+		{
+			for (int b = -11; b < 11; b++)
+			{
+
+				float choose_mat = Core::Random::randomDouble();
+				vec3 center(a + 0.9*Core::Random::randomDouble(), 0.2, b + 0.9*Core::Random::randomDouble());
+				if ((center - vec3(4, 0.2, 0)).length() > 0.9) {
+					if (choose_mat < 0.8) {  // diffuse
+						list[i++] = new Sphere(center, 0.2,
+							new Lambertian(vec3(Core::Random::randomDouble()*Core::Random::randomDouble(),
+								Core::Random::randomDouble()*Core::Random::randomDouble(),
+								Core::Random::randomDouble()*Core::Random::randomDouble())
+							)
+						);
+					}
+					else if (choose_mat < 0.95) { // metal
+						list[i++] = new Sphere(center, 0.2,
+							new Metal(vec3(0.5*(1 + Core::Random::randomDouble()),
+								0.5*(1 + Core::Random::randomDouble()),
+								0.5*(1 + Core::Random::randomDouble())),
+								0.5*Core::Random::randomDouble()));
+					}
+					else {  // glass
+						list[i++] = new Sphere(center, 0.2, new Dielectric(1.5));
+					}
+				}
+			}
+		}
+		list[i++] = new Sphere(vec3(0, 1, 0), 1.0, new Dielectric(1.5));
+		list[i++] = new Sphere(vec3(-4, 1, 0), 1.0, new Lambertian(vec3(0.4, 0.2, 0.1)));
+		list[i++] = new Sphere(vec3(4, 1, 0), 1.0, new Metal(vec3(0.7, 0.6, 0.5), 0.0));
+
+		return new HittableList(list, i);
 	}
-	void Scene::submit(Hittable* nh)
-	{
-		hittables.push_back(nh);
-	}
+	//void Scene::submit(Hittable* nh)
+	//{
+
+	//}
 
 }

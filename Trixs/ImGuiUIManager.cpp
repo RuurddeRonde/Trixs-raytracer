@@ -5,7 +5,7 @@
 namespace Trixs
 {
 
-	ImGuiUIManager::ImGuiUIManager(GLFWwindow * window) : UIManager{ window }
+	ImGuiUIManager::ImGuiUIManager(Window* window) : UIManager{ window }
 	{
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -19,11 +19,12 @@ namespace Trixs
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoMerge;
 		
 		setstyle();
+		initWindows(window);
 
-		ImGui_ImplGlfw_InitForOpenGL(window, true);
+		ImGui_ImplGlfw_InitForOpenGL(window->getWindow(), true);
 		const char* glsl_version = "#version 410";
 		ImGui_ImplOpenGL3_Init(glsl_version);
-
+		
 	}
 
 	ImGuiUIManager::~ImGuiUIManager()
@@ -119,10 +120,10 @@ namespace Trixs
 	{
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	}
-	void ImGuiUIManager::initWindows(RenderManager* renderman)
+	void ImGuiUIManager::initWindows(Window* window)
 	{
 		startup = new IGStartupWindow();
-		viewPort = new IGViewPortWindow(renderman);
+		viewPort = new IGViewPortWindow(window);
 		renderSettings = new IGRenderWindow();
 
 	}

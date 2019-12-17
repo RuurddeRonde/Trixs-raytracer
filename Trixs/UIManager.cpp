@@ -3,7 +3,7 @@
 namespace Trixs
 {
 
-	UIManager::UIManager(GLFWwindow* window)
+	UIManager::UIManager(Window* window)
 	{
 
 	}

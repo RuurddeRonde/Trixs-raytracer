@@ -1,4 +1,5 @@
 #include "RenderManager.h"
+#include "MainManager.h"
 #include <iostream>
 namespace Trixs
 {
@@ -9,16 +10,9 @@ namespace Trixs
 			glfwSetWindowShouldClose(window, true);
 	}
 
-	//todo make netjes
-	void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+	RenderManager::RenderManager(Window* basewindow)
 	{
-		// make sure the viewport matches the new window dimensions; note that width and 
-		// height will be significantly larger than specified on retina displays.
-		glViewport(0, 0, width, height);
-	}
-
-	RenderManager::RenderManager()
-	{
+		this->basewindow = basewindow;
 		// glfw: initialize and configure
 		// ------------------------------
 		glfwInit();
@@ -32,15 +26,19 @@ namespace Trixs
 
 	// glfw window creation
 	// --------------------	
-		window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Trixs", NULL, NULL);
-		if (window == NULL)
+		basewindow->setWindow(glfwCreateWindow(basewindow->getWidth(), basewindow->getHeight(), "Trixs", NULL, NULL));
+		if (basewindow->getWindow() == NULL)
 		{
 			//std::cout << "Failed to create GLFW window" << std::endl;
 			glfwTerminate();
 			return;
 		}
-		glfwMakeContextCurrent(window);
-		glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+		glfwMakeContextCurrent(basewindow->getWindow());
+		auto Resizefunc = [](GLFWwindow* w, int width, int height)
+		{
+			static_cast<RenderManager*>(glfwGetWindowUserPointer(w))->framebufferSizeCallback(width, height);
+		};
+		glfwSetFramebufferSizeCallback(basewindow->getWindow(), Resizefunc);
 
 		// glad: load all OpenGL function pointers
 		// ---------------------------------------
@@ -124,7 +122,7 @@ namespace Trixs
 		// -------------------------
 		framebuffer = 0;
 		glGenFramebuffers(1, &framebuffer);
-		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);	
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 		unsigned int textureColorbuffer;
 		glGenTextures(1, &textureColorbuffer);
 		glBindTexture(GL_TEXTURE_2D, textureColorbuffer);
@@ -145,12 +143,6 @@ namespace Trixs
 
 	}
 
-
-	void RenderManager::setUI(UIManager * uiman)
-	{
-		uiManager = uiman;
-	}
-
 	RenderManager::~RenderManager()
 	{
 		glDeleteVertexArrays(1, &VAO);
@@ -162,12 +154,11 @@ namespace Trixs
 
 	void RenderManager::render()
 	{
-		processInput(window);
-		
+		processInput(basewindow->getWindow());
+
 
 		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 		//update ui
-		uiManager->update();
 
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -182,21 +173,24 @@ namespace Trixs
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // set clear color to white (not really necessery actually, since we won't be able to see behind the quad anyways)
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		//render ui
-		uiManager->render();
-
-		glfwSwapBuffers(window);
-		glfwPollEvents();
-
 	}
 
 	bool RenderManager::WindowShouldClose()
 	{
-		return glfwWindowShouldClose(window);
+		return glfwWindowShouldClose(basewindow->getWindow());
 	}
 
 	GLFWwindow * RenderManager::getWindow()
 	{
-		return window;
+		return basewindow->getWindow();
+	}
+	void RenderManager::framebufferSizeCallback(int width, int height)
+	{
+		//glViewport(0, 0, width, height);
+		MainManager::getInstance().getWindow()->setSize(width, height);
+	}
+	void RenderManager::setNewSize(int width, int height)
+	{
+		glViewport(0, 0, width, height);
 	}
 }

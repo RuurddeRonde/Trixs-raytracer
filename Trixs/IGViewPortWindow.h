@@ -5,6 +5,7 @@
 #include <imgui\imgui.h>
 #include <imgui\imgui_impl_glfw.h>
 #include <imgui\imgui_impl_opengl3.h>
+#include "Window.h"
 #include "RenderManager.h"
 
 namespace Trixs
@@ -12,30 +13,58 @@ namespace Trixs
 	class IGViewPortWindow : public ImGuiWindow
 	{
 	public:
-		IGViewPortWindow(RenderManager* renderman) { this->renderman = renderman; }
+		IGViewPortWindow(Window* window)
+		{
+			this->window = window;
+			this->renderman = new RenderManager(window);
+		}
 		void update() override;
+		bool begin(std::string name) override;
 		void setRenderManager(RenderManager* renderman) { this->renderman = renderman; }
 	private:
+		Window* window;
 		RenderManager* renderman;
+		ImVec2 size;
 	};
 
 	void IGViewPortWindow::update()
 	{
+		if (renderman->WindowShouldClose())
+		{
+			MainManager::getInstance().stop();
+			return; //stop application
+		}
 		if (show)
 		{
+			struct CustomConstraints // Helper functions
+			{
+				static void Square(ImGuiSizeCallbackData* data) { data->DesiredSize.x = data->DesiredSize.y = (data->DesiredSize.x > data->DesiredSize.y ? data->DesiredSize.x : data->DesiredSize.y); }
+			};
+
+			ImGui::SetNextWindowSizeConstraints(ImVec2(0, 0), ImVec2(FLT_MAX, FLT_MAX), CustomConstraints::Square);
+			
 			if (!begin("Viewport"))
 			{
 				end();
 			}
 			else
 			{
+				if (ImGui::IsWindowDocked())
+				{
+					ImGui::SetWindowSize(ImVec2(ImGui::GetWindowSize().x, ImGui::GetWindowSize().x));
+				}
+				renderman->render();
 				auto tex = renderman->getFrame();
-				ImVec2 pos = ImGui::GetCursorScreenPos();
-				ImGui::GetWindowDrawList()->AddImage((void *)tex, ImVec2(ImGui::GetCursorScreenPos()),
-					ImVec2(ImGui::GetCursorScreenPos().x + SCR_WIDTH / 2, ImGui::GetCursorScreenPos().y + SCR_HEIGHT / 2), ImVec2(0, 1), ImVec2(1, 0));
+
+				size = ImVec2(ImGui::GetWindowWidth(), ImGui::GetWindowHeight());
+				ImGui::Image((void *)tex, size);
 				end();
 			}
 		}
 
+	}
+	inline bool IGViewPortWindow::begin(std::string name)
+	{
+		return ImGui::Begin(name.c_str(), &show, ImGuiWindowFlags_NoScrollbar);
 	}
 }

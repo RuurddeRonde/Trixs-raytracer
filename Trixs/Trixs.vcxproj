@@ -175,14 +175,17 @@
     <ClInclude Include="Project.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Ray.h" />
+    <ClInclude Include="RayBehaviour.h" />
     <ClInclude Include="RayTrixser.h" />
     <ClInclude Include="RenderManager.h" />
+    <ClInclude Include="RenderSubmission.h" />
     <ClInclude Include="RenderWindow.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="UIWindow.h" />
     <ClInclude Include="Vec3.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\packages\glad.c" />
@@ -192,9 +195,11 @@
     <ClCompile Include="external\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="external\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="external\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="HitableList.cpp" />
     <ClCompile Include="ImGuiUIManager.cpp" />
     <ClCompile Include="ImGuiWindow.cpp" />
     <ClCompile Include="MainManager.cpp" />
+    <ClCompile Include="Materials.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -203,11 +208,14 @@
     </ClCompile>
     <ClCompile Include="Project.cpp" />
     <ClCompile Include="Ray.cpp" />
+    <ClCompile Include="RayTrixser.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Trixs.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="UIWindow.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

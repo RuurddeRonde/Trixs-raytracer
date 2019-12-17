@@ -1,7 +1,7 @@
 #pragma once
 #include "ImGuiWindow.h"
-#include "MainManager.h"
 #include "RayTrixser.h"
+#include "RenderSubmission.h"
 #include <future>
 #include <algorithm>
 namespace Trixs
@@ -41,7 +41,12 @@ namespace Trixs
 				ImGui::InputText("Name", str0, IM_ARRAYSIZE(str0));
 				if (ImGui::Button("Render"))
 				{
-					RayTrixser::render(randomObjects, nx, ny, ns, str0);
+					RenderSubmission sub;
+					sub.width = nx;
+					sub.height = ny;
+					sub.samplesPerPixel = ns;
+					sub.outputfile = str0;
+					RT.render(sub);
 				}
 				end();
 			}
