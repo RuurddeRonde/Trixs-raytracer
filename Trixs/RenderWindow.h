@@ -46,6 +46,7 @@ namespace Trixs
 					sub.height = ny;
 					sub.samplesPerPixel = ns;
 					sub.outputfile = str0;
+					sub.scene = MainManager::getInstance().getProject()->getCurrentScene();
 					RT.render(sub);
 				}
 				end();

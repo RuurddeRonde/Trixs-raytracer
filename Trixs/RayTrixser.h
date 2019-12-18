@@ -10,7 +10,7 @@ namespace Trixs
 	{
 	public:
 		RayTrixser() {}
-		static void render(RenderSubmission submission);
+		static bool render(RenderSubmission submission);
 
 	private:
 		static Hittable *random_scene(int randomObjects);

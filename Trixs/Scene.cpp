@@ -16,7 +16,7 @@ namespace Trixs
 
 	Scene::~Scene()
 	{
-		//delete hittables;
+		delete hittables;
 	}
 
 
@@ -62,9 +62,9 @@ namespace Trixs
 
 		return new HittableList(list, i);
 	}
-	//void Scene::submit(Hittable* nh)
-	//{
-
-	//}
+	void Scene::submit(Hittable* nh)
+	{
+		//todo add to scene
+	}
 
 }

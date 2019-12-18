@@ -9,15 +9,16 @@
 #include "HitableList.h"
 namespace Trixs
 {
-	void RayTrixser::render(RenderSubmission submission)
+	bool RayTrixser::render(RenderSubmission submission)
 	{
 		FILE *fp;
+		std::string filepath = "renders/" + submission.outputfile;
 		fopen_s(&fp, submission.outputfile.c_str(), "w+");
 		(void)fprintf(fp, "P3\n%d %d\n255\n", submission.width, submission.height);
 		Hittable *world = NULL;
 		if (submission.scene = nullptr)
 		{
-			world = random_scene(0);
+			return false;
 		}
 		else
 		{
@@ -51,6 +52,7 @@ namespace Trixs
 		}
 
 		(void)fclose(fp);
+		return true;
 	}
 	 Hittable* RayTrixser::random_scene(int randomObjects) {
 		int n = 500;

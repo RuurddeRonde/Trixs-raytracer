@@ -1,5 +1,6 @@
 #pragma once
 #include "UIManager.h"
+#include "Project.h"
 #include <string>
 namespace Trixs
 {
@@ -14,8 +15,10 @@ namespace Trixs
 		}
 		~MainManager();
 		void run();
-		Window* getWindow() { return window; }
 		void stop();
+		Window* getWindow() { return window; }
+		Project* getProject() { return &project; }
+
 		MainManager(MainManager const&) = delete;
 		void operator=(MainManager const&) = delete;
 	private:
@@ -23,7 +26,7 @@ namespace Trixs
 		//RenderManager* renderManager;
 		Window* window;
 		UIManager* uiManager;
-
+		Project project;
 		bool running = true;
 	};
 

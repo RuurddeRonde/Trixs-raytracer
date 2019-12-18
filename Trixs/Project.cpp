@@ -5,7 +5,8 @@ namespace Trixs
 
 	Project::Project()
 	{
-
+		addScene();
+		currentScene = scenes.at(0);
 	}
 
 
@@ -31,9 +32,9 @@ namespace Trixs
 	}
 	void Project::addScene()
 	{
-		scenes.push_back(Scene());
+		scenes.push_back(new Scene());
 	}
-	std::vector<Scene> Project::getAllScenes()
+	std::vector<Scene*> Project::getAllScenes()
 	{
 		return scenes;
 	}
