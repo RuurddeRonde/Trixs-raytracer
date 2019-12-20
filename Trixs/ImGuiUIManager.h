@@ -3,6 +3,8 @@
 #include "UIWindow.h"
 #include <vector>
 #include <memory>
+#include "RenderWindow.h"
+#include "IGShowImageWindow.h"
 namespace Trixs
 {
 	class ImGuiUIManager :
@@ -18,6 +20,9 @@ namespace Trixs
 		UIWindow* startup;
 		UIWindow* viewPort;
 		UIWindow* renderSettings;
+		UIWindow* showImage;
+		IGRenderWindow* renderWindowCasted;
+		IGShowImageWindow* showImageCasted;
 
 		ImGuiWindowFlags window_flags;
 		void ShowDockSpace(bool* p_open);

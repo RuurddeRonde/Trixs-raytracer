@@ -126,6 +126,21 @@
     <ClInclude Include="RayBehaviour.h">
       <Filter>rayTrixser\Materials</Filter>
     </ClInclude>
+    <ClInclude Include="stb_image_write.h">
+      <Filter>external</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageIO.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="IGShowImageWindow.h">
+      <Filter>UI\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="objLoader.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec2.h">
+      <Filter>rayTrixser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Trixs.cpp">
@@ -196,6 +211,21 @@
     </ClCompile>
     <ClCompile Include="HitableList.cpp">
       <Filter>rayTrixser\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageIO.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="IGStartupWindow.cpp">
+      <Filter>UI\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="IGShowImageWindow.cpp">
+      <Filter>UI\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderWindow.cpp">
+      <Filter>UI\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="objLoader.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

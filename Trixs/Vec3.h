@@ -24,13 +24,13 @@ namespace Trixs
 		inline vec3& operator-=(const vec3 &v2);
 		inline vec3& operator*=(const vec3 &v2);
 		inline vec3& operator/=(const vec3 &v2);
+		inline bool operator==(const vec3 &v2);
 		inline vec3& operator*=(const float t);
 		inline vec3& operator/=(const float t);
 
 		inline float length() const { return sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2]); }
 		inline float squared_length() const { return e[0] * e[0] + e[1] * e[1] + e[2] * e[2]; }
 		inline void make_unit_vector();
-
 		float e[3];
 	};
 
@@ -78,6 +78,14 @@ namespace Trixs
 		return vec3(t*v.e[0], t*v.e[1], t*v.e[2]);
 	}
 
+	inline bool vec3::operator==(const vec3 &v2)
+	{
+		if ((e[0] == v2.e[0] && e[1] == v2.e[1] && e[2] == v2.e[2]))
+		{
+			return true;
+		}
+		return false;
+	}
 	inline float dot(const vec3 &v1, const vec3 &v2) {
 		return v1.e[0] * v2.e[0]
 			+ v1.e[1] * v2.e[1]
@@ -136,5 +144,11 @@ namespace Trixs
 
 	inline vec3 unit_vector(vec3 v) {
 		return v / v.length();
+	}
+
+	inline vec3 normalize(const vec3 &v)
+	{
+		float length_of_v = sqrt((v.x() * v.x()) + (v.y() * v.y()) + (v.z() * v.z()));
+		return vec3((v.x() / length_of_v), (v.y() / length_of_v), (v.z() / length_of_v));
 	}
 }

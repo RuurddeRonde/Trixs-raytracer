@@ -13,7 +13,6 @@ namespace Trixs
 		static bool render(RenderSubmission submission);
 
 	private:
-		static Hittable *random_scene(int randomObjects);
 		static vec3 color(const Ray& r, Hittable* world, int depth);
 
 	};

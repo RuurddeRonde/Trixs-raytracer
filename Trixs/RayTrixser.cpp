@@ -7,14 +7,15 @@
 #include "Metal.h"
 #include "Dielectric.h"
 #include "HitableList.h"
+#include "ImageIO.h"
 namespace Trixs
 {
 	bool RayTrixser::render(RenderSubmission submission)
 	{
-		FILE *fp;
-		std::string filepath = "renders/" + submission.outputfile;
-		fopen_s(&fp, submission.outputfile.c_str(), "w+");
-		(void)fprintf(fp, "P3\n%d %d\n255\n", submission.width, submission.height);
+#define CHANNEL_NUM 3
+		uint8_t* pixels = new uint8_t[submission.width * submission.height * CHANNEL_NUM];
+		int index = 0;
+
 		Hittable *world = NULL;
 		if (submission.scene = nullptr)
 		{
@@ -47,53 +48,41 @@ namespace Trixs
 				int ig = int(255.99*col[1]);
 				int ib = int(255.99*col[2]);
 				//std::cout << ir << " " << ig << " " << ib << "\n"; 
-				(void)fprintf(fp, "%d %d %d\n", ir, ig, ib);
+
+				pixels[index++] = ir;
+				pixels[index++] = ig;
+				pixels[index++] = ib;
 			}
 		}
 
-		(void)fclose(fp);
-		return true;
-	}
-	 Hittable* RayTrixser::random_scene(int randomObjects) {
-		int n = 500;
-		Hittable **list = new Hittable*[n + 1];
-		list[0] = new Sphere(vec3(0, -1000, 0), 1000, new Lambertian(vec3(0.5, 0.5, 0.5)));
-		int i = 1;
-
-		for (int a = -11; a < 11; a++)
+		std::string filepath = "renders\\" + submission.outputfile;
+		switch (submission.outputType)
 		{
-			for (int b = -11; b < 11; b++)
-			{
-
-				float choose_mat = Core::Random::randomDouble();
-				vec3 center(a + 0.9*Core::Random::randomDouble(), 0.2, b + 0.9*Core::Random::randomDouble());
-				if ((center - vec3(4, 0.2, 0)).length() > 0.9) {
-					if (choose_mat < 0.8) {  // diffuse
-						list[i++] = new Sphere(center, 0.2,
-							new Lambertian(vec3(Core::Random::randomDouble()*Core::Random::randomDouble(),
-								Core::Random::randomDouble()*Core::Random::randomDouble(),
-								Core::Random::randomDouble()*Core::Random::randomDouble())
-							)
-						);
-					}
-					else if (choose_mat < 0.95) { // metal
-						list[i++] = new Sphere(center, 0.2,
-							new Metal(vec3(0.5*(1 + Core::Random::randomDouble()),
-								0.5*(1 + Core::Random::randomDouble()),
-								0.5*(1 + Core::Random::randomDouble())),
-								0.5*Core::Random::randomDouble()));
-					}
-					else {  // glass
-						list[i++] = new Sphere(center, 0.2, new Dielectric(1.5));
-					}
-				}
-			}
+		case JPG:
+			filepath = filepath + ".jpg";
+			Core::ImageIO::WriteJPG(filepath.c_str(), submission.width, submission.height, 3, pixels, 100);
+			break;
+		case PNG:
+			filepath = filepath + ".png";
+			Core::ImageIO::WritePNG(filepath.c_str(), submission.width, submission.height, 3, pixels, submission.width*3);
+			break;
+		case BPM:
+			filepath = filepath + ".BPM";
+			Core::ImageIO::WriteBPM(filepath.c_str(), submission.width, submission.height, 3, pixels);
+			break;
+		case TGA:
+			filepath = filepath + ".TGA";
+			Core::ImageIO::WriteTGA(filepath.c_str(), submission.width, submission.height, 3, pixels);
+			break;
+		case HDR:
+			filepath = filepath + ".hdr";
+			Core::ImageIO::WriteHDR(filepath.c_str(), submission.width, submission.height, 3, pixels);
+			break;
+		default:
+			break;
 		}
-		list[i++] = new Sphere(vec3(0, 1, 0), 1.0, new Dielectric(1.5));
-		list[i++] = new Sphere(vec3(-4, 1, 0), 1.0, new Lambertian(vec3(0.4, 0.2, 0.1)));
-		list[i++] = new Sphere(vec3(4, 1, 0), 1.0, new Metal(vec3(0.7, 0.6, 0.5), 0.0));
-
-		return new HittableList(list, i);
+		delete[] pixels;
+		return true;
 	}
 	vec3 RayTrixser::color(const Ray& r, Hittable* world, int depth) {
 		hitRecord rec;

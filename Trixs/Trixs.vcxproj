@@ -115,6 +115,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -154,6 +156,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -163,14 +167,17 @@
     <ClInclude Include="external\stb_image.h" />
     <ClInclude Include="Hitable.h" />
     <ClInclude Include="HitableList.h" />
+    <ClInclude Include="IGShowImageWindow.h" />
     <ClInclude Include="IGStartupWindow.h" />
     <ClInclude Include="IGViewPortWindow.h" />
+    <ClInclude Include="ImageIO.h" />
     <ClInclude Include="ImGuiUIManager.h" />
     <ClInclude Include="ImGuiWindow.h" />
     <ClInclude Include="Lambertian.h" />
     <ClInclude Include="MainManager.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Metal.h" />
+    <ClInclude Include="objLoader.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Project.h" />
     <ClInclude Include="Random.h" />
@@ -182,8 +189,10 @@
     <ClInclude Include="RenderWindow.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Sphere.h" />
+    <ClInclude Include="stb_image_write.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="UIWindow.h" />
+    <ClInclude Include="Vec2.h" />
     <ClInclude Include="Vec3.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -196,10 +205,14 @@
     <ClCompile Include="external\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="external\imgui\imgui_widgets.cpp" />
     <ClCompile Include="HitableList.cpp" />
+    <ClCompile Include="IGShowImageWindow.cpp" />
+    <ClCompile Include="IGStartupWindow.cpp" />
+    <ClCompile Include="ImageIO.cpp" />
     <ClCompile Include="ImGuiUIManager.cpp" />
     <ClCompile Include="ImGuiWindow.cpp" />
     <ClCompile Include="MainManager.cpp" />
     <ClCompile Include="Materials.cpp" />
+    <ClCompile Include="objLoader.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -210,6 +223,7 @@
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="RayTrixser.cpp" />
     <ClCompile Include="RenderManager.cpp" />
+    <ClCompile Include="RenderWindow.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Trixs.cpp" />
