@@ -37,6 +37,9 @@
     <Filter Include="rayTrixser\shapes">
       <UniqueIdentifier>{d95d2ffc-d8b5-4edb-aec8-4b53f16c650e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="rayTrixser\geometry">
+      <UniqueIdentifier>{bffccc6e-b024-42cb-9160-53325ee9aab5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainManager.h">
@@ -65,9 +68,6 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vec3.h">
-      <Filter>rayTrixser</Filter>
     </ClInclude>
     <ClInclude Include="Ray.h">
       <Filter>rayTrixser</Filter>
@@ -138,8 +138,20 @@
     <ClInclude Include="objLoader.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="HitableObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec3.h">
+      <Filter>rayTrixser\geometry</Filter>
+    </ClInclude>
     <ClInclude Include="Vec2.h">
-      <Filter>rayTrixser</Filter>
+      <Filter>rayTrixser\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Translate.h">
+      <Filter>rayTrixser\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>rayTrixser\shapes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +238,12 @@
     </ClCompile>
     <ClCompile Include="objLoader.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="HitableObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>rayTrixser\shapes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

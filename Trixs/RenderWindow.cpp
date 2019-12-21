@@ -17,7 +17,7 @@ namespace Trixs
 			}
 			else
 			{
-				ImGui::BeginChild("data", ImVec2(350, 150), false);
+				ImGui::BeginChild("data", ImVec2(350, 75), false);
 				ImGui::DragInt("Width in pixels", &this->nx, 1.0, 10, 1080);
 				ImGui::DragInt("Height in pixels", &this->ny, 1.0, 10, 720);
 				ImGui::DragInt("Samples per pixel", &this->ns, 1.0, 0, 500);

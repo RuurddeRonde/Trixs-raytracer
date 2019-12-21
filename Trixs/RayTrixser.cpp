@@ -26,9 +26,9 @@ namespace Trixs
 			world = submission.scene->getGraph();
 		}
 
-		vec3 lookfrom(13, 2, 3);
+		vec3 lookfrom(4, 2, 8);
 		vec3 lookat(0, 0, 0);
-		float dist_to_focus = 10.0;
+		float dist_to_focus = 8.0;
 		float aperture = 0.1;
 
 		Camera cam(lookfrom, lookat, vec3(0, 1, 0), 20, float(submission.width) / float(submission.height), aperture, dist_to_focus);
@@ -96,7 +96,7 @@ namespace Trixs
 				return vec3(0, 0, 0);
 			}
 		}
-		else
+		else //background
 		{
 			vec3 unit_direction = unit_vector(r.direction());
 			float t = 0.5*(unit_direction.y() + 1.0);

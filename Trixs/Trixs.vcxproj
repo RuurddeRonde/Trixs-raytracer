@@ -167,6 +167,7 @@
     <ClInclude Include="external\stb_image.h" />
     <ClInclude Include="Hitable.h" />
     <ClInclude Include="HitableList.h" />
+    <ClInclude Include="HitableObject.h" />
     <ClInclude Include="IGShowImageWindow.h" />
     <ClInclude Include="IGStartupWindow.h" />
     <ClInclude Include="IGViewPortWindow.h" />
@@ -190,6 +191,8 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="stb_image_write.h" />
+    <ClInclude Include="Translate.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="UIWindow.h" />
     <ClInclude Include="Vec2.h" />
@@ -205,6 +208,7 @@
     <ClCompile Include="external\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="external\imgui\imgui_widgets.cpp" />
     <ClCompile Include="HitableList.cpp" />
+    <ClCompile Include="HitableObject.cpp" />
     <ClCompile Include="IGShowImageWindow.cpp" />
     <ClCompile Include="IGStartupWindow.cpp" />
     <ClCompile Include="ImageIO.cpp" />
@@ -226,6 +230,7 @@
     <ClCompile Include="RenderWindow.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Trixs.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="UIWindow.cpp" />
