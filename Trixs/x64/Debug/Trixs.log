@@ -1,17 +1,4 @@
-﻿  Scene.cpp
-c:\users\ruurd\source\repos\trixs\trixs\vec3.h(49): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\scene.cpp(40): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\scene.cpp(41): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\scene.cpp(43): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\scene.cpp(44): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\scene.cpp(48): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\scene.cpp(49): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\scene.cpp(52): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\scene.cpp(53): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\scene.cpp(56): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\scene.cpp(57): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\scene.cpp(60): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\scene.cpp(61): warning C4305: 'argument': truncation from 'double' to 'float'
+﻿  ImGuiUIManager.cpp
+c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\igviewportwindow.h(60): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
   Trixs.vcxproj -> C:\Users\Ruurd\source\repos\Trixs\x64\Debug\Trixs.exe

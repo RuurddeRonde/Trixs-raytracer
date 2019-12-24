@@ -1,11 +1,11 @@
 #include "Window.h"
 
 
-
 Window::Window(int width, int height)
 {
 	this->width = width;
-	this->height = height;
+	this->height = height; //gett overwriten to fit screen
+
 }
 
 

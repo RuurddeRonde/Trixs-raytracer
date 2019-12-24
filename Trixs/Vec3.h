@@ -14,6 +14,12 @@ namespace Trixs
 		inline float r() const { return e[0]; }
 		inline float g() const { return e[1]; }
 		inline float b() const { return e[2]; }
+		inline void setx(float x) { e[0] = x; }
+		inline void sety(float y) { e[1] = y; }
+		inline void setz(float z) { e[2] = z; }
+		inline void setr(float r) { e[0] = r; }
+		inline void setg(float g) { e[1] = g; }
+		inline void setb(float b) { e[2] = b; }
 
 		inline const vec3& operator+() const { return *this; }
 		inline vec3 operator-() const { return vec3(-e[0], -e[1], -e[2]); }

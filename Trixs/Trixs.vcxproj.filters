@@ -138,9 +138,6 @@
     <ClInclude Include="objLoader.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="HitableObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Vec3.h">
       <Filter>rayTrixser\geometry</Filter>
     </ClInclude>
@@ -152,6 +149,15 @@
     </ClInclude>
     <ClInclude Include="Triangle.h">
       <Filter>rayTrixser\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyObjLoader.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>rayTrixser\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="aabb.h">
+      <Filter>rayTrixser\geometry</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -239,10 +245,10 @@
     <ClCompile Include="objLoader.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="HitableObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Triangle.cpp">
+      <Filter>rayTrixser\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
       <Filter>rayTrixser\shapes</Filter>
     </ClCompile>
   </ItemGroup>

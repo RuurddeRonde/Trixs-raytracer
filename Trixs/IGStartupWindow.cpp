@@ -1,7 +1,14 @@
 #include "IGStartupWindow.h"
 namespace Trixs
 {
-
+	bool IGStartupWindow::begin(std::string name)
+	{
+		ImGuiWindowFlags window_flags = 0;
+		window_flags |= ImGuiWindowFlags_NoSavedSettings;
+		window_flags |= ImGuiWindowFlags_NoMove;
+		window_flags |= ImGuiWindowFlags_NoResize;
+		return ImGui::Begin(name.c_str(), &show, window_flags);
+	}
 	void IGStartupWindow::update()
 	{
 		if (show)

@@ -26,7 +26,12 @@ namespace Trixs
 
 	// glfw window creation
 	// --------------------	
-		basewindow->setWindow(glfwCreateWindow(basewindow->getWidth(), basewindow->getHeight(), "Trixs", NULL, NULL));
+
+		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+		basewindow->setSize(mode->width, mode->height);
+
+		basewindow->setWindow(glfwCreateWindow(basewindow->getWidth(), basewindow->getHeight(), "Trixs", glfwGetPrimaryMonitor(), NULL));
 		if (basewindow->getWindow() == NULL)
 		{
 			//std::cout << "Failed to create GLFW window" << std::endl;

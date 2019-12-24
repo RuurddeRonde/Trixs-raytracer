@@ -161,13 +161,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="aabb.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Dielectric.h" />
     <ClInclude Include="external\imgui\imgui_impl_glfw.h" />
     <ClInclude Include="external\stb_image.h" />
     <ClInclude Include="Hitable.h" />
     <ClInclude Include="HitableList.h" />
-    <ClInclude Include="HitableObject.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="IGShowImageWindow.h" />
     <ClInclude Include="IGStartupWindow.h" />
     <ClInclude Include="IGViewPortWindow.h" />
@@ -191,6 +192,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="stb_image_write.h" />
+    <ClInclude Include="tinyObjLoader.h" />
     <ClInclude Include="Translate.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="UIManager.h" />
@@ -208,7 +210,7 @@
     <ClCompile Include="external\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="external\imgui\imgui_widgets.cpp" />
     <ClCompile Include="HitableList.cpp" />
-    <ClCompile Include="HitableObject.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="IGShowImageWindow.cpp" />
     <ClCompile Include="IGStartupWindow.cpp" />
     <ClCompile Include="ImageIO.cpp" />

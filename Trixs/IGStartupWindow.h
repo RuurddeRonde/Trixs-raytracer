@@ -7,6 +7,7 @@ namespace Trixs
 	class IGStartupWindow : public ImGuiWindow
 	{
 	public:
+		bool begin(std::string name) override;
 		void update() override;
 	private:
 

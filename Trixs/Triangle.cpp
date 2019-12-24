@@ -3,22 +3,94 @@
 
 namespace Trixs
 {
-	Triangle::Triangle(vec3* A, vec3* B, vec3* C, Material* mat)
+	Triangle::Triangle(int A, int B, int C, std::vector<vec3>* indices, vec3 normal, Material* mat)
 	{
 		this->A = A;
 		this->B = B;
 		this->C = C;
+		this->indices = indices;
+		this->normal = normal;
 		this->matPtr = mat;
+
+		//create bounding box
+		vec3 max(FLT_MIN, FLT_MIN, FLT_MIN);
+		vec3 min(FLT_MAX, FLT_MAX, FLT_MAX);
+
+		//set bounding box at min min min and max max max
+		if (indices->at(A).x() < min.x()) { min.setx(indices->at(A).x()); }
+		if (indices->at(A).x() > max.x()) { max.setx(indices->at(A).x()); }
+		if (indices->at(A).y() < min.y()) { min.sety(indices->at(A).y()); }
+		if (indices->at(A).y() > max.y()) { max.sety(indices->at(A).y()); }
+		if (indices->at(A).z() < min.z()) { min.setz(indices->at(A).z()); }
+		if (indices->at(A).z() > max.z()) { max.setz(indices->at(A).z()); }
+
+		if (indices->at(B).x() < min.x()) { min.setx(indices->at(B).x()); }
+		if (indices->at(B).x() > max.x()) { max.setx(indices->at(B).x()); }
+		if (indices->at(B).y() < min.y()) { min.sety(indices->at(B).y()); }
+		if (indices->at(B).y() > max.y()) { max.sety(indices->at(B).y()); }
+		if (indices->at(B).z() < min.z()) { min.setz(indices->at(B).z()); }
+		if (indices->at(B).z() > max.z()) { max.setz(indices->at(B).z()); }
+
+		if (indices->at(C).x() < min.x()) { min.setx(indices->at(C).x()); }
+		if (indices->at(C).x() > max.x()) { max.setx(indices->at(C).x()); }
+		if (indices->at(C).y() < min.y()) { min.sety(indices->at(C).y()); }
+		if (indices->at(C).y() > max.y()) { max.sety(indices->at(C).y()); }
+		if (indices->at(C).z() < min.z()) { min.setz(indices->at(C).z()); }
+		if (indices->at(C).z() > max.z()) { max.setz(indices->at(C).z()); }
+		this->boundingBox = aabb(min, max);
+	}
+	Triangle::Triangle(int A, int B, int C, std::vector<vec3>* indices, Material * mat)
+	{
+		this->A = A;
+		this->B = B;
+		this->C = C;
+		this->indices = indices;
+		
+		vec3 CA(indices->at(C).x() - indices->at(A).x(), indices->at(C).y() - indices->at(A).y(), indices->at(C).z() - indices->at(A).z());
+		vec3 BA(indices->at(B).x() - indices->at(A).x(), indices->at(B).y() - indices->at(A).y(), indices->at(B).z() - indices->at(A).z());
+		this->normal= normalize(cross(CA, BA));;
+		this->matPtr = mat;
+
+		//create bounding box
+		vec3 max(FLT_MIN, FLT_MIN, FLT_MIN);
+		vec3 min(FLT_MAX, FLT_MAX, FLT_MAX);
+
+		//set bounding box at min min min and max max max
+		if (indices->at(A).x() < min.x()) { min.setx(indices->at(A).x()); }
+		if (indices->at(A).x() > max.x()) { max.setx(indices->at(A).x()); }
+		if (indices->at(A).y() < min.y()) { min.sety(indices->at(A).y()); }
+		if (indices->at(A).y() > max.y()) { max.sety(indices->at(A).y()); }
+		if (indices->at(A).z() < min.z()) { min.setz(indices->at(A).z()); }
+		if (indices->at(A).z() > max.z()) { max.setz(indices->at(A).z()); }
+
+		if (indices->at(B).x() < min.x()) { min.setx(indices->at(B).x()); }
+		if (indices->at(B).x() > max.x()) { max.setx(indices->at(B).x()); }
+		if (indices->at(B).y() < min.y()) { min.sety(indices->at(B).y()); }
+		if (indices->at(B).y() > max.y()) { max.sety(indices->at(B).y()); }
+		if (indices->at(B).z() < min.z()) { min.setz(indices->at(B).z()); }
+		if (indices->at(B).z() > max.z()) { max.setz(indices->at(B).z()); }
+
+		if (indices->at(C).x() < min.x()) { min.setx(indices->at(C).x()); }
+		if (indices->at(C).x() > max.x()) { max.setx(indices->at(C).x()); }
+		if (indices->at(C).y() < min.y()) { min.sety(indices->at(C).y()); }
+		if (indices->at(C).y() > max.y()) { max.sety(indices->at(C).y()); }
+		if (indices->at(C).z() < min.z()) { min.setz(indices->at(C).z()); }
+		if (indices->at(C).z() > max.z()) { max.setz(indices->at(C).z()); }
+		this->boundingBox = aabb(min, max);
 	}
 	bool Triangle::hit(const Ray& r, float t_min, float t_max, hitRecord& rec)const
 	{
 		const float EPSILON = 0.0000001;
 
-		vec3 edge1, edge2, h, s, q;
+		vec3 edge1, edge2, h, s, q, ca, cb, cc;
 		float a, f, u, v;
 
-		edge1 = *B - *A;
-		edge2 = *C - *A;
+		ca = indices->at(A);
+		cb = indices->at(B);
+		cc = indices->at(C);
+
+		edge1 = cb - ca;
+		edge2 = cc - ca;
 		
 		h = cross(r.direction(), edge2); //misschien niet direction
 		a = dot(edge1, h);
@@ -26,7 +98,7 @@ namespace Trixs
 			return false;    // This ray is parallel to this triangle.
 
 		f = 1.0 / a;
-		s = r.origin() - *A;
+		s = r.origin() - ca;
 		u = f * dot(s, h);
 		if (u < 0.0 || u > 1.0)
 			return false;
@@ -97,3 +169,5 @@ bool RayIntersectsTriangle(Vector3D rayOrigin,
 }
 
 */
+
+//if (((verty[i] > y) != (verty[j] > y)) && (x <(vertx[j] - vertx[i]) * (y - verty[i]) / (verty[j] -	verty[i]) + vertx[i]))

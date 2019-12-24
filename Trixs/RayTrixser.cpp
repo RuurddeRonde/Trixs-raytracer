@@ -26,7 +26,7 @@ namespace Trixs
 			world = submission.scene->getGraph();
 		}
 
-		vec3 lookfrom(4, 2, 8);
+		vec3 lookfrom(1, 2, 8);
 		vec3 lookat(0, 0, 0);
 		float dist_to_focus = 8.0;
 		float aperture = 0.1;
