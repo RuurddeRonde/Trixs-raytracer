@@ -127,6 +127,20 @@ namespace Trixs
 			return false;
 	}
 
+	std::string Triangle::getWritable() const
+	{
+		std::string writable;
+		writable += A + " ";
+		writable += B + " ";
+		writable += C + " ";
+		writable += normal.x();
+		writable += " ";
+		writable += normal.y();
+		writable += " ";
+		writable += normal.z();
+		return writable;
+	}
+
 }
 
 /*

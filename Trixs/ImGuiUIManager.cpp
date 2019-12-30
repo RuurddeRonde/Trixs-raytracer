@@ -17,14 +17,14 @@ namespace Trixs
 		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoTaskBarIcons;
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoMerge;
-		
+
 		setstyle();
 		initWindows(window);
 
 		ImGui_ImplGlfw_InitForOpenGL(window->getWindow(), true);
 		const char* glsl_version = "#version 410";
 		ImGui_ImplOpenGL3_Init(glsl_version);
-		
+
 	}
 
 	ImGuiUIManager::~ImGuiUIManager()
@@ -52,7 +52,7 @@ namespace Trixs
 			ImGui::SetNextWindowViewport(viewport->ID);
 			ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
 			ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
-			window_flags |= ImGuiWindowFlags_NoTitleBar |  ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
+			window_flags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
 			window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
 		}
 
@@ -100,9 +100,15 @@ namespace Trixs
 
 		ShowDockSpace(&show);
 
-		updateWindows();
-
-		ImGui::ShowDemoWindow();
+		if (MainManager::getInstance().getProgramSettings()->projectLoaded)
+		{
+			updateWindows();
+			ImGui::ShowDemoWindow();
+		}
+		else //only show startup, hide others
+		{
+			startup->update();
+		}
 
 		ImGui::Render();
 

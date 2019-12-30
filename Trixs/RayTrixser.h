@@ -10,7 +10,7 @@ namespace Trixs
 	{
 	public:
 		RayTrixser() {}
-		static bool render(RenderSubmission submission);
+		static bool render(RenderSubmission* submission);
 
 	private:
 		static vec3 color(const Ray& r, Hittable* world, int depth);

@@ -1,25 +1,42 @@
 #include "Project.h"
+#include "FileIO.h"
 
+//temp
+#include "Mesh.h"
+#include "Lambertian.h"
 namespace Trixs
 {
 
-	Project::Project()
+	Project::Project(std::string path, bool isNewProject, std::string name)
 	{
-		addScene();
+		savePath = path;
+		this->name = name;
+		if (!isNewProject)
+		{
+			loadProject(path);
+		}
+		scenes.push_back(new Scene("testscene"));
 		currentScene = scenes.at(0);
+		currentScene->submit(new Mesh("models/cube.obj", new Lambertian(vec3(0.4, 0.2, 0.1))));
 	}
 
 
 	Project::~Project()
 	{
-		scenes.clear();
-		currentScene = NULL;
 	}
 
 
-	bool Project::saveProject(std::string path)
+	bool Project::saveProject()
 	{
-		return false;
+		std::string SaveString;
+		SaveString += "TRIXSANIMATOR\n";
+		SaveString += name + "\n";
+		for (auto i = 0; i < scenes.size(); i++)
+		{
+			scenes.at(i)->saveScene(savePath +"scenes/");
+			SaveString += scenes.at(i)->getName() + "\n";
+		}
+		return FileIO::writeFile(savePath.append(name.append(".trixs")), SaveString);
 	}
 
 	bool Project::loadProject(std::string path)
@@ -32,7 +49,7 @@ namespace Trixs
 	}
 	void Project::addScene()
 	{
-		scenes.push_back(new Scene());
+		scenes.push_back(new Scene("testScene"));
 	}
 	std::vector<Scene*> Project::getAllScenes()
 	{

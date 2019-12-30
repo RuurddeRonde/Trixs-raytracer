@@ -16,5 +16,6 @@ namespace Trixs
 	{
 	public:
 		virtual bool hit(const Ray& r, float t_min, float t_max, hitRecord& rec) const = 0;
+		virtual std::string getWritable()const { return ""; }
 	};
 }

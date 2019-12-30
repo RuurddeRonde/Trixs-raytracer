@@ -15,6 +15,7 @@ namespace Trixs
 			return normal;
 		}
 		inline aabb getBoundingBox() { return boundingBox; }
+		virtual std::string getWritable()const override;
 	private:
 		std::vector<vec3>* indices;
 		int A, B, C;

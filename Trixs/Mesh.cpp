@@ -4,8 +4,10 @@
 #include "Lambertian.h"
 namespace Trixs
 {
-	Mesh::Mesh(std::string filepath)
+	Mesh::Mesh(std::string filepath, Material* matPtr)
 	{
+		this->matPtr = matPtr;
+		this->filepath = filepath;
 		tinyobj::attrib_t attrib;
 		std::vector<tinyobj::shape_t> shapes;
 		std::vector<tinyobj::material_t> materials;
@@ -82,11 +84,11 @@ namespace Trixs
 						tinyobj::real_t nx = attrib.normals[3 * idx.normal_index + 0];
 						tinyobj::real_t ny = attrib.normals[3 * idx.normal_index + 1];
 						tinyobj::real_t nz = attrib.normals[3 * idx.normal_index + 2];
-						triangles.push_back(Triangle(cornera, cornerb, cornerc, &vertexPositions, vec3(nx, ny, nz), new Lambertian(vec3(0.4, 0.0, 0.4))));
+						triangles.push_back(Triangle(cornera, cornerb, cornerc, &vertexPositions, vec3(nx, ny, nz),matPtr));
 					}
 					else
 					{
-						triangles.push_back(Triangle(cornera, cornerb, cornerc, &vertexPositions, new Lambertian(vec3(0.4, 0.0, 0.4))));
+						triangles.push_back(Triangle(cornera, cornerb, cornerc, &vertexPositions, matPtr));
 					}
 
 				}
@@ -107,6 +109,15 @@ namespace Trixs
 	bool Mesh::hit(const Ray & r, float t_min, float t_max, hitRecord & rec) const
 	{
 		return root.hit(r, t_min, t_max, rec);
+	}
+
+	std::string Mesh::getWritable() const
+	{
+		std::string writable;
+		writable.append("MESH\n");
+		writable.append(matPtr->getWritable());
+		writable.append(filepath);
+		return writable;
 	}
 
 
@@ -238,7 +249,7 @@ namespace Trixs
 			if (!addedtosomething)
 			{
 				//error;
-				std::cout << "error" << std::endl;
+				std::cout << "error: invalid triangle added to bvhmesh" << std::endl;
 			}
 		}
 	}

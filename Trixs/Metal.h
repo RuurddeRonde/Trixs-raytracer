@@ -5,23 +5,37 @@
 namespace Trixs
 {
 
-class Metal : public Material
-{
-public:
-	Metal(const vec3& a, float f) : albedo(a) 
+	class Metal : public Material
 	{
-		if (f < 1.0)
+	public:
+		Metal(const vec3& a, float f) : albedo(a)
 		{
-			fuzz = f;
+			if (f < 1.0)
+			{
+				fuzz = f;
+			}
+			else
+			{
+				fuzz = 1.0;
+			}
 		}
-		else
+		virtual bool scatter(Ray r_in, const hitRecord& rec, vec3& attenuation, Ray& scattered)const;
+		virtual std::string getWritable()const
 		{
-			fuzz = 1.0;
+			std::string writable;
+			writable += "METAL ";
+			writable += albedo.x();
+			writable += " ";
+			writable += albedo.y();
+			writable += " ";
+			writable += albedo.z();
+			writable += " ";
+			writable += fuzz;
+			writable += "\n";
+			return writable;
 		}
-	}
-	virtual bool scatter(Ray r_in, const hitRecord& rec, vec3& attenuation, Ray& scattered)const;
-private:
-	vec3 albedo;
-	float fuzz;
-};
+	private:
+		vec3 albedo;
+		float fuzz;
+	};
 }

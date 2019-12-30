@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{cfd90ea2-f305-408b-abac-bf9a09f201db}</UniqueIdentifier>
     </Filter>
@@ -40,14 +28,14 @@
     <Filter Include="rayTrixser\geometry">
       <UniqueIdentifier>{bffccc6e-b024-42cb-9160-53325ee9aab5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\IO">
+      <UniqueIdentifier>{8e76792b-1836-4f92-8977-9c241d78a822}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\app">
+      <UniqueIdentifier>{f95a5ded-baba-4cce-b707-b688864bdaba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MainManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="external\imgui\imgui_impl_glfw.h">
       <Filter>external</Filter>
     </ClInclude>
@@ -63,17 +51,8 @@
     <ClInclude Include="ImGuiUIManager.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="Project.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Ray.h">
       <Filter>rayTrixser</Filter>
-    </ClInclude>
-    <ClInclude Include="Random.h">
-      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>rayTrixser</Filter>
@@ -108,9 +87,6 @@
     <ClInclude Include="ImGuiWindow.h">
       <Filter>UI\windows\core</Filter>
     </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="RenderSubmission.h">
       <Filter>rayTrixser</Filter>
     </ClInclude>
@@ -129,14 +105,8 @@
     <ClInclude Include="stb_image_write.h">
       <Filter>external</Filter>
     </ClInclude>
-    <ClInclude Include="ImageIO.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="IGShowImageWindow.h">
       <Filter>UI\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="objLoader.h">
-      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Vec3.h">
       <Filter>rayTrixser\geometry</Filter>
@@ -150,23 +120,50 @@
     <ClInclude Include="Triangle.h">
       <Filter>rayTrixser\shapes</Filter>
     </ClInclude>
-    <ClInclude Include="tinyObjLoader.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>rayTrixser\shapes</Filter>
     </ClInclude>
     <ClInclude Include="aabb.h">
       <Filter>rayTrixser\geometry</Filter>
     </ClInclude>
+    <ClInclude Include="tinyObjLoader.h">
+      <Filter>Core\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Core\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="objLoader.h">
+      <Filter>Core\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageIO.h">
+      <Filter>Core\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="MainManager.h">
+      <Filter>Core\app</Filter>
+    </ClInclude>
+    <ClInclude Include="Project.h">
+      <Filter>Core\app</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Core\app</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderManager.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgramSettings.h">
+      <Filter>Core\app</Filter>
+    </ClInclude>
+    <ClInclude Include="FileIO.h">
+      <Filter>Core\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="UserData.h">
+      <Filter>Core\app</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Trixs.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="external\imgui\imgui_widgets.cpp">
       <Filter>external</Filter>
     </ClCompile>
@@ -197,12 +194,6 @@
     <ClCompile Include="ImGuiUIManager.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="Project.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Ray.cpp">
       <Filter>rayTrixser</Filter>
     </ClCompile>
@@ -211,12 +202,6 @@
     </ClCompile>
     <ClCompile Include="ImGuiWindow.cpp">
       <Filter>UI\windows\core</Filter>
-    </ClCompile>
-    <ClCompile Include="MainManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sphere.cpp">
       <Filter>rayTrixser\shapes</Filter>
@@ -230,9 +215,6 @@
     <ClCompile Include="HitableList.cpp">
       <Filter>rayTrixser\shapes</Filter>
     </ClCompile>
-    <ClCompile Include="ImageIO.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="IGStartupWindow.cpp">
       <Filter>UI\windows</Filter>
     </ClCompile>
@@ -242,14 +224,41 @@
     <ClCompile Include="RenderWindow.cpp">
       <Filter>UI\windows</Filter>
     </ClCompile>
-    <ClCompile Include="objLoader.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="Triangle.cpp">
       <Filter>rayTrixser\shapes</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>rayTrixser\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="objLoader.cpp">
+      <Filter>Core\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageIO.cpp">
+      <Filter>Core\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="MainManager.cpp">
+      <Filter>Core\app</Filter>
+    </ClCompile>
+    <ClCompile Include="Project.cpp">
+      <Filter>Core\app</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Core\app</Filter>
+    </ClCompile>
+    <ClCompile Include="Trixs.cpp">
+      <Filter>Core\app</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderManager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="FileIO.cpp">
+      <Filter>Core\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="UserData.cpp">
+      <Filter>Core\app</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -42,7 +42,7 @@ namespace Trixs
 					sub.outputfile = str0;
 					sub.outputType = (FileTypes)filetype;
 					sub.scene = MainManager::getInstance().getProject()->getCurrentScene();
-					RT.render(sub);
+					RT.render(&sub);
 					newImage = true;
 					LastRenderPath = "renders/" + sub.outputfile;
 				}

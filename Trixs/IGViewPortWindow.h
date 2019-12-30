@@ -49,10 +49,7 @@ namespace Trixs
 			}
 			else
 			{
-				if (ImGui::IsWindowDocked())
-				{
-					ImGui::SetWindowSize(ImVec2(ImGui::GetWindowSize().x, ImGui::GetWindowSize().x));
-				}
+				renderman->setNewSize(ImGui::GetWindowWidth(), ImGui::GetWindowHeight());
 				renderman->render();
 				auto tex = renderman->getFrame();
 
