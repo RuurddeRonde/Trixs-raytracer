@@ -1,5 +1,106 @@
-﻿  ImGuiUIManager.cpp
+﻿  IGStartupWindow.cpp
 c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\igviewportwindow.h(52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\igviewportwindow.h(57): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\camera.h(15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  ImGuiUIManager.cpp
+c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\camera.h(15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\igviewportwindow.h(59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\igviewportwindow.h(64): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+  MainManager.cpp
+c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\camera.h(15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Project.cpp
+c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\camera.h(15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\project.cpp(20): warning C4305: 'argument': truncation from 'double' to 'float'
+  RayTrixser.cpp
+c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\camera.h(15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\metal.h(27): warning C4244: 'argument': conversion from 'float' to '_Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+c:\users\ruurd\source\repos\trixs\trixs\metal.h(29): warning C4244: 'argument': conversion from 'float' to '_Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+c:\users\ruurd\source\repos\trixs\trixs\metal.h(31): warning C4244: 'argument': conversion from 'float' to '_Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+c:\users\ruurd\source\repos\trixs\trixs\metal.h(33): warning C4244: 'argument': conversion from 'const float' to '_Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+c:\users\ruurd\source\repos\trixs\trixs\dielectric.h(17): warning C4244: 'argument': conversion from 'const float' to '_Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+c:\users\ruurd\source\repos\trixs\trixs\raytrixser.cpp(35): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\ruurd\source\repos\trixs\trixs\raytrixser.cpp(92): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\ruurd\source\repos\trixs\trixs\raytrixser.cpp(105): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\raytrixser.cpp(106): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\raytrixser.cpp(106): warning C4305: 'argument': truncation from 'double' to 'float'
+  RenderManager.cpp
+c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\camera.h(15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  RenderWindow.cpp
+c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\camera.h(15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Scene.cpp
+c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\camera.h(15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\metal.h(27): warning C4244: 'argument': conversion from 'float' to '_Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+c:\users\ruurd\source\repos\trixs\trixs\metal.h(29): warning C4244: 'argument': conversion from 'float' to '_Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+c:\users\ruurd\source\repos\trixs\trixs\metal.h(31): warning C4244: 'argument': conversion from 'float' to '_Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+c:\users\ruurd\source\repos\trixs\trixs\metal.h(33): warning C4244: 'argument': conversion from 'const float' to '_Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+c:\users\ruurd\source\repos\trixs\trixs\dielectric.h(17): warning C4244: 'argument': conversion from 'const float' to '_Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+c:\users\ruurd\source\repos\trixs\trixs\scene.cpp(16): warning C4305: 'argument': truncation from 'double' to 'float'
+  Trixs.cpp
+c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\camera.h(15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
   Trixs.vcxproj -> C:\Users\Ruurd\source\repos\Trixs\x64\Debug\Trixs.exe

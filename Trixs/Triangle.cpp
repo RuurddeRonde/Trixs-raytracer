@@ -12,32 +12,7 @@ namespace Trixs
 		this->normal = normal;
 		this->matPtr = mat;
 
-		//create bounding box
-		vec3 max(FLT_MIN, FLT_MIN, FLT_MIN);
-		vec3 min(FLT_MAX, FLT_MAX, FLT_MAX);
-
-		//set bounding box at min min min and max max max
-		if (indices->at(A).x() < min.x()) { min.setx(indices->at(A).x()); }
-		if (indices->at(A).x() > max.x()) { max.setx(indices->at(A).x()); }
-		if (indices->at(A).y() < min.y()) { min.sety(indices->at(A).y()); }
-		if (indices->at(A).y() > max.y()) { max.sety(indices->at(A).y()); }
-		if (indices->at(A).z() < min.z()) { min.setz(indices->at(A).z()); }
-		if (indices->at(A).z() > max.z()) { max.setz(indices->at(A).z()); }
-
-		if (indices->at(B).x() < min.x()) { min.setx(indices->at(B).x()); }
-		if (indices->at(B).x() > max.x()) { max.setx(indices->at(B).x()); }
-		if (indices->at(B).y() < min.y()) { min.sety(indices->at(B).y()); }
-		if (indices->at(B).y() > max.y()) { max.sety(indices->at(B).y()); }
-		if (indices->at(B).z() < min.z()) { min.setz(indices->at(B).z()); }
-		if (indices->at(B).z() > max.z()) { max.setz(indices->at(B).z()); }
-
-		if (indices->at(C).x() < min.x()) { min.setx(indices->at(C).x()); }
-		if (indices->at(C).x() > max.x()) { max.setx(indices->at(C).x()); }
-		if (indices->at(C).y() < min.y()) { min.sety(indices->at(C).y()); }
-		if (indices->at(C).y() > max.y()) { max.sety(indices->at(C).y()); }
-		if (indices->at(C).z() < min.z()) { min.setz(indices->at(C).z()); }
-		if (indices->at(C).z() > max.z()) { max.setz(indices->at(C).z()); }
-		this->boundingBox = aabb(min, max);
+		createBoundingBox();
 	}
 	Triangle::Triangle(int A, int B, int C, std::vector<vec3>* indices, Material * mat)
 	{
@@ -51,32 +26,7 @@ namespace Trixs
 		this->normal= normalize(cross(CA, BA));;
 		this->matPtr = mat;
 
-		//create bounding box
-		vec3 max(FLT_MIN, FLT_MIN, FLT_MIN);
-		vec3 min(FLT_MAX, FLT_MAX, FLT_MAX);
-
-		//set bounding box at min min min and max max max
-		if (indices->at(A).x() < min.x()) { min.setx(indices->at(A).x()); }
-		if (indices->at(A).x() > max.x()) { max.setx(indices->at(A).x()); }
-		if (indices->at(A).y() < min.y()) { min.sety(indices->at(A).y()); }
-		if (indices->at(A).y() > max.y()) { max.sety(indices->at(A).y()); }
-		if (indices->at(A).z() < min.z()) { min.setz(indices->at(A).z()); }
-		if (indices->at(A).z() > max.z()) { max.setz(indices->at(A).z()); }
-
-		if (indices->at(B).x() < min.x()) { min.setx(indices->at(B).x()); }
-		if (indices->at(B).x() > max.x()) { max.setx(indices->at(B).x()); }
-		if (indices->at(B).y() < min.y()) { min.sety(indices->at(B).y()); }
-		if (indices->at(B).y() > max.y()) { max.sety(indices->at(B).y()); }
-		if (indices->at(B).z() < min.z()) { min.setz(indices->at(B).z()); }
-		if (indices->at(B).z() > max.z()) { max.setz(indices->at(B).z()); }
-
-		if (indices->at(C).x() < min.x()) { min.setx(indices->at(C).x()); }
-		if (indices->at(C).x() > max.x()) { max.setx(indices->at(C).x()); }
-		if (indices->at(C).y() < min.y()) { min.sety(indices->at(C).y()); }
-		if (indices->at(C).y() > max.y()) { max.sety(indices->at(C).y()); }
-		if (indices->at(C).z() < min.z()) { min.setz(indices->at(C).z()); }
-		if (indices->at(C).z() > max.z()) { max.setz(indices->at(C).z()); }
-		this->boundingBox = aabb(min, max);
+		createBoundingBox();
 	}
 	bool Triangle::hit(const Ray& r, float t_min, float t_max, hitRecord& rec)const
 	{
@@ -139,6 +89,41 @@ namespace Trixs
 		writable += " ";
 		writable += normal.z();
 		return writable;
+	}
+
+	void Triangle::createBoundingBox()
+	{
+		//create bounding box
+		vec3 max(FLT_MIN, FLT_MIN, FLT_MIN);
+		vec3 min(FLT_MAX, FLT_MAX, FLT_MAX);
+
+		//set bounding box at min min min and max max max
+		if (indices->at(A).x() < min.x()) { min.setx(indices->at(A).x()); }
+		if (indices->at(A).x() > max.x()) { max.setx(indices->at(A).x()); }
+		if (indices->at(A).y() < min.y()) { min.sety(indices->at(A).y()); }
+		if (indices->at(A).y() > max.y()) { max.sety(indices->at(A).y()); }
+		if (indices->at(A).z() < min.z()) { min.setz(indices->at(A).z()); }
+		if (indices->at(A).z() > max.z()) { max.setz(indices->at(A).z()); }
+
+		if (indices->at(B).x() < min.x()) { min.setx(indices->at(B).x()); }
+		if (indices->at(B).x() > max.x()) { max.setx(indices->at(B).x()); }
+		if (indices->at(B).y() < min.y()) { min.sety(indices->at(B).y()); }
+		if (indices->at(B).y() > max.y()) { max.sety(indices->at(B).y()); }
+		if (indices->at(B).z() < min.z()) { min.setz(indices->at(B).z()); }
+		if (indices->at(B).z() > max.z()) { max.setz(indices->at(B).z()); }
+
+		if (indices->at(C).x() < min.x()) { min.setx(indices->at(C).x()); }
+		if (indices->at(C).x() > max.x()) { max.setx(indices->at(C).x()); }
+		if (indices->at(C).y() < min.y()) { min.sety(indices->at(C).y()); }
+		if (indices->at(C).y() > max.y()) { max.sety(indices->at(C).y()); }
+		if (indices->at(C).z() < min.z()) { min.setz(indices->at(C).z()); }
+		if (indices->at(C).z() > max.z()) { max.setz(indices->at(C).z()); }
+		this->boundingBox = aabb(min, max);
+	}
+
+	void Triangle::draw()const
+	{
+
 	}
 
 }

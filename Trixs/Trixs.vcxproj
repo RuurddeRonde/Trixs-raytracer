@@ -169,6 +169,7 @@
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="Hitable.h" />
     <ClInclude Include="HitableList.h" />
+    <ClInclude Include="Matrix4.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="IGShowImageWindow.h" />
     <ClInclude Include="IGStartupWindow.h" />
@@ -192,9 +193,11 @@
     <ClInclude Include="RenderSubmission.h" />
     <ClInclude Include="RenderWindow.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="stb_image_write.h" />
     <ClInclude Include="tinyObjLoader.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="Translate.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="UIManager.h" />
@@ -214,6 +217,7 @@
     <ClCompile Include="external\imgui\imgui_widgets.cpp" />
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="HitableList.cpp" />
+    <ClCompile Include="Matrix4.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="IGShowImageWindow.cpp" />
     <ClCompile Include="IGStartupWindow.cpp" />

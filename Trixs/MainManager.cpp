@@ -19,9 +19,9 @@ namespace Trixs
 		programSettings.saveScene = false;
 		programSettings.projectLoaded = false;
 
-		project = new Project("emptyProject", false, "emptyProject");
 		window = new Window(800, 600);
 		uiManager = new ImGuiUIManager(window);
+		project = new Project("emptyProject", false, "emptyProject");
 	}
 	MainManager::~MainManager()
 	{

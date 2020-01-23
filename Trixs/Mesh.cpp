@@ -2,6 +2,8 @@
 #define TINYOBJLOADER_IMPLEMENTATION // define this in only *one* .cc
 #include "tinyObjLoader.h"
 #include "Lambertian.h"
+#include <glad\glad.h>
+#include <GLFW\glfw3.h>
 namespace Trixs
 {
 	Mesh::Mesh(std::string filepath, Material* matPtr)
@@ -66,7 +68,9 @@ namespace Trixs
 					int cornera = shapes[s].mesh.indices[index_offset + 0].vertex_index;
 					int cornerb = shapes[s].mesh.indices[index_offset + 1].vertex_index;
 					int cornerc = shapes[s].mesh.indices[index_offset + 2].vertex_index;
-
+					indices.push_back(cornera);
+					indices.push_back(cornerb);
+					indices.push_back(cornerc);
 					tinyobj::index_t idx = shapes[s].mesh.indices[index_offset + 0];
 					tinyobj::real_t vx = attrib.vertices[3 * idx.vertex_index + 0];
 					tinyobj::real_t vy = attrib.vertices[3 * idx.vertex_index + 1];
@@ -104,6 +108,40 @@ namespace Trixs
 		{
 			root.addTriangle(&triangles.at(i));
 		}
+
+		init();
+		
+	}
+
+	bool Mesh::init()
+	{
+		//init opengl buffers etc.
+
+		glGenVertexArrays(1, &VAO);
+		glGenBuffers(1, &VBO);
+		glGenBuffers(1, &EBO);
+
+		glBindVertexArray(VAO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		glBufferData(GL_ARRAY_BUFFER, vertexPositions.size() * sizeof(vec3), &vertexPositions[0], GL_STATIC_DRAW);
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
+
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vec3), (void*)0);
+
+		// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+		// remember: do NOT unbind the EBO while a VAO is active as the bound element buffer object IS stored in the VAO; keep the EBO bound.
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+		// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
+		// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
+		glBindVertexArray(0);
+		return true;
 	}
 
 	bool Mesh::hit(const Ray & r, float t_min, float t_max, hitRecord & rec) const
@@ -118,6 +156,14 @@ namespace Trixs
 		writable.append(matPtr->getWritable());
 		writable.append(filepath);
 		return writable;
+	}
+
+	void Mesh::draw() const
+	{
+		//opengl draw
+		glBindVertexArray(VAO);
+		glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+		glBindVertexArray(0);
 	}
 
 

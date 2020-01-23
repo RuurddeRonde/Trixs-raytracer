@@ -10,6 +10,7 @@ namespace Trixs
 		Triangle(int A, int B, int C, std::vector<vec3>* indices, vec3 normal, Material* mat);
 		Triangle(int A, int B, int C, std::vector<vec3>* indices, Material* mat);
 		virtual bool hit(const Ray& r, float t_min, float t_max, hitRecord& rec)const;
+		virtual void draw() const override;
 		inline vec3 getNormal()const
 		{
 			return normal;
@@ -22,6 +23,8 @@ namespace Trixs
 		vec3 normal;
 		Material* matPtr;
 		aabb boundingBox;
+
+		void createBoundingBox();
 	};
 
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "HitableList.h"
 #include <vector>
+#include "Camera.h"
 //#include "Sphere.h"
 //#include "Lambertian.h"
 //#include "Metal.h"
@@ -16,14 +17,17 @@ public:
 	~Scene();
 	void loadScene(std::string path);
 	void saveScene(std::string path);
-	Hittable* getGraph();
-	std::vector<Hittable*>* getObjects();
-	std::string getName() { return name; }
 	void submit(Hittable* nh);
+
+	Hittable* getGraph();
+	std::vector<Hittable*>* getObjects() { return &hittables; }
+	std::string getName() { return name; }
+	Camera getCamera() { return cam; }
 private:
 	std::vector<Hittable*> hittables;
 	int size;
 	std::string name;
+	Camera cam;
 };
 
 }

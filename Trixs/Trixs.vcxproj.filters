@@ -34,6 +34,9 @@
     <Filter Include="Core\app">
       <UniqueIdentifier>{f95a5ded-baba-4cce-b707-b688864bdaba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI\viewport">
+      <UniqueIdentifier>{8c352059-81a0-4ef2-afea-85afd72c3787}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="external\imgui\imgui_impl_glfw.h">
@@ -71,12 +74,6 @@
     </ClInclude>
     <ClInclude Include="RayTrixser.h">
       <Filter>rayTrixser</Filter>
-    </ClInclude>
-    <ClInclude Include="IGStartupWindow.h">
-      <Filter>UI\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="IGViewPortWindow.h">
-      <Filter>UI\windows</Filter>
     </ClInclude>
     <ClInclude Include="RenderWindow.h">
       <Filter>UI\windows</Filter>
@@ -147,9 +144,6 @@
     <ClInclude Include="Scene.h">
       <Filter>Core\app</Filter>
     </ClInclude>
-    <ClInclude Include="RenderManager.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="Window.h">
       <Filter>UI</Filter>
     </ClInclude>
@@ -161,6 +155,24 @@
     </ClInclude>
     <ClInclude Include="UserData.h">
       <Filter>Core\app</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>rayTrixser\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4.h">
+      <Filter>rayTrixser\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderManager.h">
+      <Filter>UI\viewport</Filter>
+    </ClInclude>
+    <ClInclude Include="IGViewPortWindow.h">
+      <Filter>UI\viewport</Filter>
+    </ClInclude>
+    <ClInclude Include="IGStartupWindow.h">
+      <Filter>UI\viewport</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>UI\viewport</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -248,9 +260,6 @@
     <ClCompile Include="Trixs.cpp">
       <Filter>Core\app</Filter>
     </ClCompile>
-    <ClCompile Include="RenderManager.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>UI</Filter>
     </ClCompile>
@@ -259,6 +268,12 @@
     </ClCompile>
     <ClCompile Include="UserData.cpp">
       <Filter>Core\app</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix4.cpp">
+      <Filter>rayTrixser\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderManager.cpp">
+      <Filter>UI\viewport</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -34,7 +34,7 @@ namespace Trixs
 		float dist_to_focus = 80.0;
 		float aperture = 0.1;
 
-		Camera cam(lookfrom, lookat, vec3(0, 1, 0), 20, float(width) / float(height), aperture, dist_to_focus);
+		Camera cam = submission->scene->getCamera();
 
 		for (int j = height - 1; j >= 0; j--) {
 			for (int i = 0; i < width; i++) {

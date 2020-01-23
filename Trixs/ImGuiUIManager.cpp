@@ -103,7 +103,7 @@ namespace Trixs
 		if (MainManager::getInstance().getProgramSettings()->projectLoaded)
 		{
 			updateWindows();
-			ImGui::ShowDemoWindow();
+			//ImGui::ShowDemoWindow();
 		}
 		else //only show startup, hide others
 		{

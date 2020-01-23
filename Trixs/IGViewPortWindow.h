@@ -17,6 +17,9 @@ namespace Trixs
 		{
 			this->window = window;
 			this->renderman = new RenderManager(window);
+
+			size.x = 0;
+			size.y = 0;	
 		}
 		void update() override;
 		bool begin(std::string name) override;
@@ -42,18 +45,22 @@ namespace Trixs
 			};
 
 			ImGui::SetNextWindowSizeConstraints(ImVec2(0, 0), ImVec2(FLT_MAX, FLT_MAX), CustomConstraints::Square);
-			
+
 			if (!begin("Viewport"))
 			{
 				end();
 			}
 			else
 			{
-				renderman->setNewSize(ImGui::GetWindowWidth(), ImGui::GetWindowHeight());
+				if (size.x != ImGui::GetWindowWidth() || size.y != ImGui::GetWindowHeight())
+				{
+					size.x = ImGui::GetWindowWidth();
+					size.y = ImGui::GetWindowHeight();
+					renderman->setNewSize(size.x, size.y);
+				}
 				renderman->render();
 				auto tex = renderman->getFrame();
 
-				size = ImVec2(ImGui::GetWindowWidth(), ImGui::GetWindowHeight());
 				ImGui::Image((void *)tex, size);
 				end();
 			}
