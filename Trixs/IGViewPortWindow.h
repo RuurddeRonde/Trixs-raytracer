@@ -18,8 +18,8 @@ namespace Trixs
 			this->window = window;
 			this->renderman = new RenderManager(window);
 
-			size.x = 0;
-			size.y = 0;	
+			size.x = -1;
+			size.y = -1;	
 		}
 		void update() override;
 		bool begin(std::string name) override;
@@ -60,7 +60,7 @@ namespace Trixs
 				}
 				renderman->render();
 				auto tex = renderman->getFrame();
-
+											   
 				ImGui::Image((void *)tex, size);
 				end();
 			}
@@ -69,6 +69,6 @@ namespace Trixs
 	}
 	inline bool IGViewPortWindow::begin(std::string name)
 	{
-		return ImGui::Begin(name.c_str(), &show, ImGuiWindowFlags_NoScrollbar);
+		return ImGui::Begin(name.c_str(), &show, ImGuiWindowFlags_NoScrollbar||ImGuiWindowFlags_NoScrollWithMouse);
 	}
 }

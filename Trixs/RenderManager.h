@@ -6,6 +6,7 @@
 #include <imgui\imgui_impl_glfw.h>
 #include <imgui\imgui_impl_opengl3.h>
 #include "Window.h"
+#include "Shader.h"
 namespace Trixs
 {
 	const unsigned int SCR_WIDTH = 1080;
@@ -20,13 +21,19 @@ namespace Trixs
 		void render();
 		bool WindowShouldClose();
 		GLFWwindow* getWindow();
-		unsigned int getFrame() { return framebuffer; }
+		unsigned int getFrame() { return textureColorbuffer; }
 		void framebufferSizeCallback(int width, int height);
 		void setNewSize(int width, int height);
 	private:
 		int shaderProgram;
+
 		Window* basewindow;
-		unsigned int VBO, VAO, EBO, framebuffer;
+		unsigned int VBO, VAO, EBO, framebuffer, textureColorbuffer;
+
+		Shader* shader;
+
+
+		//depreciated
 		const char *vertexShaderSource = "#version 330 core\n"
 			"layout (location = 0) in vec3 aPos;\n"
 			"void main()\n"

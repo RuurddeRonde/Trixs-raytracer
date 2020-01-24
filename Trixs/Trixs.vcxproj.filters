@@ -168,11 +168,11 @@
     <ClInclude Include="IGViewPortWindow.h">
       <Filter>UI\viewport</Filter>
     </ClInclude>
-    <ClInclude Include="IGStartupWindow.h">
-      <Filter>UI\viewport</Filter>
-    </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>UI\viewport</Filter>
+    </ClInclude>
+    <ClInclude Include="IGStartupWindow.h">
+      <Filter>UI\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +274,9 @@
     </ClCompile>
     <ClCompile Include="RenderManager.cpp">
       <Filter>UI\viewport</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>rayTrixser\geometry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -39,7 +39,6 @@ namespace Trixs
 		virtual void draw() const override;
 	private:
 		bool init();
-		//transform objectToWorld
 		int nTriangles;
 		int nVertices;
 		std::vector<Triangle> triangles;

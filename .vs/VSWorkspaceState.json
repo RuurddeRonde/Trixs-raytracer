@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
+    "",
+    "\\packages",
     "\\Trixs"
   ],
+  "SelectedNode": "\\Trixs\\basicShader.vs",
   "PreviewInSolutionExplorer": false
 }

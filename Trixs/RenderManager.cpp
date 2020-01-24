@@ -2,6 +2,12 @@
 #include "MainManager.h"
 #include "Scene.h"
 #include <iostream>
+
+
+#include <glm/glm/glm.hpp>
+#include <glm/glm/gtc/matrix_transform.hpp>
+#include <glm/glm/gtc/type_ptr.hpp>
+
 namespace Trixs
 {
 	//todo move to input manager
@@ -55,46 +61,47 @@ namespace Trixs
 			return;
 		}
 
+		shader = new Shader("C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\basicShader.vs", "C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\basicShader.fs");
 
-		// build and compile our shader program
-		// ------------------------------------
-		// vertex shader
-		int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-		glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-		glCompileShader(vertexShader);
-		// check for shader compile errors
-		int success;
-		char infoLog[512];
-		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-		if (!success)
-		{
-			glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-			std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-		}
-		// fragment shader
-		int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-		glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-		glCompileShader(fragmentShader);
-		// check for shader compile errors
-		glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-		if (!success)
-		{
-			glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-			std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
-		}
-		// link shaders
-		shaderProgram = glCreateProgram();
-		glAttachShader(shaderProgram, vertexShader);
-		glAttachShader(shaderProgram, fragmentShader);
-		glLinkProgram(shaderProgram);
-		// check for linking errors
-		glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-		if (!success) {
-			glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-			std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
-		}
-		glDeleteShader(vertexShader);
-		glDeleteShader(fragmentShader);
+		//// build and compile our shader program
+		//// ------------------------------------
+		//// vertex shader
+		//int vertexShader = glCreateShader(GL_VERTEX_SHADER);
+		//glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+		//glCompileShader(vertexShader);
+		//// check for shader compile errors
+		//int success;
+		//char infoLog[512];
+		//glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+		//if (!success)
+		//{
+		//	glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+		//	std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+		//}
+		//// fragment shader
+		//int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+		//glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+		//glCompileShader(fragmentShader);
+		//// check for shader compile errors
+		//glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+		//if (!success)
+		//{
+		//	glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+		//	std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+		//}
+		//// link shaders
+		//shaderProgram = glCreateProgram();
+		//glAttachShader(shaderProgram, vertexShader);
+		//glAttachShader(shaderProgram, fragmentShader);
+		//glLinkProgram(shaderProgram);
+		//// check for linking errors
+		//glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+		//if (!success) {
+		//	glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+		//	std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+		//}
+		//glDeleteShader(vertexShader);
+		//glDeleteShader(fragmentShader);
 
 		// set up vertex data (and buffer(s)) and configure vertex attributes
 		// ------------------------------------------------------------------
@@ -165,26 +172,31 @@ namespace Trixs
 
 
 		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-		//update ui
 
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		// draw our first triangle
-		glUseProgram(shaderProgram);
-		//glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-		//glDrawArrays(GL_TRIANGLES, 0, 6);
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
+
+		shader->use();
+		unsigned int transformLoc = glGetUniformLocation(shader->ID, "transform");
 
 		std::vector<Hittable*>* world = MainManager::getInstance().getProject()->getCurrentScene()->getObjects();
 		for (auto i = 0; i < world->size(); i++)
 		{
+			glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+			glm::vec3 pos(world->at(i)->getTransform().getPos().x(), world->at(i)->getTransform().getPos().y(), world->at(i)->getTransform().getPos().z());
+			transform = glm::translate(transform, pos);
+			transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+
+			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+
+
 			world->at(i)->draw();
 		}
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		// clear all relevant buffers
-		glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // set clear color to white (not really necessery actually, since we won't be able to see behind the quad anyways)
-		glClear(GL_COLOR_BUFFER_BIT);
+		//glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // set clear color to white (not really necessery actually, since we won't be able to see behind the quad anyways)
+		//glClear(GL_COLOR_BUFFER_BIT);
 
 	}
 
@@ -206,14 +218,13 @@ namespace Trixs
 	{
 		glViewport(0, 0, width, height);
 
-//		glDeleteFramebuffers(1, &framebuffer);
+		//glDeleteFramebuffers(1, &framebuffer);
 
 		// framebuffer configuration
 		// -------------------------
 		framebuffer = 0;
 		glGenFramebuffers(1, &framebuffer);
 		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-		unsigned int textureColorbuffer;
 		glGenTextures(1, &textureColorbuffer);
 		glBindTexture(GL_TEXTURE_2D, textureColorbuffer);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
@@ -231,7 +242,5 @@ namespace Trixs
 			std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-		//glDeleteRenderbuffers(1, &rbo);
-		//glDeleteTextures(1, &textureColorbuffer);
 	}
 }

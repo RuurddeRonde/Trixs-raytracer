@@ -1,7 +1,9 @@
 ﻿################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
-
+/.vs/
+*.ipch
+*.obj
 /.vs/Trixs/v15/Browse.VC.opendb
 /Debug/Trixs.exe
 /Debug/Trixs.ilk
