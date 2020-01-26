@@ -1,6 +1,7 @@
 #include "ImGuiUIManager.h"
 #include "IGStartupWindow.h"
 #include "IGViewPortWindow.h"
+#include "IGSceneObjectListWindow.h"
 
 namespace Trixs
 {
@@ -132,6 +133,7 @@ namespace Trixs
 		viewPort = new IGViewPortWindow(window);
 		renderSettings = new IGRenderWindow();
 		showImage = new IGShowImageWindow();
+		SceneObjects = new IGSceneObjectListWindow();
 		renderWindowCasted = dynamic_cast<IGRenderWindow*>(renderSettings);
 		showImageCasted = dynamic_cast<IGShowImageWindow*>(showImage);
 
@@ -141,6 +143,7 @@ namespace Trixs
 		startup->update();
 		viewPort->update();
 		renderSettings->update();
+		SceneObjects->update();
 		if (renderWindowCasted->hasNewRender())//automatic update of image in imageviewer
 		{
 			showImageCasted->setNewImage(renderWindowCasted->getLastRenderPath());
@@ -153,6 +156,7 @@ namespace Trixs
 		delete viewPort;
 		delete renderSettings;
 		delete showImage;
+		delete SceneObjects;
 	}
 	void ImGuiUIManager::setstyle()
 	{

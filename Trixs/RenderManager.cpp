@@ -62,7 +62,7 @@ namespace Trixs
 		}
 
 		shader = new Shader("C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\basicShader.vs", "C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\basicShader.fs");
-
+		//glEnable(GL_DEPTH_TEST);
 		//// build and compile our shader program
 		//// ------------------------------------
 		//// vertex shader
@@ -184,9 +184,10 @@ namespace Trixs
 		for (auto i = 0; i < world->size(); i++)
 		{
 			glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-			glm::vec3 pos(world->at(i)->getTransform().getPos().x(), world->at(i)->getTransform().getPos().y(), world->at(i)->getTransform().getPos().z());
+
+			glm::vec3 pos(world->at(i)->getTransform()->getPos().x(), world->at(i)->getTransform()->getPos().y(), world->at(i)->getTransform()->getPos().z());
 			transform = glm::translate(transform, pos);
-			transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+			transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(1.0f, 0.0f, 1.0f));
 
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
 

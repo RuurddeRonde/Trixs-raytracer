@@ -1,1 +1,6 @@
-﻿
+﻿  IGSceneObjectListWindow.cpp
+c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\camera.h(15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Trixs.vcxproj -> C:\Users\Ruurd\source\repos\Trixs\x64\Debug\Trixs.exe
