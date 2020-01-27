@@ -12,6 +12,8 @@ namespace Trixs
 		vec3 getRot(){ return rotation; }
 		vec3 getScale(){ return scale; }
 		vec3* getPosPtr() { return &position; }
+		vec3* getRotPtr() { return &rotation; }
+		vec3* getScalePtr() { return &scale; }
 	private:
 		vec3 position;
 		vec3 rotation;

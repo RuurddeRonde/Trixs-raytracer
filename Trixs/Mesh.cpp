@@ -103,11 +103,12 @@ namespace Trixs
 			}
 		}
 		boundingBox = aabb(min, max);
-		root = BvhMesh(min, max, 0);
+		//todo add function that checks if octatree is needed
+		/*root = BvhMesh(min, max, 0);
 		for (auto i = 0; i < triangles.size(); i++)
 		{
 			root.addTriangle(&triangles.at(i));
-		}
+		}*/
 
 		init();
 		

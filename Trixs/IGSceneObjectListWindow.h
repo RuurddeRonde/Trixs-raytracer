@@ -8,6 +8,7 @@ namespace Trixs
 	public:
 		void update() override;
 	private:
+		bool keepscale;
 	};
 
 }

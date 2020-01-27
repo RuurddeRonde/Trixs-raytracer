@@ -62,47 +62,7 @@ namespace Trixs
 		}
 
 		shader = new Shader("C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\basicShader.vs", "C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\basicShader.fs");
-		//glEnable(GL_DEPTH_TEST);
-		//// build and compile our shader program
-		//// ------------------------------------
-		//// vertex shader
-		//int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-		//glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-		//glCompileShader(vertexShader);
-		//// check for shader compile errors
-		//int success;
-		//char infoLog[512];
-		//glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-		//if (!success)
-		//{
-		//	glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-		//	std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-		//}
-		//// fragment shader
-		//int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-		//glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-		//glCompileShader(fragmentShader);
-		//// check for shader compile errors
-		//glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-		//if (!success)
-		//{
-		//	glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-		//	std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
-		//}
-		//// link shaders
-		//shaderProgram = glCreateProgram();
-		//glAttachShader(shaderProgram, vertexShader);
-		//glAttachShader(shaderProgram, fragmentShader);
-		//glLinkProgram(shaderProgram);
-		//// check for linking errors
-		//glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-		//if (!success) {
-		//	glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-		//	std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
-		//}
-		//glDeleteShader(vertexShader);
-		//glDeleteShader(fragmentShader);
-
+	
 		// set up vertex data (and buffer(s)) and configure vertex attributes
 		// ------------------------------------------------------------------
 
@@ -178,16 +138,31 @@ namespace Trixs
 
 
 		shader->use();
-		unsigned int transformLoc = glGetUniformLocation(shader->ID, "transform");
+		glm::mat4 view = glm::mat4(1.0f);
+		glm::mat4 projection = glm::mat4(1.0f);
+		projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+
+		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
+
+		unsigned int transformLoc = glGetUniformLocation(shader->ID, "model"); //model transform
+
 
 		std::vector<Hittable*>* world = MainManager::getInstance().getProject()->getCurrentScene()->getObjects();
 		for (auto i = 0; i < world->size(); i++)
 		{
 			glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
 
-			glm::vec3 pos(world->at(i)->getTransform()->getPos().x(), world->at(i)->getTransform()->getPos().y(), world->at(i)->getTransform()->getPos().z());
+			Transform* t = world->at(i)->getTransform();
+			glm::vec3 pos(t->getPos().x(), t->getPos().y(), t->getPos().z());
+			glm::vec3 rot(t->getRot().x(), t->getRot().y(), t->getRot().z());
+			glm::vec3 scale(t->getScale().x(), t->getScale().y(), t->getScale().z());
 			transform = glm::translate(transform, pos);
-			transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(1.0f, 0.0f, 1.0f));
+			transform = glm::rotate(transform, glm::radians(rot.x), glm::vec3(1.0f, 0.0f, 0.0f));
+			transform = glm::rotate(transform, glm::radians(rot.y), glm::vec3(0.0f, 1.0f, 0.0f));
+			transform = glm::rotate(transform, glm::radians(rot.z), glm::vec3(0.0f, 0.0f, 1.0f));
+			transform = glm::scale(transform, scale);	
 
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
 
@@ -218,6 +193,11 @@ namespace Trixs
 	void RenderManager::setNewSize(int width, int height)
 	{
 		glViewport(0, 0, width, height);
+
+		//aspect ratio = 1 to 1 (square)
+
+		width = std::min(width, height);
+		height = width;
 
 		//glDeleteFramebuffers(1, &framebuffer);
 

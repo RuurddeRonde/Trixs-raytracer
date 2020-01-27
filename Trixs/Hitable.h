@@ -16,6 +16,7 @@ namespace Trixs
 	class Hittable
 	{
 	public:
+		Hittable() { transform = Transform(vec3(0.1f, 0.1f, 0.1f), vec3(0.1f, 0.1f, 0.1f), vec3(0.1f, 0.1f, 0.1f)); }
 		virtual bool hit(const Ray& r, float t_min, float t_max, hitRecord& rec) const = 0;
 		virtual std::string getWritable()const { return ""; }
 		virtual void draw()const {}
