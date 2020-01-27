@@ -114,7 +114,9 @@ namespace Trixs
 		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 			std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
+		
+		width = 800;
+		height = 600;
 	}
 
 	RenderManager::~RenderManager()
@@ -140,8 +142,8 @@ namespace Trixs
 		shader->use();
 		glm::mat4 view = glm::mat4(1.0f);
 		glm::mat4 projection = glm::mat4(1.0f);
-		projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+		projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f);
+		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f)); //todo add camera here
 
 		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
@@ -194,10 +196,9 @@ namespace Trixs
 	{
 		glViewport(0, 0, width, height);
 
-		//aspect ratio = 1 to 1 (square)
-
-		width = std::min(width, height);
-		height = width;
+		//aspect ratio 
+		this->width = width;
+		this->height = height;
 
 		//glDeleteFramebuffers(1, &framebuffer);
 

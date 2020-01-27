@@ -57,6 +57,7 @@ namespace Trixs
 					size.x = ImGui::GetWindowWidth();
 					size.y = ImGui::GetWindowHeight();
 					renderman->setNewSize(size.x, size.y);
+
 				}
 				renderman->render();
 				auto tex = renderman->getFrame();
@@ -69,6 +70,6 @@ namespace Trixs
 	}
 	inline bool IGViewPortWindow::begin(std::string name)
 	{
-		return ImGui::Begin(name.c_str(), &show, ImGuiWindowFlags_NoScrollbar||ImGuiWindowFlags_NoScrollWithMouse);
+		return ImGui::Begin(name.c_str(), &show, ImGuiWindowFlags_NoScrollbar|ImGuiWindowFlags_NoScrollWithMouse);
 	}
 }

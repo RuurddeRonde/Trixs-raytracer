@@ -1,15 +1,14 @@
-﻿  IGSceneObjectListWindow.cpp
+﻿  ImGuiUIManager.cpp
 c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 c:\users\ruurd\source\repos\trixs\trixs\camera.h(15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(40): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(43): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(46): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(54): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(57): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(60): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(66): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(69): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(72): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\ruurd\source\repos\trixs\trixs\igviewportwindow.h(59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\igviewportwindow.h(65): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+  RenderManager.cpp
+c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\camera.h(15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
   Trixs.vcxproj -> C:\Users\Ruurd\source\repos\Trixs\x64\Debug\Trixs.exe

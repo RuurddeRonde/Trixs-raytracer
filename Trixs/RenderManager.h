@@ -29,7 +29,7 @@ namespace Trixs
 
 		Window* basewindow;
 		unsigned int VBO, VAO, EBO, framebuffer, textureColorbuffer;
-
+		int width, height;
 		Shader* shader;
 
 
