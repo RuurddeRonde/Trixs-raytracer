@@ -2,6 +2,7 @@
 #include "IGStartupWindow.h"
 #include "IGViewPortWindow.h"
 #include "IGSceneObjectListWindow.h"
+#include "IGTimeLineWindow.h"
 
 namespace Trixs
 {
@@ -134,6 +135,7 @@ namespace Trixs
 		renderSettings = new IGRenderWindow();
 		showImage = new IGShowImageWindow();
 		SceneObjects = new IGSceneObjectListWindow();
+		TimeLine = new IGTimeLineWindow();
 		renderWindowCasted = dynamic_cast<IGRenderWindow*>(renderSettings);
 		showImageCasted = dynamic_cast<IGShowImageWindow*>(showImage);
 
@@ -144,6 +146,7 @@ namespace Trixs
 		viewPort->update();
 		renderSettings->update();
 		SceneObjects->update();
+		TimeLine->update();
 		if (renderWindowCasted->hasNewRender())//automatic update of image in imageviewer
 		{
 			showImageCasted->setNewImage(renderWindowCasted->getLastRenderPath());
@@ -157,6 +160,7 @@ namespace Trixs
 		delete renderSettings;
 		delete showImage;
 		delete SceneObjects;
+		delete TimeLine;
 	}
 	void ImGuiUIManager::setstyle()
 	{

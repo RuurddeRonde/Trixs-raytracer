@@ -164,12 +164,18 @@
     <ClInclude Include="aabb.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Dielectric.h" />
+    <ClInclude Include="external\ImGuizmo-master\ImCurveEdit.h" />
+    <ClInclude Include="external\ImGuizmo-master\ImGradient.h" />
+    <ClInclude Include="external\ImGuizmo-master\ImGuizmo.h" />
+    <ClInclude Include="external\ImGuizmo-master\ImSequencer.h" />
     <ClInclude Include="external\imgui\imgui_impl_glfw.h" />
     <ClInclude Include="external\stb_image.h" />
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="Hitable.h" />
     <ClInclude Include="HitableList.h" />
     <ClInclude Include="IGSceneObjectListWindow.h" />
+    <ClInclude Include="IGTimeLineWindow.h" />
+    <ClInclude Include="imGuizmoHelperFile.h" />
     <ClInclude Include="Matrix4.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="IGShowImageWindow.h" />
@@ -210,6 +216,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\packages\glad.c" />
+    <ClCompile Include="external\ImGuizmo-master\ImCurveEdit.cpp" />
+    <ClCompile Include="external\ImGuizmo-master\ImGradient.cpp" />
+    <ClCompile Include="external\ImGuizmo-master\ImGuizmo.cpp" />
+    <ClCompile Include="external\ImGuizmo-master\ImSequencer.cpp" />
     <ClCompile Include="external\imgui\imgui.cpp" />
     <ClCompile Include="external\imgui\imgui_demo.cpp" />
     <ClCompile Include="external\imgui\imgui_draw.cpp" />
@@ -219,6 +229,7 @@
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="HitableList.cpp" />
     <ClCompile Include="IGSceneObjectListWindow.cpp" />
+    <ClCompile Include="IGTimeLineWindow.cpp" />
     <ClCompile Include="Matrix4.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="IGShowImageWindow.cpp" />

@@ -47,7 +47,6 @@ namespace Trixs
 		std::vector<vec3> vertexNormals;
 		aabb boundingBox;
 		BvhMesh root;
-		Material* matPtr;
 		std::string filepath;
 		unsigned int VAO, VBO, EBO;
 	};

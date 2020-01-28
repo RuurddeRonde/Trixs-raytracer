@@ -37,6 +37,9 @@
     <Filter Include="UI\viewport">
       <UniqueIdentifier>{8c352059-81a0-4ef2-afea-85afd72c3787}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI\Timeline">
+      <UniqueIdentifier>{cbefefdf-95c0-4a85-b533-97893f57558a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="external\imgui\imgui_impl_glfw.h">
@@ -177,6 +180,24 @@
     <ClInclude Include="IGSceneObjectListWindow.h">
       <Filter>UI\windows</Filter>
     </ClInclude>
+    <ClInclude Include="imGuizmoHelperFile.h">
+      <Filter>UI\Timeline</Filter>
+    </ClInclude>
+    <ClInclude Include="IGTimeLineWindow.h">
+      <Filter>UI\Timeline</Filter>
+    </ClInclude>
+    <ClInclude Include="external\ImGuizmo-master\ImCurveEdit.h">
+      <Filter>external</Filter>
+    </ClInclude>
+    <ClInclude Include="external\ImGuizmo-master\ImGradient.h">
+      <Filter>external</Filter>
+    </ClInclude>
+    <ClInclude Include="external\ImGuizmo-master\ImGuizmo.h">
+      <Filter>external</Filter>
+    </ClInclude>
+    <ClInclude Include="external\ImGuizmo-master\ImSequencer.h">
+      <Filter>external</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\imgui\imgui_widgets.cpp">
@@ -283,6 +304,21 @@
     </ClCompile>
     <ClCompile Include="IGSceneObjectListWindow.cpp">
       <Filter>UI\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="IGTimeLineWindow.cpp">
+      <Filter>UI\Timeline</Filter>
+    </ClCompile>
+    <ClCompile Include="external\ImGuizmo-master\ImCurveEdit.cpp">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="external\ImGuizmo-master\ImGradient.cpp">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="external\ImGuizmo-master\ImGuizmo.cpp">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="external\ImGuizmo-master\ImSequencer.cpp">
+      <Filter>external</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

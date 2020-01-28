@@ -21,6 +21,9 @@ namespace Trixs
 		virtual std::string getWritable()const { return ""; }
 		virtual void draw()const {}
 		Transform* getTransform() { return &transform; }
+		Material* getMaterial() { return matPtr; }
+	protected:
+		Material* matPtr;
 	private:
 		Transform transform;
 	};
