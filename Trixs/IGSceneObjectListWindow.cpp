@@ -25,13 +25,13 @@ void Trixs::IGSceneObjectListWindow::update()
 
 					ImGui::Text("X ");
 					ImGui::SameLine();
-					ImGui::SliderFloat("X##valueXp", &t->getPosPtr()->e[0], -200, 200);
+					ImGui::SliderFloat("X##valueXp", &t->getPosPtr()->e[0], -20.0, 20.0);
 					ImGui::Text("Y ");
 					ImGui::SameLine();
-					ImGui::SliderFloat("Y##valueYp", &t->getPosPtr()->e[1], -200, 200);
+					ImGui::SliderFloat("Y##valueYp", &t->getPosPtr()->e[1], -20.0, 20.0);
 					ImGui::Text("Z ");
 					ImGui::SameLine();
-					ImGui::SliderFloat("Z##valueZp", &t->getPosPtr()->e[2], -200, 200);
+					ImGui::SliderFloat("Z##valueZp", &t->getPosPtr()->e[2], -20.0, 20.0);
 
 					ImGui::Text("Rotation");
 

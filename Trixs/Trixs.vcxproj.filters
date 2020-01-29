@@ -198,6 +198,9 @@
     <ClInclude Include="external\ImGuizmo-master\ImSequencer.h">
       <Filter>external</Filter>
     </ClInclude>
+    <ClInclude Include="KeyFrame.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\imgui\imgui_widgets.cpp">
@@ -319,6 +322,9 @@
     </ClCompile>
     <ClCompile Include="external\ImGuizmo-master\ImSequencer.cpp">
       <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyFrame.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

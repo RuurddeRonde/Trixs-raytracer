@@ -176,6 +176,7 @@
     <ClInclude Include="IGSceneObjectListWindow.h" />
     <ClInclude Include="IGTimeLineWindow.h" />
     <ClInclude Include="imGuizmoHelperFile.h" />
+    <ClInclude Include="KeyFrame.h" />
     <ClInclude Include="Matrix4.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="IGShowImageWindow.h" />
@@ -230,6 +231,7 @@
     <ClCompile Include="HitableList.cpp" />
     <ClCompile Include="IGSceneObjectListWindow.cpp" />
     <ClCompile Include="IGTimeLineWindow.cpp" />
+    <ClCompile Include="KeyFrame.cpp" />
     <ClCompile Include="Matrix4.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="IGShowImageWindow.cpp" />

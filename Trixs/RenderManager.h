@@ -46,16 +46,47 @@ namespace Trixs
 			"{\n"
 			"	FragColor = vec4(0.3,0.4,0.3, 1.0);\n"
 			"}\n\0";
-		float vertices[12] = {
-		 0.5f,  0.5f, 0.0f,  // top right
-		 0.5f, -0.5f, 0.0f,  // bottom right
-		-0.5f, -0.5f, 0.0f,  // bottom left
-		-0.5f,  0.5f, 0.0f   // top left 
+
+		//grid
+		float vertices[60] = {
+			//vertical
+		 -2.0f, 0.0f, 3.0f,
+		 -2.0f, 0.0f,-3.0f,
+		 -1.0f, 0.0f, 3.0f,
+		 -1.0f,0.0f, -3.0f,
+		 0.0f, 0.0f, 3.0f,
+		 0.0f,0.0f, -3.0f,
+		 1.0f, 0.0f, 3.0f,
+		 1.0f, 0.0f,-3.0f,
+		 2.0f, 0.0f, 3.0f,
+		 2.0f, 0.0f,-3.0f,
+		 //horizontal
+		 //x y z
+		 -3.0f, 0.0f,2.0f,
+		 3.0f, 0.0f, 2.0f,
+		 -3.0f,0.0f, 1.0f,
+		 3.0f,0.0f, 1.0f,
+		 -3.0f,0.0f, 0.0f,
+		 3.0f, 0.0f,0.0f,
+		 -3.0f, 0.0f,-1.0f,
+		 3.0f, 0.0f,-1.0f,
+		 -3.0f,0.0f, -2.0f,
+		 3.0f, 0.0f,-2.0f,
+
 		};
-		unsigned int indices[6] = {  // note that we start from 0!
-			0, 1, 3,  // first Triangle
-			1, 2, 3   // second Triangle
+		unsigned int indices[20] = {  // note that we start from 0!
+			0,1,
+			2,3,
+			4,5,
+			6,7,
+			8,9,
+			10,11,
+			12,13,
+			14,15,
+			16,17,
+			18,19
 		};
+		void drawGrid();
 	};
 
 }

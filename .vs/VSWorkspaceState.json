@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\packages",
-    "\\Trixs"
+    "\\Trixs",
+    "\\Trixs\\external",
+    "\\Trixs\\external\\ImGuizmo-master"
   ],
-  "SelectedNode": "\\Trixs\\basicShader.vs",
+  "SelectedNode": "\\Trixs\\external\\ImGuizmo-master\\ImCurveEdit.cpp",
   "PreviewInSolutionExplorer": false
 }
