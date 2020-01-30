@@ -1,17 +1,10 @@
-﻿  IGSceneObjectListWindow.cpp
+﻿  Mesh.cpp
 c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 c:\users\ruurd\source\repos\trixs\trixs\hitable.h(52): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
 c:\users\ruurd\source\repos\trixs\trixs\hitable.h(57): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
 c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\camera.h(15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(40): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(43): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(46): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(54): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(57): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(60): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(66): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(69): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ruurd\source\repos\trixs\trixs\igsceneobjectlistwindow.cpp(72): warning C4305: 'argument': truncation from 'double' to 'float'
-  Trixs.vcxproj -> C:\Users\Ruurd\source\repos\Trixs\x64\Debug\Trixs.exe
+c:\users\ruurd\source\repos\trixs\trixs\mesh.cpp(16): error C2440: 'initializing': cannot convert from 'Trixs::OBJModel' to 'Trixs::IndexedModel'
+  c:\users\ruurd\source\repos\trixs\trixs\mesh.cpp(16): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\ruurd\source\repos\trixs\trixs\mesh.cpp(191): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\mesh.cpp(236): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data

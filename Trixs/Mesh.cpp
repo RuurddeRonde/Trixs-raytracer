@@ -4,114 +4,134 @@
 #include "Lambertian.h"
 #include <glad\glad.h>
 #include <GLFW\glfw3.h>
+
+#include "objLoader.h"
 namespace Trixs
 {
 	Mesh::Mesh(std::string filepath, Material* matPtr)
 	{
 		this->matPtr = matPtr;
 		this->filepath = filepath;
-		tinyobj::attrib_t attrib;
-		std::vector<tinyobj::shape_t> shapes;
-		std::vector<tinyobj::material_t> materials;
 
-		std::string warn;
-		std::string err;
+		IndexedModel model = OBJModel(filepath).ToIndexedModel();
 
-		bool ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, filepath.c_str());
+		//nIndices = model.indices.size();
 
-		if (!warn.empty()) {
-			std::cout << warn << std::endl;
-		}
-
-		if (!err.empty()) {
-			std::cerr << err << std::endl;
-		}
-
-		if (!ret) {
-			return;
-		}
-
-		vec3 max(FLT_MIN, FLT_MIN, FLT_MIN);
-		vec3 min(FLT_MAX, FLT_MAX, FLT_MAX);
-
-		this->nVertices = attrib.vertices.size();
-		int vp = 0; //vertex iterator
-		int tr = 0; //triangle iterator
-		int tvc = 0; //count to 3
-
-		for (auto i = 0; i <= attrib.vertices.size() - 3; i += 3)//copy vertex
+		for (auto i = 0; i < model.positions.size(); i++)
 		{
-			vertexPositions.push_back(vec3(attrib.vertices.at(i), attrib.vertices.at(i + 1), attrib.vertices.at(i + 2)));
+			vertices.push_back(Vertex(
+								vec3(model.positions.at(i).x(), model.positions.at(i).y(), model.positions.at(i).z() ),
+								vec3(model.normals.at(i).x(), model.normals.at(i).y(), model.normals.at(i).z())));
 		}
-		bool hasNormals = true;
-		if (attrib.normals.size() != 0)
-		{
-			for (auto i = 0; i <= attrib.normals.size() - 3; i += 3)//copy normals
-			{
-				vertexNormals.push_back(vec3(attrib.normals.at(i), attrib.normals.at(i + 1), attrib.normals.at(i + 2)));
-			}
-		}
-		else
-		{
-			hasNormals = false;
-		}
+		this->indices = model.indices;
 
-		// Loop over shapes
-		for (size_t s = 0; s < shapes.size(); s++) {
-			// Loop over faces(polygon)
-			size_t index_offset = 0;
-			for (size_t f = 0; f < shapes[s].mesh.num_face_vertices.size(); f++) {
-				int fv = shapes[s].mesh.num_face_vertices[f];
 
-				if (fv == 3)//shape is a triangle
-				{
-					int cornera = shapes[s].mesh.indices[index_offset + 0].vertex_index;
-					int cornerb = shapes[s].mesh.indices[index_offset + 1].vertex_index;
-					int cornerc = shapes[s].mesh.indices[index_offset + 2].vertex_index;
-					indices.push_back(cornera);
-					indices.push_back(cornerb);
-					indices.push_back(cornerc);
-					tinyobj::index_t idx = shapes[s].mesh.indices[index_offset + 0];
-					tinyobj::real_t vx = attrib.vertices[3 * idx.vertex_index + 0];
-					tinyobj::real_t vy = attrib.vertices[3 * idx.vertex_index + 1];
-					tinyobj::real_t vz = attrib.vertices[3 * idx.vertex_index + 2];
+		//tinyobj::attrib_t attrib;
+		//std::vector<tinyobj::shape_t> shapes;
+		//std::vector<tinyobj::material_t> materials;
 
-					if (vx < min.x()) { min.setx(vx); }
-					if (vx > max.x()) { max.setx(vx); }
-					if (vy < min.y()) { min.sety(vy); }
-					if (vy > max.y()) { max.sety(vy); }
-					if (vz < min.z()) { min.setz(vz); }
-					if (vz > max.z()) { max.setz(vz); }
+		//std::string warn;
+		//std::string err;
 
-					if (hasNormals)
-					{
-						tinyobj::real_t nx = attrib.normals[3 * idx.normal_index + 0];
-						tinyobj::real_t ny = attrib.normals[3 * idx.normal_index + 1];
-						tinyobj::real_t nz = attrib.normals[3 * idx.normal_index + 2];
-						triangles.push_back(Triangle(cornera, cornerb, cornerc, &vertexPositions, vec3(nx, ny, nz),matPtr));
-					}
-					else
-					{
-						triangles.push_back(Triangle(cornera, cornerb, cornerc, &vertexPositions, matPtr));
-					}
+		//bool ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, filepath.c_str());
 
-				}
-				index_offset += fv;
+		//if (!warn.empty()) {
+		//	std::cout << warn << std::endl;
+		//}
 
-				// per-face material
-				shapes[s].mesh.material_ids[f];
-			}
-		}
-		boundingBox = aabb(min, max);
-		//todo add function that checks if octatree is needed
-		root = BvhMesh(min, max, 0);
-		for (auto i = 0; i < triangles.size(); i++)
-		{
-			root.addTriangle(&triangles.at(i));
-		}
+		//if (!err.empty()) {
+		//	std::cerr << err << std::endl;
+		//}
+
+		//if (!ret) {
+		//	return;
+		//}
+
+		//vec3 max(FLT_MIN, FLT_MIN, FLT_MIN);
+		//vec3 min(FLT_MAX, FLT_MAX, FLT_MAX);
+
+		//this->nVertices = attrib.vertices.size();
+		//int vp = 0; //vertex iterator
+		//int tr = 0; //triangle iterator
+		//int tvc = 0; //count to 3
+
+		//bool hasNormals = true;
+		//if (attrib.vertices.size() == attrib.normals.size())
+		//{
+		//	for (auto i = 0; i <= attrib.vertices.size() - 3; i += 3)//copy vertex
+		//	{
+		//		vertices.push_back(	Vertex( 
+		//				vec3(attrib.vertices.at(i), attrib.vertices.at(i + 1), attrib.vertices.at(i + 2)),
+		//				vec3(attrib.normals.at(i), attrib.normals.at(i + 1), attrib.normals.at(i + 2))));
+		//	}
+		//}
+		//else
+		//{
+		//	hasNormals = false;
+		//}
+		//for (auto i = 0; i < shapes[0].mesh.indices.size(); i++)
+		//{
+		//	indices.push_back(shapes[0].mesh.indices[i].vertex_index);
+		//}
+
+
+		//// Loop over shapes
+		//for (size_t s = 0; s < shapes.size(); s++) {
+		//	// Loop over faces(polygon)
+		//	size_t index_offset = 0;
+		//	for (size_t f = 0; f < shapes[s].mesh.num_face_vertices.size(); f++) {
+		//		int fv = shapes[s].mesh.num_face_vertices[f];
+
+		//		if (fv == 3)//shape is a triangle
+		//		{
+		//			int cornera = shapes[s].mesh.indices[index_offset + 0].vertex_index;
+		//			int cornerb = shapes[s].mesh.indices[index_offset + 1].vertex_index;
+		//			int cornerc = shapes[s].mesh.indices[index_offset + 2].vertex_index;
+		//			indices.push_back(cornera);
+		//			indices.push_back(cornerb);
+		//			indices.push_back(cornerc);
+		//			tinyobj::index_t idx = shapes[s].mesh.indices[index_offset + 0];
+		//			tinyobj::real_t vx = attrib.vertices[3 * idx.vertex_index + 0];
+		//			tinyobj::real_t vy = attrib.vertices[3 * idx.vertex_index + 1];
+		//			tinyobj::real_t vz = attrib.vertices[3 * idx.vertex_index + 2];
+
+		//			if (vx < min.x()) { min.setx(vx); }
+		//			if (vx > max.x()) { max.setx(vx); }
+		//			if (vy < min.y()) { min.sety(vy); }
+		//			if (vy > max.y()) { max.sety(vy); }
+		//			if (vz < min.z()) { min.setz(vz); }
+		//			if (vz > max.z()) { max.setz(vz); }
+
+		//			//todo fix triangle with new vertex struct
+		//			if (hasNormals)
+		//			{
+		//				tinyobj::real_t nx = attrib.normals[3 * idx.normal_index + 0];
+		//				tinyobj::real_t ny = attrib.normals[3 * idx.normal_index + 1];
+		//				tinyobj::real_t nz = attrib.normals[3 * idx.normal_index + 2];
+		//				//triangles.push_back(Triangle(cornera, cornerb, cornerc, &vertexPositions, vec3(nx, ny, nz),matPtr));
+		//			}
+		//			else
+		//			{
+		//				//triangles.push_back(Triangle(cornera, cornerb, cornerc, &vertexPositions, matPtr));
+		//			}
+
+		//		}
+		//		index_offset += fv;
+
+		//		// per-face material
+		//		shapes[s].mesh.material_ids[f];
+		//	}
+		//}
+		//boundingBox = aabb(min, max);
+		////todo add function that checks if octatree is needed
+		//root = BvhMesh(min, max, 0);
+		//for (auto i = 0; i < triangles.size(); i++)
+		//{
+		//	root.addTriangle(&triangles.at(i));
+		//}
 
 		init();
-		
+
 	}
 
 	bool Mesh::init()
@@ -125,13 +145,18 @@ namespace Trixs
 		glBindVertexArray(VAO);
 
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		glBufferData(GL_ARRAY_BUFFER, vertexPositions.size() * sizeof(vec3), &vertexPositions[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), &vertices[0], GL_STATIC_DRAW);
+		//	glBufferData(GL_ARRAY_BUFFER, vertexNormals.size() * sizeof(vec3), &vertexNormals[0], GL_STATIC_DRAW);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
 
+		//vertex
 		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vec3), (void*)0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
+		//normal
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, Vertex::Normal));
 
 		// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -163,7 +188,8 @@ namespace Trixs
 	{
 		//opengl draw
 		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+		glDrawArrays(GL_TRIANGLES, 0, indices.size());
+		//glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
 	}
 

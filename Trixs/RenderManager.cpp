@@ -62,9 +62,19 @@ namespace Trixs
 		}
 
 		shader = new Shader("C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\basicShader.vs", "C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\basicShader.fs");
-	
+		Lampshader = new Shader("C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\lampShader.vs", "C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\lampShader.fs");
+
 		// set up vertex data (and buffer(s)) and configure vertex attributes
 		// ------------------------------------------------------------------
+
+		//glGenVertexArrays(1, &lightVAO);
+		//glGenBuffers(1, &lightVBO);
+		//glBindVertexArray(lightVAO);
+
+		//glBindBuffer(GL_ARRAY_BUFFER, lightVBO);
+		//// note that we update the lamp's position attribute's stride to reflect the updated buffer data
+		//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+		//glEnableVertexAttribArray(0);
 
 		glGenVertexArrays(1, &VAO);
 		glGenBuffers(1, &VBO);
@@ -90,7 +100,7 @@ namespace Trixs
 		// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
 		// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
 		glBindVertexArray(0);
-
+		glEnable(GL_DEPTH_TEST);
 
 		// framebuffer configuration
 		// -------------------------
@@ -114,7 +124,7 @@ namespace Trixs
 		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 			std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		
+
 		width = 800;
 		height = 600;
 	}
@@ -136,7 +146,7 @@ namespace Trixs
 		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
 		shader->use();
@@ -147,7 +157,10 @@ namespace Trixs
 
 		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
-
+		shader->setVec3("lightPos", 1.2f, 1.0f, 2.0f);
+		shader->setVec3("viewPos", 0.0f, 0.5f, -3.0f);
+		shader->setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+		shader->setVec3("objectColor", 1.0f, 0.5f, 0.31f);
 		unsigned int transformLoc = glGetUniformLocation(shader->ID, "model"); //model transform
 
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(glm::mat4(1.0f)));
@@ -170,13 +183,26 @@ namespace Trixs
 			transform = glm::rotate(transform, glm::radians(rot.x), glm::vec3(1.0f, 0.0f, 0.0f));
 			transform = glm::rotate(transform, glm::radians(rot.y), glm::vec3(0.0f, 1.0f, 0.0f));
 			transform = glm::rotate(transform, glm::radians(rot.z), glm::vec3(0.0f, 0.0f, 1.0f));
-			transform = glm::scale(transform, scale);	
+			transform = glm::scale(transform, scale);
 
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
 
 
 			world->at(i)->draw();
 		}
+
+		//Lampshader->use();
+		//Lampshader->setMat4("projection", projection);
+		//Lampshader->setMat4("view", view);
+		//glm::mat4 model = glm::mat4(1.0f);
+		//model = glm::translate(model, glm::vec3(1.2f, 1.0f, 2.0f));
+		//model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
+		//Lampshader->setMat4("model", model);
+
+		//glBindVertexArray(lightVAO);
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		// clear all relevant buffers
 		//glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // set clear color to white (not really necessery actually, since we won't be able to see behind the quad anyways)
