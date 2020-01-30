@@ -12,7 +12,7 @@
 namespace Trixs
 {
 
-	Scene::Scene(std::string name) : cam(vec3(0, 0, 5), vec3(0, 0, 0), vec3(0, 1, 0), 20, float(1920) / float(1080), 0.1, 5.0)
+	Scene::Scene(std::string name) : cam(vec3(0, 0, -3), vec3(0, 0, 0), vec3(0, 1, 0), 20, float(1920) / float(1080), 0.1, 5.0)
 	{
 		this->name = name;
 		this->size = 0;

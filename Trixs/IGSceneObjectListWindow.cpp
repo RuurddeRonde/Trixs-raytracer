@@ -10,8 +10,32 @@ void Trixs::IGSceneObjectListWindow::update()
 		}
 		else
 		{
-			std::vector<Hittable*>* objects = MainManager::getInstance().getProject()->getCurrentScene()->getObjects();
 			ImGui::TreeNodeEx(MainManager::getInstance().getProject()->getCurrentScene()->getName().c_str(), ImGuiTreeNodeFlags_Leaf);
+			//camera
+			ImGui::PushID("Cam");
+			std::string id = "Camera";
+			bool cam_open = ImGui::TreeNodeEx(id.c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen, "Camera");
+			if (cam_open)
+			{
+				vec3* t = MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->getPosPTR();
+
+				ImGui::Text("Position");
+
+				ImGui::Text("X ");
+				ImGui::SameLine();
+				ImGui::SliderFloat("X##valueXpc", &t->e[0], -20.0, 20.0);
+				ImGui::Text("Y ");
+				ImGui::SameLine();
+				ImGui::SliderFloat("Y##valueYpc", &t->e[1], -20.0, 20.0);
+				ImGui::Text("Z ");
+				ImGui::SameLine();
+				ImGui::SliderFloat("Z##valueZpc", &t->e[2], -20.0, 20.0);
+
+				
+			}
+			ImGui::PopID();
+
+			std::vector<Hittable*>* objects = MainManager::getInstance().getProject()->getCurrentScene()->getObjects();
 			for (int obj_i = 0; obj_i < objects->size(); obj_i++)
 			{
 				ImGui::PushID(obj_i);

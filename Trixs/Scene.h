@@ -23,6 +23,7 @@ public:
 	std::vector<Hittable*>* getObjects() { return &hittables; }
 	std::string getName() { return name; }
 	Camera getCamera() { return cam; }
+	Camera* getCamPTR() { return &cam; }
 private:
 	std::vector<Hittable*> hittables;
 	int size;

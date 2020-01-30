@@ -34,6 +34,8 @@ public:
 			lowerLeftCorner + s * horizontal + t * vertical
 			- origin - offset);
 	}
+	vec3 getPosition() { return origin; }
+	vec3* getPosPTR() { return &origin; }
 private:
 	vec3 lowerLeftCorner;
 	vec3 horizontal;

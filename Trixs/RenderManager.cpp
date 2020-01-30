@@ -153,7 +153,8 @@ namespace Trixs
 		glm::mat4 view = glm::mat4(1.0f);
 		glm::mat4 projection = glm::mat4(1.0f);
 		projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f);
-		view = glm::translate(view, glm::vec3(0.0f, 0.5f, -3.0f)); //todo add camera here
+		vec3 campos = MainManager::getInstance().getProject()->getCurrentScene()->getCamera().getPosition();
+		view = glm::translate(view, glm::vec3(campos.x(), campos.y(), campos.z())); //todo add camera here
 
 		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
