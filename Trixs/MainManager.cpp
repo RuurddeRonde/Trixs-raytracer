@@ -51,7 +51,7 @@ namespace Trixs
 				delete project;
 				project = new Project(user.lastVisitedProjectPath, false, user.lastVisitedProjectName);
 				//todo remove test
-				bool succes = project->saveProject();
+				//bool succes = project->saveProject();
 				programSettings.loadPreviousProject = false;
 				programSettings.projectAdjusted = false;
 				programSettings.projectLoaded = true;

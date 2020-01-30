@@ -9,6 +9,7 @@ namespace Trixs
 	constexpr int maxDivisions = 5;
 
 	struct Vertex {
+		Vertex() {}
 		Vertex(vec3 pos, vec3 norm) : Position(pos), Normal(norm) {}
 		vec3 Position;
 		vec3 Normal;
@@ -40,6 +41,7 @@ namespace Trixs
 	{
 	public:
 		Mesh(std::string filepath, Material* matPtr);
+		Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material* matPtr);
 		virtual bool hit(const Ray& r, float t_min, float t_max, hitRecord& rec)const;
 		virtual std::string getWritable()const override;
 		virtual void draw() const override;

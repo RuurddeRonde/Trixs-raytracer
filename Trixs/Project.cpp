@@ -4,6 +4,7 @@
 //temp
 #include "Mesh.h"
 #include "Lambertian.h"
+#include "ModelLoader.h"
 namespace Trixs
 {
 
@@ -17,7 +18,8 @@ namespace Trixs
 		}
 		scenes.push_back(new Scene("testscene"));
 		currentScene = scenes.at(0);
-		currentScene->submit(new Mesh("models/cube.obj", new Lambertian(vec3(0.4, 0.2, 0.1))));
+		//currentScene->submit(new Mesh("models/cube.obj", new Lambertian(vec3(0.4, 0.2, 0.1))));
+		currentScene->submit(ModelLoader::LoadMesh("models/stl/Dragon.stl", new Lambertian(vec3(0.4, 0.2, 0.1))));
 	}
 
 

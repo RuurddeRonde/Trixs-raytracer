@@ -5,6 +5,7 @@
 #include <glad\glad.h>
 #include <GLFW\glfw3.h>
 
+
 #include "objLoader.h"
 namespace Trixs
 {
@@ -132,6 +133,14 @@ namespace Trixs
 
 		init();
 
+	}
+
+	Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material* matPtr)
+	{
+		this->vertices = vertices;
+		this->indices = indices;
+		this->matPtr = matPtr;
+		init();
 	}
 
 	bool Mesh::init()

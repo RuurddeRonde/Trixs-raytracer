@@ -201,6 +201,12 @@
     <ClInclude Include="KeyFrame.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="ModelLoader.h">
+      <Filter>Core\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>rayTrixser\shapes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\imgui\imgui_widgets.cpp">
@@ -325,6 +331,12 @@
     </ClCompile>
     <ClCompile Include="KeyFrame.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelLoader.cpp">
+      <Filter>Core\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>rayTrixser\shapes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
