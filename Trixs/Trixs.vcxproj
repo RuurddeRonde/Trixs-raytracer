@@ -173,6 +173,8 @@
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="Hitable.h" />
     <ClInclude Include="HitableList.h" />
+    <ClInclude Include="IGFileDialog.h" />
+    <ClInclude Include="IGMenuBar.h" />
     <ClInclude Include="IGSceneObjectListWindow.h" />
     <ClInclude Include="IGTimeLineWindow.h" />
     <ClInclude Include="imGuizmoHelperFile.h" />
@@ -231,6 +233,7 @@
     <ClCompile Include="external\imgui\imgui_widgets.cpp" />
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="HitableList.cpp" />
+    <ClCompile Include="IGFileDialog.cpp" />
     <ClCompile Include="IGSceneObjectListWindow.cpp" />
     <ClCompile Include="IGTimeLineWindow.cpp" />
     <ClCompile Include="KeyFrame.cpp" />

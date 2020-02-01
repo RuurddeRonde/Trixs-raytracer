@@ -207,6 +207,10 @@
     <ClInclude Include="Model.h">
       <Filter>rayTrixser\shapes</Filter>
     </ClInclude>
+    <ClInclude Include="IGFileDialog.h" />
+    <ClInclude Include="IGMenuBar.h">
+      <Filter>UI\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\imgui\imgui_widgets.cpp">
@@ -338,6 +342,7 @@
     <ClCompile Include="Model.cpp">
       <Filter>rayTrixser\shapes</Filter>
     </ClCompile>
+    <ClCompile Include="IGFileDialog.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

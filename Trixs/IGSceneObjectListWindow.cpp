@@ -99,6 +99,10 @@ void Trixs::IGSceneObjectListWindow::update()
 				ImGui::PopID();
 			}
 			ImGui::PopID();
+
+			
+
+
 			end();
 		}
 	}

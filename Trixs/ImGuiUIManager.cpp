@@ -3,6 +3,7 @@
 #include "IGViewPortWindow.h"
 #include "IGSceneObjectListWindow.h"
 #include "IGTimeLineWindow.h"
+#include "IGMenuBar.h"
 
 namespace Trixs
 {
@@ -136,6 +137,7 @@ namespace Trixs
 		showImage = new IGShowImageWindow();
 		SceneObjects = new IGSceneObjectListWindow();
 		TimeLine = new IGTimeLineWindow();
+		MenuBar = new IGMenuBar();
 		renderWindowCasted = dynamic_cast<IGRenderWindow*>(renderSettings);
 		showImageCasted = dynamic_cast<IGShowImageWindow*>(showImage);
 
@@ -147,6 +149,30 @@ namespace Trixs
 		renderSettings->update();
 		SceneObjects->update();
 		TimeLine->update();
+		MenuBar->update();
+
+		if (ImGui::BeginMainMenuBar()) {
+			if (ImGui::BeginMenu("Windows"))
+			{
+				if (ImGui::MenuItem("Scene object list")) {
+					SceneObjects->Show();
+				}
+				if (ImGui::MenuItem("Render image")) {
+					showImage->Show();
+				}
+				if (ImGui::MenuItem("Render Settings")) {
+					renderSettings->Show();
+				}
+				if (ImGui::MenuItem("Timeline")) {
+					TimeLine->Show();
+				}
+				if (ImGui::MenuItem("ViewPort")) {
+					viewPort->Show();
+				}
+				ImGui::EndMenu();
+			}
+			ImGui::EndMainMenuBar();
+		}
 		if (renderWindowCasted->hasNewRender())//automatic update of image in imageviewer
 		{
 			showImageCasted->setNewImage(renderWindowCasted->getLastRenderPath());
@@ -161,6 +187,7 @@ namespace Trixs
 		delete showImage;
 		delete SceneObjects;
 		delete TimeLine;
+		delete MenuBar;
 	}
 	void ImGuiUIManager::setstyle()
 	{
