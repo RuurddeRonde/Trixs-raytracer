@@ -10,7 +10,10 @@ namespace Trixs
 		bool begin(std::string name) override;
 		void update() override;
 	private:
+		bool newprojectPressed = false;
 
+		void showStart();
+		void showNew();
 	};
 
 }

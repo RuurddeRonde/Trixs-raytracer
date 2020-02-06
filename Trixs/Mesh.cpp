@@ -135,8 +135,9 @@ namespace Trixs
 
 	}
 
-	Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material* matPtr)
+	Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material* matPtr, std::string filePath)
 	{
+		this->filepath = filePath;
 		this->vertices = vertices;
 		this->indices = indices;
 		this->matPtr = matPtr;
@@ -179,17 +180,25 @@ namespace Trixs
 		return true;
 	}
 
+	std::string Mesh::writeVec3(vec3 v)
+	{
+		return std::to_string(v.x()) + " " + std::to_string(v.y()) + " " + std::to_string(v.z());
+	}
+
 	bool Mesh::hit(const Ray & r, float t_min, float t_max, hitRecord & rec) const
 	{
 		return root.hit(r, t_min, t_max, rec);
 	}
 
-	std::string Mesh::getWritable() const
+	std::string Mesh::getWritable()
 	{
 		std::string writable;
 		writable.append("MESH\n");
+		writable.append(filepath + "\n");
+		writable.append("POSITION " + writeVec3(getTransform()->getPos())+ "\n");
+		writable.append("ROTATION " + writeVec3(getTransform()->getRot()) + "\n");
+		writable.append("SCALE " + writeVec3(getTransform()->getScale()) + "\n");
 		writable.append(matPtr->getWritable());
-		writable.append(filepath);
 		return writable;
 	}
 

@@ -77,7 +77,7 @@ namespace Trixs
 			return false;
 	}
 
-	std::string Triangle::getWritable() const
+	std::string Triangle::getWritable() 
 	{
 		std::string writable;
 		writable += A + " ";

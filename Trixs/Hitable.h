@@ -24,7 +24,7 @@ namespace Trixs
 
 		}
 		virtual bool hit(const Ray& r, float t_min, float t_max, hitRecord& rec) const = 0;
-		virtual std::string getWritable()const { return ""; }
+		virtual std::string getWritable() { return ""; }
 		virtual void draw()const {}
 		Transform* getTransform()
 		{
@@ -86,6 +86,11 @@ namespace Trixs
 			}
 			keyframes.push_back(KeyFrame(t, frame));
 			return true;
+		}
+		//only use this function on creation of object
+		void setStartTransform(Transform t)
+		{
+			keyframes[0].setTransform(t);
 		}
 	protected:
 		Material* matPtr;

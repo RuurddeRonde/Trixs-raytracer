@@ -33,21 +33,21 @@ namespace Trixs
 		}
 		return false;
 	}
-	std::string FileIO::readFile(std::string path)
+	std::vector<std::string> FileIO::readFile(std::string path)
 	{
 		std::string line;
+		std::vector<std::string> lines;
 		std::ifstream myfile(path);
 		if (myfile.is_open())
 		{
-			while (getline(myfile, line))
+			while (getline(myfile, line, '\n'))
 			{
-
+				lines.push_back(line);
 			}
 			myfile.close();
-			return line;
 		}
 
-		else return "";
+		return lines;
 	}
 	bool FileIO::createDir(const std::string path)
 	{

@@ -13,7 +13,7 @@ namespace Trixs
 class Scene
 {
 public:
-	Scene(std::string name);
+	Scene(std::string path);
 	~Scene();
 	void loadScene(std::string path);
 	void saveScene(std::string path);

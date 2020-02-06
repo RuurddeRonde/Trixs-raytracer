@@ -5,7 +5,6 @@ namespace Trixs
 {
 	Mesh* ModelLoader::LoadMesh(std::string path, Material* mat)
 	{
-
 		std::vector<Vertex> vertices;
 		std::vector<unsigned int> indices;
 		//std::vector<Texture> textures;
@@ -46,7 +45,15 @@ namespace Trixs
 			for (unsigned int j = 0; j < face.mNumIndices; j++)
 				indices.push_back(face.mIndices[j]);
 		}
-		return new Mesh(vertices, indices, mat);
+		return new Mesh(vertices, indices, mat, path);
+	}
+
+
+	Mesh* ModelLoader::LoadMesh(std::string path, Material* mat, Transform t)
+	{
+		Mesh* m = LoadMesh(path, mat);
+		m->setStartTransform(t);
+		return m;
 	}
 
 }

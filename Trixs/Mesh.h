@@ -41,12 +41,14 @@ namespace Trixs
 	{
 	public:
 		Mesh(std::string filepath, Material* matPtr);
-		Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material* matPtr);
+		Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material* matPtr, std::string filePath);
+		//Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material* matPtr, std::string filePath);
 		virtual bool hit(const Ray& r, float t_min, float t_max, hitRecord& rec)const;
-		virtual std::string getWritable()const override;
+		virtual std::string getWritable() override;
 		virtual void draw() const override;
 	private:
 		bool init();
+		std::string writeVec3(vec3 v);
 		int nIndices;
 		int nTriangles;
 		int nVertices;

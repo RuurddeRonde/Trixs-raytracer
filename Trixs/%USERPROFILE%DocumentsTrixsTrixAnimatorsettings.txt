@@ -1,0 +1,2 @@
+false
+%USERPROFILE%DocumentsTrixsTrixsAnimatorProjects%USERPROFILE%DocumentsTrixsTrixsAnimatorProjects	estProject\newProjectName

@@ -34,7 +34,7 @@ namespace Trixs
 								//isImportClicked = true;
 							}
 							if (ImGui::MenuItem("Save Project")) {
-								//isImportClicked = true;
+								MainManager::getInstance().getProject()->saveProject();
 							}
 							if (ImGui::MenuItem("Save and Quit")) {
 								//isImportClicked = true;
@@ -52,13 +52,6 @@ namespace Trixs
 							ImGui::EndMenu();
 						}
 						ImGui::EndMainMenuBar();
-					}
-
-
-					std::string path;
-					if (fileBrowser.render(isImportClicked, path)) {
-						isImportClicked = false;
-						MainManager::getInstance().getProject()->getCurrentScene()->submit(ModelLoader::LoadMesh(path, new Lambertian(vec3(0.4, 0.2, 0.1))));
 					}
 					end();
 				}

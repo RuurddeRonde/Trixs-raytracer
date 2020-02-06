@@ -11,6 +11,8 @@ class ModelLoader
 {
 public:
 	static Mesh* LoadMesh(std::string path, Material* mat);
+	static Mesh* LoadMesh(std::string path, Material* mat, Transform t);
+private:
 };
 
 	

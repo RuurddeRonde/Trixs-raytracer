@@ -8,14 +8,16 @@
 #include "Triangle.h"
 #include "Mesh.h"
 #include "FileIO.h"
+#include "ModelLoader.h"
+#include <sstream>
 
 namespace Trixs
 {
 
-	Scene::Scene(std::string name) : cam(vec3(0, 0, -3), vec3(0, 0, 0), vec3(0, 1, 0), 20, float(1920) / float(1080), 0.1, 5.0)
+	Scene::Scene(std::string path) : cam(vec3(0, 0, -3), vec3(0, 0, 0), vec3(0, 1, 0), 20, float(1920) / float(1080), 0.1, 5.0)
 	{
-		this->name = name;
 		this->size = 0;
+		loadScene(path);
 	}
 
 
@@ -31,6 +33,33 @@ namespace Trixs
 
 	void Scene::loadScene(std::string path)
 	{
+		std::vector<std::string> file = FileIO::readFile(path);
+
+		this->name = file[0];
+		int offset = 2;//the meshes start at row 2 in the scene file
+		int objectsize = 6; //the meshes consist of 6 rows (type, path, pos, rot, scale, material)
+		for (auto i = 0; i < std::stoi(file[1]); i++)
+		{
+			if (strcmp(file[6 * i + offset].c_str(), "MESH"))
+			{
+				std::istringstream in(file[6 * i + offset + 5]); //material
+				std::istringstream inpos(file[6 * i + offset + 2]); //position
+				std::istringstream inrot(file[6 * i + offset + 3]); //rotation
+				std::istringstream inscale(file[6 * i + offset + 4]); //]scale
+				std::string type;//mat type
+				in >> type;           
+				vec3 pos, rot, scale;
+				inpos >> pos.e[0] >> pos.e[1] >> pos.e[2];
+				inpos >> rot.e[0] >> rot.e[1] >> rot.e[2];
+				inpos >> scale.e[0] >> scale.e[1] >> scale.e[2];
+				if (type == "LAMBERTIAN")
+				{
+					float x, y, z;
+					in >> x >> y >> z;       //now read the whitespace-separated floats
+					submit(ModelLoader::LoadMesh(file[6 * i + offset + 1], new Lambertian(vec3(x, y, z)), Transform(pos, rot, scale)));
+				}
+			}
+		}
 
 	}
 	void Scene::saveScene(std::string path)

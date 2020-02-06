@@ -15,6 +15,7 @@ namespace Trixs
 	{
 	public:
 		static UserSettings LoadUserSettings();
+		static void SaveUserSettings(UserSettings userSettings);
 	};
 
 }

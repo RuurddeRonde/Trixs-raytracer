@@ -10,4 +10,5 @@ struct ProgramSettings
 	bool saveproject;
 	bool saveScene;
 	bool projectLoaded;
+	std::string newProjectName;
 };

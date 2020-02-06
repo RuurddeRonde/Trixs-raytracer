@@ -27,6 +27,7 @@ namespace Trixs
 	private:
 		MainManager();
 		void checkProgSettings();
+		void loadSettings();
 
 		Window* window;
 		UIManager* uiManager;

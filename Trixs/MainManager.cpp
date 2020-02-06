@@ -20,8 +20,8 @@ namespace Trixs
 		programSettings.projectLoaded = false;
 
 		window = new Window(800, 600);
-		uiManager = new ImGuiUIManager(window);
-		project = new Project("emptyProject", false, "emptyProject");
+		uiManager = new ImGuiUIManager(window);	
+		//project = new Project("emptyProject", false, "emptyProject");
 	}
 	MainManager::~MainManager()
 	{
@@ -50,22 +50,32 @@ namespace Trixs
 			{
 				delete project;
 				project = new Project(user.lastVisitedProjectPath, false, user.lastVisitedProjectName);
-				//todo remove test
-				//bool succes = project->saveProject();
 				programSettings.loadPreviousProject = false;
 				programSettings.projectAdjusted = false;
 				programSettings.projectLoaded = true;
 			}
 			else if (programSettings.loadProjectFromDisk)
 			{
-				//todo
+				delete project;	
+				size_t found = programSettings.newProjectName.rfind("/");
+				if (found == std::string::npos)
+				{
+					size_t found = programSettings.newProjectName.rfind('\\');
+				}
+				project = new Project(programSettings.newProjectName, false, programSettings.newProjectName.substr(found));
+				programSettings.projectAdjusted = false;
+				programSettings.loadProjectFromDisk = false;
+				programSettings.projectLoaded = true;
+				user.lastVisitedProjectName = project->getName();
+				UserData::SaveUserSettings(user);
 			}
 			else if (programSettings.newProject)
 			{
 				delete project;
-				//todo add name
-				project = new Project(user.defaultSavePath, true, "newProjectName");
+				project = new Project(user.defaultSavePath, true, programSettings.newProjectName);
 				programSettings.projectLoaded = true;
+				user.lastVisitedProjectName = project->getName();
+				UserData::SaveUserSettings(user);
 			}
 		}
 	}
