@@ -8,7 +8,6 @@ namespace Trixs
 	{
 		user = UserData::LoadUserSettings();
 
-		//todo set all to false
 		programSettings.loadPreviousProject = false;
 		programSettings.loadProjectFromDisk = false;
 		programSettings.newProject = false;
@@ -21,7 +20,6 @@ namespace Trixs
 
 		window = new Window(800, 600);
 		uiManager = new ImGuiUIManager(window);	
-		//project = new Project("emptyProject", false, "emptyProject");
 	}
 	MainManager::~MainManager()
 	{

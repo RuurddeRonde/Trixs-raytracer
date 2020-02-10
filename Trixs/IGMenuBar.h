@@ -37,21 +37,30 @@ namespace Trixs
 								MainManager::getInstance().getProject()->saveProject();
 							}
 							if (ImGui::MenuItem("Save and Quit")) {
-								//isImportClicked = true;
+								MainManager::getInstance().getProject()->saveProject();
+								exit(0);
 							}
 							if (ImGui::MenuItem("Quit")) {
-								//isImportClicked = true;
+								exit(0);
 							}
 							ImGui::EndMenu();
 						}
 						
-						if (ImGui::BeginMenu("Models")) {
-							if (ImGui::MenuItem("Import")) {
+						if (ImGui::BeginMenu("Models")) 
+						{
+							if (ImGui::MenuItem("Import")) 
+							{
 								isImportClicked = true;
 							}
 							ImGui::EndMenu();
 						}
 						ImGui::EndMainMenuBar();
+					}
+					std::string path;
+					if (fileBrowser.render(isImportClicked, path))
+					{
+						isImportClicked = false;
+						MainManager::getInstance().getProject()->getCurrentScene()->submit(ModelLoader::LoadMesh(path, new Lambertian(vec3(0.8f, 0.2f, 0.2f))));
 					}
 					end();
 				}

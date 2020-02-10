@@ -40,19 +40,23 @@ namespace Trixs
 		int objectsize = 6; //the meshes consist of 6 rows (type, path, pos, rot, scale, material)
 		for (auto i = 0; i < std::stoi(file[1]); i++)
 		{
-			if (strcmp(file[6 * i + offset].c_str(), "MESH"))
+			if (strcmp(file[(6 * i) + offset].c_str(), "MESH") == 0)
 			{
-				std::istringstream in(file[6 * i + offset + 5]); //material
-				std::istringstream inpos(file[6 * i + offset + 2]); //position
-				std::istringstream inrot(file[6 * i + offset + 3]); //rotation
-				std::istringstream inscale(file[6 * i + offset + 4]); //]scale
+				std::istringstream in(file[(6 * i) + offset + 5]); //material
+				std::istringstream inpos(file[(6 * i) + offset + 2]); //position
+				std::istringstream inrot(file[(6 * i) + offset + 3]); //rotation
+				std::istringstream inscale(file[(6 * i) + offset + 4]); //scale
 				std::string type;//mat type
-				in >> type;           
+				std::string temp;
+				inpos >> temp;
+				inrot >> temp;
+				inscale >> temp;
 				vec3 pos, rot, scale;
 				inpos >> pos.e[0] >> pos.e[1] >> pos.e[2];
-				inpos >> rot.e[0] >> rot.e[1] >> rot.e[2];
-				inpos >> scale.e[0] >> scale.e[1] >> scale.e[2];
-				if (type == "LAMBERTIAN")
+				inrot >> rot.e[0] >> rot.e[1] >> rot.e[2];
+				inscale >> scale.e[0] >> scale.e[1] >> scale.e[2];
+				in >> type;           
+				if (type == "LAMBERTIAN") //todo add other types
 				{
 					float x, y, z;
 					in >> x >> y >> z;       //now read the whitespace-separated floats

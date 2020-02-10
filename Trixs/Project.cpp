@@ -19,8 +19,8 @@ namespace Trixs
 		if (!isNewProject)
 		{
 			loadProject(path, name);
-			//todo remove return
-			//return;
+			currentScene = scenes.at(0);
+			return;
 		}
 		scenes.push_back(new Scene("emptyScene"));
 		currentScene = scenes.at(0);
@@ -70,10 +70,11 @@ namespace Trixs
 	bool Project::loadProject(std::string path, std::string name)
 	{
 		//open file
-		std::vector<std::string> projectfile = FileIO::readFile(path + "\\" + name + "\\" + name + ".txt");
+		std::string projectPath = path + "//" + name + ".trixs";
+		std::vector<std::string> projectfile = FileIO::readFile(projectPath);
 		this->name = name;
 		//load all scenes
-		for (auto i = 2; i <= projectfile.size(); i++)
+		for (auto i = 2; i < projectfile.size(); i++)
 		{
 			addScene(projectfile[i]);
 		}
