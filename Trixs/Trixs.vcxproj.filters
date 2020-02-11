@@ -211,6 +211,9 @@
     <ClInclude Include="IGMenuBar.h">
       <Filter>UI\windows</Filter>
     </ClInclude>
+    <ClInclude Include="IGSettingsWindow.h">
+      <Filter>UI\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\imgui\imgui_widgets.cpp">

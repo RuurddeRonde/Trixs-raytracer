@@ -15,6 +15,37 @@ namespace Trixs
 	{
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);
+		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+			MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveForward(0.1f);
+		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+			MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveSide(0.1f);
+		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+			MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveForward(-0.1f);
+		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+			MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveSide(-0.1f);
+		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+			MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveUp(0.1f);
+		if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+			MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveUp(-0.1f);
+		/*if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+			if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+				MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveLookAt(0.1f, 0.0f, 0.0f);
+*/
+	}
+
+	static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+	{
+		static double prevposx = 0.0;
+		static double prevposy = 0.0;
+
+		if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT))
+		{
+			double deltax = xpos - prevposx;
+			double deltay = ypos - prevposy;
+			MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveLookAt((float)deltax, (float)deltay, 0.0f);
+		}
+		prevposx = xpos;
+		prevposy = ypos;
 	}
 
 	RenderManager::RenderManager(Window* basewindow)
@@ -52,6 +83,7 @@ namespace Trixs
 			static_cast<RenderManager*>(glfwGetWindowUserPointer(w))->framebufferSizeCallback(width, height);
 		};
 		glfwSetFramebufferSizeCallback(basewindow->getWindow(), Resizefunc);
+		glfwSetCursorPosCallback(basewindow->getWindow(), cursor_position_callback);
 
 		// glad: load all OpenGL function pointers
 		// ---------------------------------------
@@ -127,7 +159,7 @@ namespace Trixs
 
 		width = 800;
 		height = 600;
-	}
+}
 
 	RenderManager::~RenderManager()
 	{
@@ -144,8 +176,7 @@ namespace Trixs
 
 
 		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClearColor(MainManager::getInstance().getProgramSettings()->backgroundColor.x(), MainManager::getInstance().getProgramSettings()->backgroundColor.y(), MainManager::getInstance().getProgramSettings()->backgroundColor.z(), 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
@@ -153,8 +184,9 @@ namespace Trixs
 		glm::mat4 view = glm::mat4(1.0f);
 		glm::mat4 projection = glm::mat4(1.0f);
 		projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f);
-		vec3 campos = MainManager::getInstance().getProject()->getCurrentScene()->getCamera().getPosition();
-		view = glm::translate(view, glm::vec3(campos.x(), campos.y(), campos.z())); //todo add camera here
+		Camera camera = MainManager::getInstance().getProject()->getCurrentScene()->getCamera();
+		//view = glm::translate(view, glm::vec3(campos.x(), campos.y(), campos.z())); //todo add camera here
+		view = glm::lookAt(glm::vec3(camera.getPosition().x(), camera.getPosition().y(), camera.getPosition().z()), glm::vec3(camera.getLookAt().x(), camera.getLookAt().y(), camera.getLookAt().z()), glm::vec3(camera.getUp().x(), camera.getUp().y(), camera.getUp().z()));
 
 		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "view"), 1, GL_FALSE, glm::value_ptr(view));

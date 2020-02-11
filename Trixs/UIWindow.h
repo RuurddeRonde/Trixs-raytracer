@@ -10,6 +10,7 @@ namespace Trixs
 		virtual void update() = 0;
 		bool shouldShow() { return show; }
 		void Show() { show = true; }
+		void Hide() { show = false; }
 	protected:
 		bool show;
 	};

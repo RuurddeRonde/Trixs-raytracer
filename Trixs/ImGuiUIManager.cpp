@@ -4,6 +4,7 @@
 #include "IGSceneObjectListWindow.h"
 #include "IGTimeLineWindow.h"
 #include "IGMenuBar.h"
+#include "IGSettingsWindow.h"
 
 namespace Trixs
 {
@@ -138,6 +139,8 @@ namespace Trixs
 		SceneObjects = new IGSceneObjectListWindow();
 		TimeLine = new IGTimeLineWindow();
 		MenuBar = new IGMenuBar();
+		Settings = new IGSettingsWindow();
+		Settings->Hide();
 		renderWindowCasted = dynamic_cast<IGRenderWindow*>(renderSettings);
 		showImageCasted = dynamic_cast<IGShowImageWindow*>(showImage);
 
@@ -150,6 +153,7 @@ namespace Trixs
 		SceneObjects->update();
 		TimeLine->update();
 		MenuBar->update();
+		Settings->update();
 
 		if (ImGui::BeginMainMenuBar()) {
 			if (ImGui::BeginMenu("Windows"))
@@ -171,6 +175,11 @@ namespace Trixs
 				}
 				ImGui::EndMenu();
 			}
+			if (ImGui::BeginMenu("Settings"))
+			{
+				Settings->Show();
+				ImGui::EndMenu();
+			}
 			ImGui::EndMainMenuBar();
 		}
 		if (renderWindowCasted->hasNewRender())//automatic update of image in imageviewer
@@ -188,6 +197,7 @@ namespace Trixs
 		delete SceneObjects;
 		delete TimeLine;
 		delete MenuBar;
+		delete Settings;
 	}
 	void ImGuiUIManager::setstyle()
 	{

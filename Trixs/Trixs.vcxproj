@@ -176,6 +176,7 @@
     <ClInclude Include="IGFileDialog.h" />
     <ClInclude Include="IGMenuBar.h" />
     <ClInclude Include="IGSceneObjectListWindow.h" />
+    <ClInclude Include="IGSettingsWindow.h" />
     <ClInclude Include="IGTimeLineWindow.h" />
     <ClInclude Include="imGuizmoHelperFile.h" />
     <ClInclude Include="KeyFrame.h" />
