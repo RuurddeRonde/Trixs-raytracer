@@ -214,6 +214,7 @@
     <ClInclude Include="IGSettingsWindow.h">
       <Filter>UI\windows</Filter>
     </ClInclude>
+    <ClInclude Include="ViewportCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\imgui\imgui_widgets.cpp">
@@ -346,6 +347,7 @@
       <Filter>rayTrixser\shapes</Filter>
     </ClCompile>
     <ClCompile Include="IGFileDialog.cpp" />
+    <ClCompile Include="ViewportCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

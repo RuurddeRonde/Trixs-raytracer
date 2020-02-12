@@ -5,4 +5,5 @@ c:\users\ruurd\source\repos\trixs\trixs\hitable.h(57): warning C4267: '=': conve
 c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 c:\users\ruurd\source\repos\trixs\trixs\camera.h(15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\rendermanager.cpp(32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   Trixs.vcxproj -> C:\Users\Ruurd\source\repos\Trixs\x64\Debug\Trixs.exe

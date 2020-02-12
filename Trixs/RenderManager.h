@@ -24,6 +24,8 @@ namespace Trixs
 		unsigned int getFrame() { return textureColorbuffer; }
 		void framebufferSizeCallback(int width, int height);
 		void setNewSize(int width, int height);
+		void processInput(GLFWwindow *window);
+		void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 	private:
 		int shaderProgram;
 
@@ -32,7 +34,6 @@ namespace Trixs
 		int width, height;
 		Shader* shader;
 		Shader* Lampshader;
-
 
 		float verticesLight[216] = {
 	   -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
@@ -77,7 +78,12 @@ namespace Trixs
 	   -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
 	   -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
 		};
-		unsigned int lightVBO, lightVAO;	
+		unsigned int lightVBO, lightVAO;
+
+		double prevposx;
+		double prevposy;
+		float yaw = -90.0f;
+		float pitch = 0.0f;
 
 		//depreciated
 		const char *vertexShaderSource = "#version 330 core\n"

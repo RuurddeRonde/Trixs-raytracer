@@ -218,6 +218,7 @@
     <ClInclude Include="UserData.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="Vec3.h" />
+    <ClInclude Include="ViewportCamera.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -269,6 +270,7 @@
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="UIWindow.cpp" />
     <ClCompile Include="UserData.cpp" />
+    <ClCompile Include="ViewportCamera.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>

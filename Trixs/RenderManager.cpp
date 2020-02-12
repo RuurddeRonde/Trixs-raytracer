@@ -1,6 +1,7 @@
 #include "RenderManager.h"
 #include "MainManager.h"
 #include "Scene.h"
+#include "ViewportCamera.h"
 #include <iostream>
 
 
@@ -11,46 +12,32 @@
 namespace Trixs
 {
 	//todo move to input manager
-	void processInput(GLFWwindow *window)
+	void RenderManager::processInput(GLFWwindow *window)
 	{
+		float cameraSpeed = 0.1f;
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-			MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveForward(0.1f);
-		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-			MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveSide(0.1f);
+			ViewportCamera::getInstance().Position += cameraSpeed * ViewportCamera::getInstance().Front;
 		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-			MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveForward(-0.1f);
+			ViewportCamera::getInstance().Position -= cameraSpeed * ViewportCamera::getInstance().Front;
+		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+			ViewportCamera::getInstance().Position -= glm::normalize(glm::cross(ViewportCamera::getInstance().Front, ViewportCamera::getInstance().Up)) * cameraSpeed;
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-			MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveSide(-0.1f);
-		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-			MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveUp(0.1f);
-		if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-			MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveUp(-0.1f);
-		/*if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-			if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-				MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveLookAt(0.1f, 0.0f, 0.0f);
-*/
+			ViewportCamera::getInstance().Position += glm::normalize(glm::cross(ViewportCamera::getInstance().Front, ViewportCamera::getInstance().Up)) * cameraSpeed;
 	}
 
-	static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+	void RenderManager::cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 	{
-		static double prevposx = 0.0;
-		static double prevposy = 0.0;
-
-		if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT))
-		{
-			double deltax = xpos - prevposx;
-			double deltay = ypos - prevposy;
-			MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->moveLookAt((float)deltax, (float)deltay, 0.0f);
-		}
-		prevposx = xpos;
-		prevposy = ypos;
+		ViewportCamera::getInstance().ProcessMouseMovement(xpos, ypos, glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT), false);
 	}
 
 	RenderManager::RenderManager(Window* basewindow)
 	{
 		this->basewindow = basewindow;
+		ViewportCamera::createInstance(glm::vec3(0.0f, -5.0f, 0.0f));
+		prevposx = 0.0;
+		prevposy = 0.0;
 		// glfw: initialize and configure
 		// ------------------------------
 		glfwInit();
@@ -83,7 +70,11 @@ namespace Trixs
 			static_cast<RenderManager*>(glfwGetWindowUserPointer(w))->framebufferSizeCallback(width, height);
 		};
 		glfwSetFramebufferSizeCallback(basewindow->getWindow(), Resizefunc);
-		glfwSetCursorPosCallback(basewindow->getWindow(), cursor_position_callback);
+		auto func = [](GLFWwindow* w, double x, double y)
+		{
+			static_cast<RenderManager*>(glfwGetWindowUserPointer(w))->cursor_position_callback(w, x, y);
+		};
+		glfwSetCursorPosCallback(basewindow->getWindow(), func);
 
 		// glad: load all OpenGL function pointers
 		// ---------------------------------------
@@ -159,7 +150,7 @@ namespace Trixs
 
 		width = 800;
 		height = 600;
-}
+	}
 
 	RenderManager::~RenderManager()
 	{
@@ -184,9 +175,7 @@ namespace Trixs
 		glm::mat4 view = glm::mat4(1.0f);
 		glm::mat4 projection = glm::mat4(1.0f);
 		projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f);
-		Camera camera = MainManager::getInstance().getProject()->getCurrentScene()->getCamera();
-		//view = glm::translate(view, glm::vec3(campos.x(), campos.y(), campos.z())); //todo add camera here
-		view = glm::lookAt(glm::vec3(camera.getPosition().x(), camera.getPosition().y(), camera.getPosition().z()), glm::vec3(camera.getLookAt().x(), camera.getLookAt().y(), camera.getLookAt().z()), glm::vec3(camera.getUp().x(), camera.getUp().y(), camera.getUp().z()));
+		view = glm::lookAt(ViewportCamera::getInstance().Position, ViewportCamera::getInstance().Position + ViewportCamera::getInstance().Front, ViewportCamera::getInstance().Up);
 
 		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
