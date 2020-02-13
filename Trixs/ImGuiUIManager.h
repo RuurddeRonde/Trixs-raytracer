@@ -25,6 +25,7 @@ namespace Trixs
 		UIWindow* TimeLine;
 		UIWindow* MenuBar;
 		UIWindow* Settings;
+		UIWindow* SceneManagement;
 		IGRenderWindow* renderWindowCasted;
 		IGShowImageWindow* showImageCasted;
 

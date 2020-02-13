@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -175,6 +175,7 @@
     <ClInclude Include="HitableList.h" />
     <ClInclude Include="IGFileDialog.h" />
     <ClInclude Include="IGMenuBar.h" />
+    <ClInclude Include="IGNewSceneWindow.h" />
     <ClInclude Include="IGSceneObjectListWindow.h" />
     <ClInclude Include="IGSettingsWindow.h" />
     <ClInclude Include="IGTimeLineWindow.h" />

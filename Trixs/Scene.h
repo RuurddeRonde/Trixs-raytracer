@@ -13,10 +13,11 @@ namespace Trixs
 class Scene
 {
 public:
-	Scene(std::string path);
+	Scene(std::string path, bool IsNew);
 	~Scene();
 	void loadScene(std::string path);
 	void saveScene(std::string path);
+	void saveScene();
 	void submit(Hittable* nh);
 
 	Hittable* getGraph();
@@ -28,6 +29,7 @@ private:
 	std::vector<Hittable*> hittables;
 	int size;
 	std::string name;
+	std::string path;
 	Camera cam;
 };
 

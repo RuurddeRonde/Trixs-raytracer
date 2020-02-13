@@ -40,6 +40,9 @@
     <Filter Include="UI\Timeline">
       <UniqueIdentifier>{cbefefdf-95c0-4a85-b533-97893f57558a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI\core">
+      <UniqueIdentifier>{5c05974c-3f69-4f48-affc-196e9638cbfa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="external\imgui\imgui_impl_glfw.h">
@@ -50,12 +53,6 @@
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>external</Filter>
-    </ClInclude>
-    <ClInclude Include="UIManager.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGuiUIManager.h">
-      <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Ray.h">
       <Filter>rayTrixser</Filter>
@@ -147,9 +144,6 @@
     <ClInclude Include="Scene.h">
       <Filter>Core\app</Filter>
     </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="ProgramSettings.h">
       <Filter>Core\app</Filter>
     </ClInclude>
@@ -207,14 +201,30 @@
     <ClInclude Include="Model.h">
       <Filter>rayTrixser\shapes</Filter>
     </ClInclude>
-    <ClInclude Include="IGFileDialog.h" />
     <ClInclude Include="IGMenuBar.h">
       <Filter>UI\windows</Filter>
     </ClInclude>
     <ClInclude Include="IGSettingsWindow.h">
       <Filter>UI\windows</Filter>
     </ClInclude>
-    <ClInclude Include="ViewportCamera.h" />
+    <ClInclude Include="IGNewSceneWindow.h">
+      <Filter>UI\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewportCamera.h">
+      <Filter>UI\viewport</Filter>
+    </ClInclude>
+    <ClInclude Include="IGFileDialog.h">
+      <Filter>UI\windows\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>UI\core</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>UI\core</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiUIManager.h">
+      <Filter>UI\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\imgui\imgui_widgets.cpp">
@@ -240,12 +250,6 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>external</Filter>
-    </ClCompile>
-    <ClCompile Include="UIManager.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGuiUIManager.cpp">
-      <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="Ray.cpp">
       <Filter>rayTrixser</Filter>
@@ -301,9 +305,6 @@
     <ClCompile Include="Trixs.cpp">
       <Filter>Core\app</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="FileIO.cpp">
       <Filter>Core\IO</Filter>
     </ClCompile>
@@ -346,8 +347,21 @@
     <ClCompile Include="Model.cpp">
       <Filter>rayTrixser\shapes</Filter>
     </ClCompile>
-    <ClCompile Include="IGFileDialog.cpp" />
-    <ClCompile Include="ViewportCamera.cpp" />
+    <ClCompile Include="ViewportCamera.cpp">
+      <Filter>UI\viewport</Filter>
+    </ClCompile>
+    <ClCompile Include="IGFileDialog.cpp">
+      <Filter>UI\windows\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>UI\core</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>UI\core</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiUIManager.cpp">
+      <Filter>UI\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

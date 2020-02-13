@@ -13,9 +13,11 @@ public:
 	~Project();
 	bool saveProject();
 	bool loadProject(std::string path,std::string name);
-	Scene* getCurrentScene();
-	std::vector<Scene*> getAllScenes();
+	bool switchScene(int sceneID);
 	void addScene(std::string path);
+	void createNewScene(std::string name);
+	std::vector<Scene*> getAllScenes();
+	Scene* getCurrentScene();
 	std::string getName() { return name; }
 	std::string getSavePath() { return savePath; }
 private:

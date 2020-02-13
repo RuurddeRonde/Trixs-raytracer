@@ -12,8 +12,8 @@ void Trixs::IGSceneObjectListWindow::update()
 		{
 			std::vector<Hittable*>* objects = MainManager::getInstance().getProject()->getCurrentScene()->getObjects();
 
-			static int selected = 0;
-			ImGui::BeginChild("Objects", ImVec2(ImGui::GetWindowWidth()-10, 250), false);
+			static int selected = -1;
+			ImGui::BeginChild("Objects", ImVec2(ImGui::GetWindowWidth() - 10, 250), false);
 
 			if (ImGui::Selectable("camera", selected == -1))
 				selected = -1;
@@ -29,7 +29,7 @@ void Trixs::IGSceneObjectListWindow::update()
 
 			ImGui::Separator();
 
-			if (selected != -1)
+			if (selected != -1 && objects->size() > 0) //there has to be an object
 			{
 				Transform* t = objects->at(selected)->getTransform();
 				ImGui::Text("Object %d", selected);
@@ -87,7 +87,7 @@ void Trixs::IGSceneObjectListWindow::update()
 			else //camera
 			{
 				vec3* t = MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->getPosPTR();
-				
+
 				ImGui::Text("Camera");
 
 				ImGui::Text("Position");

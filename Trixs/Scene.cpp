@@ -14,10 +14,20 @@
 namespace Trixs
 {
 
-	Scene::Scene(std::string path) : cam(vec3(0, 0, -3), vec3(0, 0, 0), vec3(0, 1, 0), 20, float(1920) / float(1080), 0.1, 5.0)
+	Scene::Scene(std::string path, bool IsNew) : cam(vec3(0, 0, -3), vec3(0, 0, 0), vec3(0, 1, 0), 20, float(1920) / float(1080), 0.1, 5.0)
 	{
 		this->size = 0;
-		loadScene(path);
+		this->path = path;
+		if (IsNew)
+		{
+			name = path.substr((path.find_last_of('/')+1));
+			saveScene(path); //generate save file
+		}
+		else
+		{
+			loadScene(path);
+		}
+
 	}
 
 
@@ -55,7 +65,7 @@ namespace Trixs
 				inpos >> pos.e[0] >> pos.e[1] >> pos.e[2];
 				inrot >> rot.e[0] >> rot.e[1] >> rot.e[2];
 				inscale >> scale.e[0] >> scale.e[1] >> scale.e[2];
-				in >> type;           
+				in >> type;
 				if (type == "LAMBERTIAN") //todo add other types
 				{
 					float x, y, z;
@@ -64,8 +74,13 @@ namespace Trixs
 				}
 			}
 		}
-
 	}
+
+	void Scene::saveScene()
+	{
+		saveScene(path);
+	}
+
 	void Scene::saveScene(std::string path)
 	{
 		std::string towrite;

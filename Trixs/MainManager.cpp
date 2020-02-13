@@ -37,7 +37,6 @@ namespace Trixs
 			uiManager->render();
 			window->render();
 		}
-
 	}
 
 	void MainManager::checkProgSettings()
