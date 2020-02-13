@@ -21,13 +21,13 @@ namespace Trixs
 		if (IsNew)
 		{
 			name = path.substr((path.find_last_of('/')+1));
+			name.append(".t3ds");
 			saveScene(path); //generate save file
 		}
 		else
 		{
 			loadScene(path);
 		}
-
 	}
 
 
@@ -90,7 +90,7 @@ namespace Trixs
 		{
 			towrite.append(hittables.at(i)->getWritable());
 		}
-		bool succes = FileIO::writeFile(path.append(name.append(".t3ds")), towrite);
+		bool succes = FileIO::writeFile(path.append(name), towrite);
 		return;
 	}
 

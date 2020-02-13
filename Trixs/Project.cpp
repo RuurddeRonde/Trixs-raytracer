@@ -61,8 +61,8 @@ namespace Trixs
 		SaveString += name + "\n";
 		for (auto i = 0; i < scenes.size(); i++)
 		{
-			scenes.at(i)->saveScene(savePath +"//scenes//");
-			SaveString += savePath + "//scenes//"+scenes.at(i)->getName() + "\n";
+			scenes.at(i)->saveScene(savePath + "//scenes//");
+			SaveString += savePath + "//scenes//" + scenes.at(i)->getName() + "\n";
 		}
 		return FileIO::writeFile(savePath + "//" + name + ".trixs", SaveString);
 	}
@@ -90,6 +90,20 @@ namespace Trixs
 		currentScene->saveScene();
 		currentScene = scenes.at(sceneID);
 		return true;
+	}
+	bool Project::switchScene(std::string name)
+	{
+		name.append(".t3ds");
+		for (auto i = 0; i < scenes.size(); i++)
+		{
+			if (std::strcmp(scenes.at(i)->getName().c_str(), name.c_str()) == 0)
+			{
+				currentScene->saveScene();
+				currentScene = scenes.at(i);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	Scene* Project::getCurrentScene()

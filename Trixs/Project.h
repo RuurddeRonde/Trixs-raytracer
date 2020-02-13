@@ -14,6 +14,7 @@ public:
 	bool saveProject();
 	bool loadProject(std::string path,std::string name);
 	bool switchScene(int sceneID);
+	bool switchScene(std::string name);
 	void addScene(std::string path);
 	void createNewScene(std::string name);
 	std::vector<Scene*> getAllScenes();
