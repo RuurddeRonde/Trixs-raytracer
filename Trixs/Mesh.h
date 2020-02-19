@@ -2,18 +2,13 @@
 #include "Hitable.h"
 #include "Triangle.h"
 #include "aabb.h"
+#include "Vertex.h"
 #include <vector>
 namespace Trixs
 {
 	constexpr int maxTriangles = 100;
 	constexpr int maxDivisions = 5;
 
-	struct Vertex {
-		Vertex() {}
-		Vertex(vec3 pos, vec3 norm) : Position(pos), Normal(norm) {}
-		vec3 Position;
-		vec3 Normal;
-	};
 
 	class BvhMesh : public Hittable
 	{
@@ -41,11 +36,12 @@ namespace Trixs
 	{
 	public:
 		Mesh(std::string filepath, Material* matPtr);
-		Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material* matPtr, std::string filePath);
+		Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Triangle> triangles, Material* matPtr, std::string filePath , vec3 min, vec3 max);
 		//Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material* matPtr, std::string filePath);
 		virtual bool hit(const Ray& r, float t_min, float t_max, hitRecord& rec)const;
 		virtual std::string getWritable() override;
 		virtual void draw() const override;
+		virtual void triangulate() override;
 	private:
 		bool init();
 		std::string writeVec3(vec3 v);

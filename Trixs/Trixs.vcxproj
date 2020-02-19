@@ -219,6 +219,7 @@
     <ClInclude Include="UserData.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="Vec3.h" />
+    <ClInclude Include="Vertex.h" />
     <ClInclude Include="ViewportCamera.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

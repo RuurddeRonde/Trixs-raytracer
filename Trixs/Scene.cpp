@@ -100,6 +100,7 @@ namespace Trixs
 		int i = 0;
 		for (i = 0; i < hittables.size(); i++)
 		{
+			hittables.at(i)->triangulate();
 			list[i] = hittables.at(i);
 		}
 

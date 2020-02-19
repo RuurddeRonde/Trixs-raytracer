@@ -225,6 +225,9 @@
     <ClInclude Include="ImGuiUIManager.h">
       <Filter>UI\core</Filter>
     </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>rayTrixser\shapes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\imgui\imgui_widgets.cpp">
@@ -356,10 +359,10 @@
     <ClCompile Include="Window.cpp">
       <Filter>UI\core</Filter>
     </ClCompile>
-    <ClCompile Include="UIManager.cpp">
+    <ClCompile Include="ImGuiUIManager.cpp">
       <Filter>UI\core</Filter>
     </ClCompile>
-    <ClCompile Include="ImGuiUIManager.cpp">
+    <ClCompile Include="UIManager.cpp">
       <Filter>UI\core</Filter>
     </ClCompile>
   </ItemGroup>

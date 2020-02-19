@@ -85,7 +85,7 @@ namespace Trixs
 		}
 
 		shader = new Shader("C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\basicShader.vs", "C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\basicShader.fs");
-		Lampshader = new Shader("C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\lampShader.vs", "C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\lampShader.fs");
+		//Lampshader = new Shader("C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\lampShader.vs", "C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\lampShader.fs");
 
 		// set up vertex data (and buffer(s)) and configure vertex attributes
 		// ------------------------------------------------------------------
@@ -186,7 +186,6 @@ namespace Trixs
 		unsigned int transformLoc = glGetUniformLocation(shader->ID, "model"); //model transform
 
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(glm::mat4(1.0f)));
-
 
 		glBindVertexArray(VAO);
 		glDrawElements(GL_LINES, 22, GL_UNSIGNED_INT, 0);

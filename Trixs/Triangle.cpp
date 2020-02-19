@@ -3,26 +3,26 @@
 
 namespace Trixs
 {
-	Triangle::Triangle(int A, int B, int C, std::vector<vec3>* indices, vec3 normal, Material* mat)
+	Triangle::Triangle(int A, int B, int C, std::vector<Vertex>* vertices, vec3 normal, Material* mat)
 	{
 		this->A = A;
 		this->B = B;
 		this->C = C;
-		this->indices = indices;
+		this->vertices = vertices;
 		this->normal = normal;
 		this->matPtr = mat;
 
 		createBoundingBox();
 	}
-	Triangle::Triangle(int A, int B, int C, std::vector<vec3>* indices, Material * mat)
+	Triangle::Triangle(int A, int B, int C, std::vector<Vertex>* vertices, Material * mat)
 	{
 		this->A = A;
 		this->B = B;
 		this->C = C;
-		this->indices = indices;
+		this->vertices = vertices;
 		
-		vec3 CA(indices->at(C).x() - indices->at(A).x(), indices->at(C).y() - indices->at(A).y(), indices->at(C).z() - indices->at(A).z());
-		vec3 BA(indices->at(B).x() - indices->at(A).x(), indices->at(B).y() - indices->at(A).y(), indices->at(B).z() - indices->at(A).z());
+		vec3 CA(vertices->at(C).Position.x() - vertices->at(A).Position.x(), vertices->at(C).Position.y() - vertices->at(A).Position.y(), vertices->at(C).Position.z() - vertices->at(A).Position.z());
+		vec3 BA(vertices->at(B).Position.x() - vertices->at(A).Position.x(), vertices->at(B).Position.y() - vertices->at(A).Position.y(), vertices->at(B).Position.z() - vertices->at(A).Position.z());
 		this->normal= normalize(cross(CA, BA));;
 		this->matPtr = mat;
 
@@ -35,9 +35,9 @@ namespace Trixs
 		vec3 edge1, edge2, h, s, q, ca, cb, cc;
 		float a, f, u, v;
 
-		ca = indices->at(A);
-		cb = indices->at(B);
-		cc = indices->at(C);
+		ca = vertices->at(A).Position;
+		cb = vertices->at(B).Position;
+		cc = vertices->at(C).Position;
 
 		edge1 = cb - ca;
 		edge2 = cc - ca;
@@ -98,26 +98,26 @@ namespace Trixs
 		vec3 min(FLT_MAX, FLT_MAX, FLT_MAX);
 
 		//set bounding box at min min min and max max max
-		if (indices->at(A).x() < min.x()) { min.setx(indices->at(A).x()); }
-		if (indices->at(A).x() > max.x()) { max.setx(indices->at(A).x()); }
-		if (indices->at(A).y() < min.y()) { min.sety(indices->at(A).y()); }
-		if (indices->at(A).y() > max.y()) { max.sety(indices->at(A).y()); }
-		if (indices->at(A).z() < min.z()) { min.setz(indices->at(A).z()); }
-		if (indices->at(A).z() > max.z()) { max.setz(indices->at(A).z()); }
+		if (vertices->at(A).Position.x() < min.x()) { min.setx(vertices->at(A).Position.x()); }
+		if (vertices->at(A).Position.x() > max.x()) { max.setx(vertices->at(A).Position.x()); }
+		if (vertices->at(A).Position.y() < min.y()) { min.sety(vertices->at(A).Position.y()); }
+		if (vertices->at(A).Position.y() > max.y()) { max.sety(vertices->at(A).Position.y()); }
+		if (vertices->at(A).Position.z() < min.z()) { min.setz(vertices->at(A).Position.z()); }
+		if (vertices->at(A).Position.z() > max.z()) { max.setz(vertices->at(A).Position.z()); }
 
-		if (indices->at(B).x() < min.x()) { min.setx(indices->at(B).x()); }
-		if (indices->at(B).x() > max.x()) { max.setx(indices->at(B).x()); }
-		if (indices->at(B).y() < min.y()) { min.sety(indices->at(B).y()); }
-		if (indices->at(B).y() > max.y()) { max.sety(indices->at(B).y()); }
-		if (indices->at(B).z() < min.z()) { min.setz(indices->at(B).z()); }
-		if (indices->at(B).z() > max.z()) { max.setz(indices->at(B).z()); }
+		if (vertices->at(B).Position.x() < min.x()) { min.setx(vertices->at(B).Position.x()); }
+		if (vertices->at(B).Position.x() > max.x()) { max.setx(vertices->at(B).Position.x()); }
+		if (vertices->at(B).Position.y() < min.y()) { min.sety(vertices->at(B).Position.y()); }
+		if (vertices->at(B).Position.y() > max.y()) { max.sety(vertices->at(B).Position.y()); }
+		if (vertices->at(B).Position.z() < min.z()) { min.setz(vertices->at(B).Position.z()); }
+		if (vertices->at(B).Position.z() > max.z()) { max.setz(vertices->at(B).Position.z()); }
 
-		if (indices->at(C).x() < min.x()) { min.setx(indices->at(C).x()); }
-		if (indices->at(C).x() > max.x()) { max.setx(indices->at(C).x()); }
-		if (indices->at(C).y() < min.y()) { min.sety(indices->at(C).y()); }
-		if (indices->at(C).y() > max.y()) { max.sety(indices->at(C).y()); }
-		if (indices->at(C).z() < min.z()) { min.setz(indices->at(C).z()); }
-		if (indices->at(C).z() > max.z()) { max.setz(indices->at(C).z()); }
+		if (vertices->at(C).Position.x() < min.x()) { min.setx(vertices->at(C).Position.x()); }
+		if (vertices->at(C).Position.x() > max.x()) { max.setx(vertices->at(C).Position.x()); }
+		if (vertices->at(C).Position.y() < min.y()) { min.sety(vertices->at(C).Position.y()); }
+		if (vertices->at(C).Position.y() > max.y()) { max.sety(vertices->at(C).Position.y()); }
+		if (vertices->at(C).Position.z() < min.z()) { min.setz(vertices->at(C).Position.z()); }
+		if (vertices->at(C).Position.z() > max.z()) { max.setz(vertices->at(C).Position.z()); }
 		this->boundingBox = aabb(min, max);
 	}
 

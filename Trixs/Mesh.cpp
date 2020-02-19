@@ -21,8 +21,8 @@ namespace Trixs
 		for (auto i = 0; i < model.positions.size(); i++)
 		{
 			vertices.push_back(Vertex(
-								vec3(model.positions.at(i).x(), model.positions.at(i).y(), model.positions.at(i).z() ),
-								vec3(model.normals.at(i).x(), model.normals.at(i).y(), model.normals.at(i).z())));
+				vec3(model.positions.at(i).x(), model.positions.at(i).y(), model.positions.at(i).z()),
+				vec3(model.normals.at(i).x(), model.normals.at(i).y(), model.normals.at(i).z())));
 		}
 		this->indices = model.indices;
 
@@ -135,13 +135,27 @@ namespace Trixs
 
 	}
 
-	Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material* matPtr, std::string filePath)
+	Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Triangle> triangles, Material* matPtr, std::string filePath, vec3 min, vec3 max)
 	{
 		this->filepath = filePath;
 		this->vertices = vertices;
 		this->indices = indices;
-		this->matPtr = matPtr;
+		this->matPtr = std::move(matPtr);
+		this->triangles = triangles;
+		nTriangles = triangles.size();
+		boundingBox = aabb(min, max);
+		root = BvhMesh(min, max, 0);
 		init();
+	}
+
+
+	void Mesh::triangulate()
+	{
+		for (auto i = 0; i < triangles.size(); i++)
+		{
+			triangles.at(i).setVerticesPointer(&this->vertices);
+			root.addTriangle(&triangles.at(i));
+		}
 	}
 
 	bool Mesh::init()
@@ -195,7 +209,7 @@ namespace Trixs
 		std::string writable;
 		writable.append("MESH\n");
 		writable.append(filepath + "\n");
-		writable.append("POSITION " + writeVec3(getTransform()->getPos())+ "\n");
+		writable.append("POSITION " + writeVec3(getTransform()->getPos()) + "\n");
 		writable.append("ROTATION " + writeVec3(getTransform()->getRot()) + "\n");
 		writable.append("SCALE " + writeVec3(getTransform()->getScale()) + "\n");
 		writable.append(matPtr->getWritable());

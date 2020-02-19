@@ -26,6 +26,7 @@ namespace Trixs
 		virtual bool hit(const Ray& r, float t_min, float t_max, hitRecord& rec) const = 0;
 		virtual std::string getWritable() { return ""; }
 		virtual void draw()const {}
+		virtual void triangulate(){}
 		Transform* getTransform()
 		{
 			return keyframes.at(0).getTransformPtr();
