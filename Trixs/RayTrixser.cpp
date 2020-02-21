@@ -29,10 +29,6 @@ namespace Trixs
 			world = submission->scene->getGraph();
 		}
 
-		vec3 lookfrom(0, 0, 80);
-		vec3 lookat(0, 0, 0);
-		float dist_to_focus = 80.0;
-		float aperture = 0.1;
 
 		Camera cam = submission->scene->getCamera();
 
@@ -103,7 +99,8 @@ namespace Trixs
 		{
 			vec3 unit_direction = unit_vector(r.direction());
 			float t = 0.5*(unit_direction.y() + 1.0);
-			return (1.0 - t)*vec3(1.0, 1.0, 1.0) + t * vec3(MainManager::getInstance().getProgramSettings()->backgroundColor.x(), MainManager::getInstance().getProgramSettings()->backgroundColor.y(), MainManager::getInstance().getProgramSettings()->backgroundColor.z());
+		//	return (1.0 - t)*vec3(1.0, 1.0, 1.0) + t * MainManager::getInstance().getProgramSettings()->backgroundColor;
+			return  MainManager::getInstance().getProgramSettings()->backgroundColor;
 		}
 	}
 }

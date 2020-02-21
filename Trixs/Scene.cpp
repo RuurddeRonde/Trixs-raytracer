@@ -14,7 +14,7 @@
 namespace Trixs
 {
 
-	Scene::Scene(std::string path, bool IsNew) : cam(vec3(0, 0, -3), vec3(0, 0, 0), vec3(0, 1, 0), 20, float(1920) / float(1080), 0.1, 5.0)
+	Scene::Scene(std::string path, bool IsNew) : cam(vec3(0, 0, -8), vec3(0, 0, 0), vec3(0, 1, 0), 20, float(200) / float(100), 0.1f, 8.0)
 	{
 		this->size = 0;
 		this->path = path;
@@ -103,6 +103,7 @@ namespace Trixs
 			hittables.at(i)->triangulate();
 			list[i] = hittables.at(i);
 		}
+		//list[i] = new Sphere(vec3(0.0, 0.0, 0.0), 1.0f, new Lambertian(vec3(0.8f, 0.1f, 0.1f)));
 
 		return new HittableList(list, i);
 	}

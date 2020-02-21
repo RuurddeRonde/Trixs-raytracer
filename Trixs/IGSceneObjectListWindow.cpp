@@ -1,5 +1,6 @@
 #include "IGSceneObjectListWindow.h"
 #include "MainManager.h"
+#include "ViewportCamera.h"
 void Trixs::IGSceneObjectListWindow::update()
 {
 	if (show)
@@ -13,6 +14,7 @@ void Trixs::IGSceneObjectListWindow::update()
 			std::vector<Hittable*>* objects = MainManager::getInstance().getProject()->getCurrentScene()->getObjects();
 
 			static int selected = -1;
+
 			ImGui::BeginChild("Objects", ImVec2(ImGui::GetWindowWidth() - 10, 250), false);
 
 			if (ImGui::Selectable("camera", selected == -1))
@@ -87,7 +89,7 @@ void Trixs::IGSceneObjectListWindow::update()
 			else //camera
 			{
 				vec3* t = MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR()->getPosPTR();
-
+				Camera* cam = MainManager::getInstance().getProject()->getCurrentScene()->getCamPTR();
 				ImGui::Text("Camera");
 
 				ImGui::Text("Position");
@@ -101,6 +103,24 @@ void Trixs::IGSceneObjectListWindow::update()
 				ImGui::Text("Z ");
 				ImGui::SameLine();
 				ImGui::SliderFloat("Z##valueZpc", &t->e[2], -20.0, 20.0);
+
+				ImGui::Spacing();
+				static float vfov = 90.0f;
+				//static float aspect;
+				static float aperture = 0.1f;
+				static float focus_dist= 8.0f;
+
+				ImGui::SliderFloat("FOV", &vfov, 10.0f, 120.0f);
+				ImGui::SliderFloat("Aperture", &aperture, 0.001f, 1.0f);
+				ImGui::SliderFloat("Focus distance", &focus_dist, 1.0f, 120.0f);
+
+				if (ImGui::Button("Set!"))
+				{
+					cam->resetCamera(
+						vec3(ViewportCamera::getInstance().Position.x, ViewportCamera::getInstance().Position.y, ViewportCamera::getInstance().Position.z),
+						vec3(ViewportCamera::getInstance().Front.x, ViewportCamera::getInstance().Front.y, ViewportCamera::getInstance().Front.z),
+						vec3(ViewportCamera::getInstance().Up.x, ViewportCamera::getInstance().Up.y, ViewportCamera::getInstance().Up.z), vfov, 2.0, aperture, focus_dist);
+				}
 			}
 
 			end();

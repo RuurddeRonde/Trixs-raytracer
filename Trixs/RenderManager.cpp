@@ -35,7 +35,7 @@ namespace Trixs
 	RenderManager::RenderManager(Window* basewindow)
 	{
 		this->basewindow = basewindow;
-		ViewportCamera::createInstance(glm::vec3(0.0f, -5.0f, 0.0f));
+		ViewportCamera::createInstance(glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f));
 		prevposx = 0.0;
 		prevposy = 0.0;
 		// glfw: initialize and configure

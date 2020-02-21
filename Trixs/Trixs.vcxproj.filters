@@ -350,9 +350,6 @@
     <ClCompile Include="Model.cpp">
       <Filter>rayTrixser\shapes</Filter>
     </ClCompile>
-    <ClCompile Include="ViewportCamera.cpp">
-      <Filter>UI\viewport</Filter>
-    </ClCompile>
     <ClCompile Include="IGFileDialog.cpp">
       <Filter>UI\windows\core</Filter>
     </ClCompile>
@@ -364,6 +361,9 @@
     </ClCompile>
     <ClCompile Include="UIManager.cpp">
       <Filter>UI\core</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewportCamera.cpp">
+      <Filter>UI\viewport</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
