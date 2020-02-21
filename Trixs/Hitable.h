@@ -27,10 +27,14 @@ namespace Trixs
 		virtual std::string getWritable() { return ""; }
 		virtual void draw()const {}
 		virtual void triangulate(){}
-		Transform* getTransform()
+		Transform* getTransform() 
 		{
-			return keyframes.at(0).getTransformPtr();
+			return keyframes[0].getTransformPtr();
 		}
+		/*Transform getTransformdata() const
+		{
+			return keyframes[0].getTransform();	
+		}*/
 		Transform* getTransform(int frame)
 		{
 			if (keyframes.size() == 1) //only 1 transform

@@ -9,33 +9,13 @@
 #include "objLoader.h"
 namespace Trixs
 {
-	Mesh::Mesh(std::string filepath, Material* matPtr)
-	{
-		this->matPtr = matPtr;
-		this->filepath = filepath;
 
-		IndexedModel model = OBJModel(filepath).ToIndexedModel();
-
-		//nIndices = model.indices.size();
-
-		for (auto i = 0; i < model.positions.size(); i++)
-		{
-			vertices.push_back(Vertex(
-				vec3(model.positions.at(i).x(), model.positions.at(i).y(), model.positions.at(i).z()),
-				vec3(model.normals.at(i).x(), model.normals.at(i).y(), model.normals.at(i).z())));
-		}
-		this->indices = model.indices;
-
-		init();
-	}
-
-	Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Triangle> triangles, Material* matPtr, std::string filePath, vec3 min, vec3 max)
+	Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices,  Material* matPtr, std::string filePath, vec3 min, vec3 max)
 	{
 		this->filepath = filePath;
 		this->vertices = vertices;
 		this->indices = indices;
 		this->matPtr = std::move(matPtr);
-		this->triangles = triangles;
 		nTriangles = triangles.size();
 		boundingBox = aabb(min, max);
 		root = BvhMesh(min, max, 0);
@@ -45,7 +25,12 @@ namespace Trixs
 
 	void Mesh::triangulate()
 	{
-
+		for (auto i = 0; i < indices.size(); i+=3)
+		{
+			triangles.emplace_back(Triangle(indices[i], indices[i+1], indices[i+2], &vertices, this->matPtr));
+		}
+		nTriangles = triangles.size();
+		//todo merge loops
 		for (auto i = 0; i < triangles.size(); i++)
 		{
 			triangles.at(i).setVerticesPointer(&this->vertices);
@@ -137,7 +122,6 @@ namespace Trixs
 	}
 	bool BvhMesh::hit(const Ray& r, float t_min, float t_max, hitRecord& rec)const
 	{
-
 		if (!boundingBox.hit(r, t_min, t_max))
 		{
 			return false;
@@ -152,7 +136,6 @@ namespace Trixs
 				rtb->hit(r, t_min, t_max, rec) ||
 				rdf->hit(r, t_min, t_max, rec) ||
 				rdb->hit(r, t_min, t_max, rec);
-
 		}
 		else //hit with no children
 		{

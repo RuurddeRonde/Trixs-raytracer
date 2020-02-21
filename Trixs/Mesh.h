@@ -35,8 +35,7 @@ namespace Trixs
 	class Mesh : public Hittable
 	{
 	public:
-		Mesh(std::string filepath, Material* matPtr);
-		Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Triangle> triangles, Material* matPtr, std::string filePath , vec3 min, vec3 max);
+		Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices,  Material* matPtr, std::string filePath , vec3 min, vec3 max);
 		//Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material* matPtr, std::string filePath);
 		virtual bool hit(const Ray& r, float t_min, float t_max, hitRecord& rec)const;
 		virtual std::string getWritable() override;
@@ -51,8 +50,6 @@ namespace Trixs
 		std::vector<Triangle> triangles;
 		std::vector<unsigned int> indices;
 		std::vector<Vertex> vertices;
-		//std::vector<vec3> vertexPositions;
-		//std::vector<vec3> vertexNormals;
 		aabb boundingBox;
 		BvhMesh root;
 		std::string filepath;

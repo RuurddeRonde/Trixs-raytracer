@@ -7,6 +7,7 @@ namespace Trixs
 	public:
 		Transform();
 		Transform(vec3 pos, vec3 rot, vec3 scl);
+		//Transform(const Transform &t2);
 		~Transform();
 		vec3 getPos() { return position; } //cant be const
 		vec3 getRot(){ return rotation; }

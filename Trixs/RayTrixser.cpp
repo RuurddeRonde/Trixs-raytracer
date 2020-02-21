@@ -29,7 +29,6 @@ namespace Trixs
 			world = submission->scene->getGraph();
 		}
 
-
 		Camera cam = submission->scene->getCamera();
 
 		for (int j = height - 1; j >= 0; j--) {

@@ -2,12 +2,10 @@
 #include <iostream>
 #include <vector>
 
-#include <chrono>
 namespace Trixs
 {
 	Mesh* ModelLoader::LoadMesh(std::string path, Material* mat)
 	{
-		auto start = std::chrono::high_resolution_clock::now();
 		std::vector<Vertex> vertices;
 		std::vector<unsigned int> indices;
 		//std::vector<Texture> textures;
@@ -54,12 +52,8 @@ namespace Trixs
 			}
 			vertices.emplace_back(vertex);
 		}
-		std::vector<Triangle> triangles;
 
-
-		// Record start time
-
-		// now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
+		// now walk through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
 		for (unsigned int i = 0; i < mesh->mNumFaces; i++)
 		{
 			aiFace face = mesh->mFaces[i];
@@ -68,17 +62,8 @@ namespace Trixs
 			{
 				indices.emplace_back(face.mIndices[j]);
 			}
-			//todo add normals
-			triangles.emplace_back(Triangle(face.mIndices[0], face.mIndices[1], face.mIndices[2], &vertices, mat));
 		}
-
-		// Record end time
-		auto finish = std::chrono::high_resolution_clock::now();
-
-		std::chrono::duration<double> elapsed = finish - start;
-		std::cout << "Elapsed time: " << elapsed.count() << " s\n";
-
-		return new Mesh(vertices, indices, triangles, mat, path, min, max);
+		return new Mesh(vertices, indices, mat, path, min, max);
 	}
 
 
