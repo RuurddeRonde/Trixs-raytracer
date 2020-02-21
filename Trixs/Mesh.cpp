@@ -26,113 +26,7 @@ namespace Trixs
 		}
 		this->indices = model.indices;
 
-
-		//tinyobj::attrib_t attrib;
-		//std::vector<tinyobj::shape_t> shapes;
-		//std::vector<tinyobj::material_t> materials;
-
-		//std::string warn;
-		//std::string err;
-
-		//bool ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, filepath.c_str());
-
-		//if (!warn.empty()) {
-		//	std::cout << warn << std::endl;
-		//}
-
-		//if (!err.empty()) {
-		//	std::cerr << err << std::endl;
-		//}
-
-		//if (!ret) {
-		//	return;
-		//}
-
-		//vec3 max(FLT_MIN, FLT_MIN, FLT_MIN);
-		//vec3 min(FLT_MAX, FLT_MAX, FLT_MAX);
-
-		//this->nVertices = attrib.vertices.size();
-		//int vp = 0; //vertex iterator
-		//int tr = 0; //triangle iterator
-		//int tvc = 0; //count to 3
-
-		//bool hasNormals = true;
-		//if (attrib.vertices.size() == attrib.normals.size())
-		//{
-		//	for (auto i = 0; i <= attrib.vertices.size() - 3; i += 3)//copy vertex
-		//	{
-		//		vertices.push_back(	Vertex( 
-		//				vec3(attrib.vertices.at(i), attrib.vertices.at(i + 1), attrib.vertices.at(i + 2)),
-		//				vec3(attrib.normals.at(i), attrib.normals.at(i + 1), attrib.normals.at(i + 2))));
-		//	}
-		//}
-		//else
-		//{
-		//	hasNormals = false;
-		//}
-		//for (auto i = 0; i < shapes[0].mesh.indices.size(); i++)
-		//{
-		//	indices.push_back(shapes[0].mesh.indices[i].vertex_index);
-		//}
-
-
-		//// Loop over shapes
-		//for (size_t s = 0; s < shapes.size(); s++) {
-		//	// Loop over faces(polygon)
-		//	size_t index_offset = 0;
-		//	for (size_t f = 0; f < shapes[s].mesh.num_face_vertices.size(); f++) {
-		//		int fv = shapes[s].mesh.num_face_vertices[f];
-
-		//		if (fv == 3)//shape is a triangle
-		//		{
-		//			int cornera = shapes[s].mesh.indices[index_offset + 0].vertex_index;
-		//			int cornerb = shapes[s].mesh.indices[index_offset + 1].vertex_index;
-		//			int cornerc = shapes[s].mesh.indices[index_offset + 2].vertex_index;
-		//			indices.push_back(cornera);
-		//			indices.push_back(cornerb);
-		//			indices.push_back(cornerc);
-		//			tinyobj::index_t idx = shapes[s].mesh.indices[index_offset + 0];
-		//			tinyobj::real_t vx = attrib.vertices[3 * idx.vertex_index + 0];
-		//			tinyobj::real_t vy = attrib.vertices[3 * idx.vertex_index + 1];
-		//			tinyobj::real_t vz = attrib.vertices[3 * idx.vertex_index + 2];
-
-		//			if (vx < min.x()) { min.setx(vx); }
-		//			if (vx > max.x()) { max.setx(vx); }
-		//			if (vy < min.y()) { min.sety(vy); }
-		//			if (vy > max.y()) { max.sety(vy); }
-		//			if (vz < min.z()) { min.setz(vz); }
-		//			if (vz > max.z()) { max.setz(vz); }
-
-		//			//todo fix triangle with new vertex struct
-		//			if (hasNormals)
-		//			{
-		//				tinyobj::real_t nx = attrib.normals[3 * idx.normal_index + 0];
-		//				tinyobj::real_t ny = attrib.normals[3 * idx.normal_index + 1];
-		//				tinyobj::real_t nz = attrib.normals[3 * idx.normal_index + 2];
-		//				//triangles.push_back(Triangle(cornera, cornerb, cornerc, &vertexPositions, vec3(nx, ny, nz),matPtr));
-		//			}
-		//			else
-		//			{
-		//				//triangles.push_back(Triangle(cornera, cornerb, cornerc, &vertexPositions, matPtr));
-		//			}
-
-		//		}
-		//		index_offset += fv;
-
-		//		// per-face material
-		//		shapes[s].mesh.material_ids[f];
-		//	}
-		//}
-		//boundingBox = aabb(min, max);
-		////todo add function that checks if octatree is needed
-		//root = BvhMesh(min, max, 0);
-		//for (auto i = 0; i < triangles.size(); i++)
-		//{
-		//	root.addTriangle(&triangles.at(i));
-		//}
-
 		init();
-
 	}
 
 	Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Triangle> triangles, Material* matPtr, std::string filePath, vec3 min, vec3 max)
@@ -151,6 +45,7 @@ namespace Trixs
 
 	void Mesh::triangulate()
 	{
+
 		for (auto i = 0; i < triangles.size(); i++)
 		{
 			triangles.at(i).setVerticesPointer(&this->vertices);
