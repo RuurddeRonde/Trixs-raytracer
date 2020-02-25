@@ -19,12 +19,18 @@ namespace Trixs
 		nTriangles = triangles.size();
 		boundingBox = aabb(min, max);
 		root = BvhMesh(min, max, 0);
+		triangulated = false;
 		init();
 	}
 
 
 	void Mesh::triangulate()
 	{
+		if (triangulated)
+		{
+			return;
+		}
+		triangulated = true;
 		for (auto i = 0; i < indices.size(); i+=3)
 		{
 			triangles.emplace_back(Triangle(indices[i], indices[i+1], indices[i+2], &vertices, this->matPtr));

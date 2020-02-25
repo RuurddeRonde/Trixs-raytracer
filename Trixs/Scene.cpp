@@ -9,7 +9,7 @@
 #include "Mesh.h"
 #include "FileIO.h"
 #include "ModelLoader.h"
-//#include "Translate.h"
+#include "Translate.h"
 #include <sstream>
 
 namespace Trixs
@@ -102,8 +102,8 @@ namespace Trixs
 		for (i = 0; i < hittables.size(); i++)
 		{
 			hittables.at(i)->triangulate();
-			list[i] = hittables.at(i);
-			//list[i] = new translate(hittables[i], hittables[i]->getTransform()->getPos());
+			//list[i] = hittables.at(i);
+			list[i] = new translate(hittables[i], hittables[i]->getTransform()->getPos());
 		}
 		//list[i] = new Sphere(vec3(0.0, 0.0, 0.0), 1.0f, new Lambertian(vec3(0.8f, 0.1f, 0.1f)));
 

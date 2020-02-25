@@ -54,5 +54,6 @@ namespace Trixs
 		BvhMesh root;
 		std::string filepath;
 		unsigned int VAO, VBO, EBO;
+		bool triangulated;
 	};
 }

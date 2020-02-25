@@ -35,7 +35,7 @@ namespace Trixs
 	RenderManager::RenderManager(Window* basewindow)
 	{
 		this->basewindow = basewindow;
-		ViewportCamera::createInstance(glm::vec3(0.0f, 2.0f, -8.0f), glm::vec3(0.0f, -1.0f, 0.0f));
+		ViewportCamera::createInstance(glm::vec3(0.0f, 0.0f, 8.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		prevposx = 0.0;
 		prevposy = 0.0;
 		// glfw: initialize and configure
@@ -56,7 +56,7 @@ namespace Trixs
 		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
 		basewindow->setSize(mode->width, mode->height);
 
-		basewindow->setWindow(glfwCreateWindow(basewindow->getWidth(), basewindow->getHeight(), "Trixs", NULL, NULL));
+		basewindow->setWindow(glfwCreateWindow(basewindow->getWidth(), basewindow->getHeight(), "Trixs animator", NULL, NULL));
 
 		if (basewindow->getWindow() == NULL)
 		{
@@ -80,24 +80,12 @@ namespace Trixs
 		// ---------------------------------------
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		{
-			//std::cout << "Failed to initialize GLAD" << std::endl;
 			return;
 		}
 
 		shader = new Shader("C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\basicShader.vs", "C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\basicShader.fs");
 		//Lampshader = new Shader("C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\lampShader.vs", "C:\\Users\\Ruurd\\source\\repos\\Trixs\\Trixs\\lampShader.fs");
 
-		// set up vertex data (and buffer(s)) and configure vertex attributes
-		// ------------------------------------------------------------------
-
-		//glGenVertexArrays(1, &lightVAO);
-		//glGenBuffers(1, &lightVBO);
-		//glBindVertexArray(lightVAO);
-
-		//glBindBuffer(GL_ARRAY_BUFFER, lightVBO);
-		//// note that we update the lamp's position attribute's stride to reflect the updated buffer data
-		//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-		//glEnableVertexAttribArray(0);
 
 		glGenVertexArrays(1, &VAO);
 		glGenBuffers(1, &VBO);
@@ -116,9 +104,6 @@ namespace Trixs
 
 		// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-		// remember: do NOT unbind the EBO while a VAO is active as the bound element buffer object IS stored in the VAO; keep the EBO bound.
-		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 		// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
 		// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
@@ -165,16 +150,14 @@ namespace Trixs
 	{
 		processInput(basewindow->getWindow());
 
-
 		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 		glClearColor(MainManager::getInstance().getProgramSettings()->backgroundColor.x(), MainManager::getInstance().getProgramSettings()->backgroundColor.y(), MainManager::getInstance().getProgramSettings()->backgroundColor.z(), 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
 		shader->use();
 		glm::mat4 view = glm::mat4(1.0f);
 		glm::mat4 projection = glm::mat4(1.0f);
-		projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f);
+		projection = glm::perspective(glm::radians(90.0f), (float)width / (float)height, 0.1f, 100.0f);
 		view = glm::lookAt(ViewportCamera::getInstance().Position, ViewportCamera::getInstance().Position + ViewportCamera::getInstance().Front, ViewportCamera::getInstance().Up);
 
 		glUniformMatrix4fv(glGetUniformLocation(shader->ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
@@ -197,7 +180,7 @@ namespace Trixs
 			glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
 
 			Transform* t = world->at(i)->getTransform();
-			glm::vec3 pos(t->getPos().x(), t->getPos().y(), t->getPos().z());
+			glm::vec3 pos(t->getPos().x(), t->getPos().y() * -1, t->getPos().z());
 			glm::vec3 rot(t->getRot().x(), t->getRot().y(), t->getRot().z());
 			glm::vec3 scale(t->getScale().x(), t->getScale().y(), t->getScale().z());
 			transform = glm::translate(transform, pos);
@@ -207,7 +190,6 @@ namespace Trixs
 			transform = glm::scale(transform, scale);
 
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
-
 
 			world->at(i)->draw();
 		}
