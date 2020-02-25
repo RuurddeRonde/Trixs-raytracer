@@ -228,6 +228,9 @@
     <ClInclude Include="Vertex.h">
       <Filter>rayTrixser\shapes</Filter>
     </ClInclude>
+    <ClInclude Include="Rotate.h">
+      <Filter>rayTrixser\geometry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\imgui\imgui_widgets.cpp">

@@ -206,6 +206,7 @@
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="RenderSubmission.h" />
     <ClInclude Include="RenderWindow.h" />
+    <ClInclude Include="Rotate.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Sphere.h" />
