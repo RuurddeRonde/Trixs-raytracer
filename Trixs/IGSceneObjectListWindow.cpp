@@ -92,7 +92,7 @@ void Trixs::IGSceneObjectListWindow::update()
 				ImGui::Text("Material:");
 				ImGui::SameLine();
 				Material* mat = objects->at(selected)->getMaterial();
-				Lambertian* l = static_cast<Lambertian*>(mat);
+				Lambertian* l = dynamic_cast<Lambertian*>(mat);
 				if (l != nullptr) //material is lambertian
 				{
 					ImGui::Text("Lambertian");
@@ -100,23 +100,43 @@ void Trixs::IGSceneObjectListWindow::update()
 				}
 				else
 				{
-					Metal* m = static_cast<Metal*>(mat);
+					Metal* m = dynamic_cast<Metal*>(mat);
 					if (m != nullptr) //material is metal
 					{
 						ImGui::Text("Metal");
 						ImGui::ColorEdit3("Color", m->getAlbedo()->e);
-						ImGui::SliderFloat("Fuzz", m->getFuzz(), 0.0f, 1000.0f);
+						ImGui::InputFloat("Fuzz", m->getFuzz(), 0.0f, 1000.0f);
 					}
 					else
 					{
-						Dielectric* d = static_cast<Dielectric*>(mat);
+						Dielectric* d = dynamic_cast<Dielectric*>(mat);
 						if (d != nullptr) //material is dielectric
 						{
 							ImGui::Text("Dielectric");
-							ImGui::SliderFloat("refractive index", m->getFuzz(), 0.0f, 10.0f);
+							ImGui::SliderFloat("refractive index", d->getRef(), 0.0f, 10.0f);
 						}
 					}
 				}
+				static int type = 0;
+				ImGui::Combo("Material type:", &type, "Lambertian\0Metal\0Dielectric\0");
+				if (ImGui::Button("Set"))
+				{
+					switch (type)
+					{
+					case 0:
+						objects->at(selected)->setMaterial(new Lambertian(vec3(0.3f, 0.4f, 0.3f)));
+						break;
+					case 1:
+						objects->at(selected)->setMaterial(new Metal(vec3(0.1f, 0.1f, 0.1f), 0.1f));
+						break;
+					case 2:
+						objects->at(selected)->setMaterial(new Dielectric(1.5f));
+						break;
+					default:
+						break;
+					}
+				}
+
 			}
 			else //camera
 			{

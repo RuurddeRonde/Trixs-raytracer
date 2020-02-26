@@ -79,6 +79,10 @@ namespace Trixs
 			}
 		}
 		Material* getMaterial() { return matPtr; }
+		void setMaterial(Material* mat) { 
+			delete matPtr;
+			matPtr = std::move(mat);
+		}
 		bool addKeyFrame(Transform t, int frame)
 		{
 			for (auto i = 0; i < keyframes.size(); i++)
