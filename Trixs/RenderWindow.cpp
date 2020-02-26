@@ -44,7 +44,10 @@ namespace Trixs
 					sub.scene = MainManager::getInstance().getProject()->getCurrentScene();
 					RT.render(&sub);
 					newImage = true;
-					LastRenderPath = "renders/" + sub.outputfile;
+					if (sub.outputType == FileTypes::JPG)
+					{
+						LastRenderPath = "renders/" + sub.outputfile + ".jpg";
+					}
 				}
 				end();
 			}

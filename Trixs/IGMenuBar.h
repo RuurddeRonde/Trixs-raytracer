@@ -45,10 +45,10 @@ namespace Trixs
 							}
 							ImGui::EndMenu();
 						}
-						
-						if (ImGui::BeginMenu("Models")) 
+
+						if (ImGui::BeginMenu("Models"))
 						{
-							if (ImGui::MenuItem("Import")) 
+							if (ImGui::MenuItem("Import"))
 							{
 								isImportClicked = true;
 							}
@@ -56,7 +56,6 @@ namespace Trixs
 						}
 						ImGui::EndMainMenuBar();
 					}
-					std::string path;
 					if (fileBrowser.render(isImportClicked, path))
 					{
 						isImportClicked = false;
@@ -67,6 +66,7 @@ namespace Trixs
 			}
 		}
 	private:
+		std::string path = "models/";
 		bool keepscale;
 	};
 

@@ -20,9 +20,9 @@ namespace Trixs
 		std::string getLastRenderPath() { return LastRenderPath; }
 	private:
 		RayTrixser RT;
-		int nx = 200;
-		int ny = 100;
-		int ns = 10;
+		int nx = 192;
+		int ny = 108;
+		int ns = 1;
 		bool newImage = true;
 
 		int my_image_width = 0;
