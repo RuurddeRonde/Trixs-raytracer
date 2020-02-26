@@ -1,6 +1,9 @@
 #include "IGSceneObjectListWindow.h"
 #include "MainManager.h"
 #include "ViewportCamera.h"
+#include "Lambertian.h"
+#include "Dielectric.h"
+#include "Metal.h"
 void Trixs::IGSceneObjectListWindow::update()
 {
 	if (show)
@@ -84,6 +87,35 @@ void Trixs::IGSceneObjectListWindow::update()
 					ImGui::Text("Z ");
 					ImGui::SameLine();
 					ImGui::SliderFloat("Z##valueZs", &t->getScalePtr()->e[2], 0.1, 1);
+				}
+
+				ImGui::Text("Material:");
+				ImGui::SameLine();
+				Material* mat = objects->at(selected)->getMaterial();
+				Lambertian* l = static_cast<Lambertian*>(mat);
+				if (l != nullptr) //material is lambertian
+				{
+					ImGui::Text("Lambertian");
+					ImGui::ColorEdit3("Color", l->getAlbedo()->e);
+				}
+				else
+				{
+					Metal* m = static_cast<Metal*>(mat);
+					if (m != nullptr) //material is metal
+					{
+						ImGui::Text("Metal");
+						ImGui::ColorEdit3("Color", m->getAlbedo()->e);
+						ImGui::SliderFloat("Fuzz", m->getFuzz(), 0.0f, 1000.0f);
+					}
+					else
+					{
+						Dielectric* d = static_cast<Dielectric*>(mat);
+						if (d != nullptr) //material is dielectric
+						{
+							ImGui::Text("Dielectric");
+							ImGui::SliderFloat("refractive index", m->getFuzz(), 0.0f, 10.0f);
+						}
+					}
 				}
 			}
 			else //camera

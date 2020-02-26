@@ -3,7 +3,7 @@
 #include "Scene.h"
 #include "ViewportCamera.h"
 #include <iostream>
-
+#include "Lambertian.h"
 
 #include <glm/glm/glm.hpp>
 #include <glm/glm/gtc/matrix_transform.hpp>
@@ -165,7 +165,6 @@ namespace Trixs
 		shader->setVec3("lightPos", 1.2f, 1.0f, 2.0f);
 		shader->setVec3("viewPos", 0.0f, 0.5f, -3.0f);
 		shader->setVec3("lightColor", 1.0f, 1.0f, 1.0f);
-		shader->setVec3("objectColor", 1.0f, 0.5f, 0.31f);
 		unsigned int transformLoc = glGetUniformLocation(shader->ID, "model"); //model transform
 
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(glm::mat4(1.0f)));
@@ -190,6 +189,8 @@ namespace Trixs
 			transform = glm::scale(transform, scale);
 
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+
+			shader->setVec3("objectColor", world->at(i)->getMaterial()->getColor().r(), world->at(i)->getMaterial()->getColor().g(), world->at(i)->getMaterial()->getColor().b() );
 
 			world->at(i)->draw();
 		}

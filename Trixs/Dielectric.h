@@ -18,6 +18,8 @@ public:
 		writable += "\n";
 		return writable;
 	}
+	virtual vec3 getColor()const { return vec3(0.1f, 0.1f, 0.1f); }
+	float* getRef() { return &ref_idx; }
 private:
 	float ref_idx;
 };

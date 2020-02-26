@@ -16,6 +16,8 @@ namespace Trixs
 			
 			return writable;
 		}
+		virtual vec3 getColor()const { return albedo; }
+		vec3* getAlbedo() { return &albedo; }
 	private:
 		vec3 albedo;
 	};
