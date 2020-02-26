@@ -30,5 +30,7 @@ c:\users\ruurd\source\repos\trixs\trixs\dielectric.h(17): warning C4244: 'argume
           [
               _Elem=char
           ]
-c:\users\ruurd\source\repos\trixs\trixs\rotate.h(17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\rotate.h(36): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\rotate.h(42): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\rotate.h(48): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Trixs.vcxproj -> C:\Users\Ruurd\source\repos\Trixs\x64\Debug\Trixs.exe

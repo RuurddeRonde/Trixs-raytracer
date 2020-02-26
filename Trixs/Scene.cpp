@@ -103,9 +103,16 @@ namespace Trixs
 		for (i = 0; i < hittables.size(); i++)
 		{
 			hittables.at(i)->triangulate();
-			list[i] = new translate(
-				new rotate_y(hittables[i], hittables[i]->getTransform()->getRot().y())
-				, hittables[i]->getTransform()->getPos());
+
+			list[i] =
+				new translate(
+					new rotate_z(
+						new rotate_y(
+							new rotate_x(
+								hittables[i], hittables[i]->getTransform()->getRot().x()),
+							hittables[i]->getTransform()->getRot().y()),
+						hittables[i]->getTransform()->getRot().z()),
+					hittables[i]->getTransform()->getPos());
 		}
 
 		return new HittableList(list, i);
