@@ -21,6 +21,8 @@ public:
 	void submit(Hittable* nh);
 
 	Hittable* getGraph();
+	Hittable* getTestGraph();
+
 	std::vector<Hittable*>* getObjects() { return &hittables; }
 	std::string getName() { return name; }
 	Camera getCamera() { return cam; }

@@ -48,6 +48,10 @@ namespace Trixs
 					{
 						LastRenderPath = "renders/" + sub.outputfile + ".jpg";
 					}
+					else if (sub.outputType == FileTypes::PNG)
+					{
+						LastRenderPath = "renders/" + sub.outputfile + ".png";
+					}
 				}
 				end();
 			}

@@ -4,6 +4,7 @@
 #include "Lambertian.h"
 #include "Dielectric.h"
 #include "Metal.h"
+#include "diffuseLight.h"
 void Trixs::IGSceneObjectListWindow::update()
 {
 	if (show)
@@ -68,25 +69,25 @@ void Trixs::IGSceneObjectListWindow::update()
 				{
 					ImGui::Text("X ");
 					ImGui::SameLine();
-					ImGui::SliderFloat("##valuese", &t->getScalePtr()->e[0], 0.1, 1);
+					ImGui::SliderFloat("##valuese", &t->getScalePtr()->e[0], 1.0f, 10.0f);
 					ImGui::Text("Y ");
 					ImGui::SameLine();
-					ImGui::SliderFloat("##valuese", &t->getScalePtr()->e[1], 0.1, 1);
+					ImGui::SliderFloat("##valuese", &t->getScalePtr()->e[1], 1.0f, 10.0f);
 					ImGui::Text("Z ");
 					ImGui::SameLine();
-					ImGui::SliderFloat("##valuese", &t->getScalePtr()->e[2], 0.1, 1);
+					ImGui::SliderFloat("##valuese", &t->getScalePtr()->e[2], 1.0f, 10.0f);
 				}
 				else
 				{
 					ImGui::Text("X ");
 					ImGui::SameLine();
-					ImGui::SliderFloat("X##valueXs", &t->getScalePtr()->e[0], 0.1, 1);
+					ImGui::SliderFloat("X##valueXs", &t->getScalePtr()->e[0], 1.0f, 10.0f);
 					ImGui::Text("Y ");
 					ImGui::SameLine();
-					ImGui::SliderFloat("Y##valueYs", &t->getScalePtr()->e[1], 0.1, 1);
+					ImGui::SliderFloat("Y##valueYs", &t->getScalePtr()->e[1], 1.0f, 10.0f);
 					ImGui::Text("Z ");
 					ImGui::SameLine();
-					ImGui::SliderFloat("Z##valueZs", &t->getScalePtr()->e[2], 0.1, 1);
+					ImGui::SliderFloat("Z##valueZs", &t->getScalePtr()->e[2], 1.0f, 10.0f);
 				}
 
 				ImGui::Text("Material:");
@@ -115,10 +116,19 @@ void Trixs::IGSceneObjectListWindow::update()
 							ImGui::Text("Dielectric");
 							ImGui::SliderFloat("refractive index", d->getRef(), 0.0f, 10.0f);
 						}
+						else
+						{
+							diffuseLight* dl = dynamic_cast<diffuseLight*>(mat);
+							if (d != nullptr) //material is diffuse light
+							{
+								ImGui::Text("diffuse light");
+								ImGui::ColorEdit3("refractive index", dl->getEmit()->e);
+							}
+						}
 					}
 				}
 				static int type = 0;
-				ImGui::Combo("Material type:", &type, "Lambertian\0Metal\0Dielectric\0");
+				ImGui::Combo("Material type:", &type, "Lambertian\0Metal\0Dielectric\0Diffuse light\0");
 				if (ImGui::Button("Set"))
 				{
 					switch (type)
@@ -131,6 +141,9 @@ void Trixs::IGSceneObjectListWindow::update()
 						break;
 					case 2:
 						objects->at(selected)->setMaterial(new Dielectric(1.5f));
+						break;
+					case 3:
+						objects->at(selected)->setMaterial(new diffuseLight(new vec3(1.0f, 1.0f, 1.0f)));
 						break;
 					default:
 						break;

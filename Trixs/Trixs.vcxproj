@@ -164,6 +164,7 @@
     <ClInclude Include="aabb.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Dielectric.h" />
+    <ClInclude Include="diffuseLight.h" />
     <ClInclude Include="external\ImGuizmo-master\ImCurveEdit.h" />
     <ClInclude Include="external\ImGuizmo-master\ImGradient.h" />
     <ClInclude Include="external\ImGuizmo-master\ImGuizmo.h" />

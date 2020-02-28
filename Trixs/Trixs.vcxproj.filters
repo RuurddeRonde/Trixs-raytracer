@@ -231,6 +231,9 @@
     <ClInclude Include="Rotate.h">
       <Filter>rayTrixser\geometry</Filter>
     </ClInclude>
+    <ClInclude Include="diffuseLight.h">
+      <Filter>rayTrixser\Materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\imgui\imgui_widgets.cpp">

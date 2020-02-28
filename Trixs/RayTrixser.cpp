@@ -1,15 +1,10 @@
 #include "RayTrixser.h"
-#include "MainManager.h"
-#include "Camera.h"
-#include "Scene.h"
-#include "Sphere.h"
-#include "Lambertian.h"
-#include "Metal.h"
-#include "Dielectric.h"
-#include "HitableList.h"
-#include "ImageIO.h"
 namespace Trixs
 {
+
+	Camera* RayTrixser::cam;
+	Hittable* RayTrixser::world;
+
 	bool RayTrixser::render(RenderSubmission* submission)
 	{
 #define CHANNEL_NUM 3
@@ -19,27 +14,27 @@ namespace Trixs
 		int width = submission->width;
 		int height = submission->height;
 
-		Hittable *world = NULL;
+		world = NULL;
 		if (submission->scene == nullptr)
 		{
 			return false;
 		}
 		else
 		{
-			world = submission->scene->getGraph();
+			world = submission->scene->getTestGraph();
 		}
 
-		Camera cam = submission->scene->getCamera();
+		vec3 lookfrom(13, 2, 10);
+		vec3 lookat(0, 2, 0);
+		float dist_to_focus = 11.0;
+		float aperture = 0.0;
+		cam  = new Camera(lookfrom, lookat, vec3(0, 1, 0), 20.0f, float(width) / float(height), aperture, dist_to_focus);
+
+		//cam = &submission->scene->getCamera();
 
 		for (int j = height - 1; j >= 0; j--) {
 			for (int i = 0; i < width; i++) {
-				vec3 col(0, 0, 0);
-				for (int s = 0; s < submission->samplesPerPixel; s++) {
-					float u = float(i + Core::Random::randomDouble()) / float(width);
-					float v = float(j + Core::Random::randomDouble()) / float(height);
-					Ray r = cam.getRay(u, v);
-					col += color(r, world, 0);
-				}
+				vec3 col = calcPixel(submission, i, j);
 				col /= float(submission->samplesPerPixel);
 				col = vec3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));
 				int ir = int(255.99*col[0]);
@@ -87,19 +82,30 @@ namespace Trixs
 		if (world->hit(r, 0.001, FLT_MAX, rec)) {
 			Ray scattered;
 			vec3 attenuation;
-			if (depth < 50 && rec.matPtr->scatter(r, rec, attenuation, scattered)) {
-				return attenuation * color(scattered, world, depth + 1);
-			}
-			else {
-				return vec3(0, 0, 0);
-			}
+			vec3 emitted = rec.matPtr->emitted(rec.p);
+			if (depth < 50 && rec.matPtr->scatter(r, rec, attenuation, scattered))
+				return emitted + attenuation * color(scattered, world, depth + 1);
+			else
+				return emitted;
 		}
 		else //background
 		{
-			vec3 unit_direction = unit_vector(r.direction());
-			float t = 0.5*(unit_direction.y() + 1.0);
-		//	return (1.0 - t)*vec3(1.0, 1.0, 1.0) + t * MainManager::getInstance().getProgramSettings()->backgroundColor;
+			//vec3 unit_direction = unit_vector(r.direction());
+			//float t = 0.5*(unit_direction.y() + 1.0);
+			//return (1.0 - t)*vec3(1.0, 1.0, 1.0) + t * MainManager::getInstance().getProgramSettings()->backgroundColor;
 			return  MainManager::getInstance().getProgramSettings()->backgroundColor;
 		}
+	}
+	vec3 RayTrixser::calcPixel(RenderSubmission* submission, int i, int j)
+	{
+		vec3 col(0, 0, 0);
+		for (int s = 0; s < submission->samplesPerPixel; s++)
+		{
+			float u = float(i + Core::Random::randomDouble()) / float(submission->width);
+			float v = float(j + Core::Random::randomDouble()) / float(submission->height);
+			Ray r = cam->getRay(u, v);
+			col += color(r, world, 0);
+		}
+		return col;
 	}
 }

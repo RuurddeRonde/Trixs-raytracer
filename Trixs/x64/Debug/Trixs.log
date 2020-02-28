@@ -1,4 +1,4 @@
-﻿  ImGuiUIManager.cpp
+﻿  Trixs.cpp
 c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 c:\users\ruurd\source\repos\trixs\trixs\hitable.h(57): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
 c:\users\ruurd\source\repos\trixs\trixs\hitable.h(62): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
@@ -7,26 +7,8 @@ c:\users\ruurd\source\repos\trixs\trixs\hitable.h(83): warning C4150: deletion o
 c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 c:\users\ruurd\source\repos\trixs\trixs\camera.h(44): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\igviewportwindow.h(59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\igviewportwindow.h(65): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
-c:\users\ruurd\source\repos\trixs\trixs\ignewscenewindow.h(28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  MainManager.cpp
-c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\hitable.h(57): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\hitable.h(62): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\hitable.h(83): warning C4150: deletion of pointer to incomplete type 'Trixs::Material'; no destructor called
-  c:\users\ruurd\source\repos\trixs\trixs\hitable.h(8): note: see declaration of 'Trixs::Material'
-c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\camera.h(44): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  RenderWindow.cpp
-c:\users\ruurd\source\repos\trixs\trixs\vec3.h(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\hitable.h(57): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\hitable.h(62): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\hitable.h(83): warning C4150: deletion of pointer to incomplete type 'Trixs::Material'; no destructor called
-  c:\users\ruurd\source\repos\trixs\trixs\hitable.h(8): note: see declaration of 'Trixs::Material'
-c:\users\ruurd\source\repos\trixs\trixs\random.h(23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\random.h(30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\ruurd\source\repos\trixs\trixs\camera.h(44): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
+c:\users\ruurd\source\repos\trixs\trixs\trixs.cpp(20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\trixs.cpp(21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\trixs.cpp(24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\ruurd\source\repos\trixs\trixs\trixs.cpp(25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   Trixs.vcxproj -> C:\Users\Ruurd\source\repos\Trixs\x64\Debug\Trixs.exe
