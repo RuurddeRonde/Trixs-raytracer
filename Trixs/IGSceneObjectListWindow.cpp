@@ -134,7 +134,7 @@ void Trixs::IGSceneObjectListWindow::update()
 					switch (type)
 					{
 					case 0:
-						objects->at(selected)->setMaterial(new Lambertian(vec3(0.3f, 0.4f, 0.3f)));
+						objects->at(selected)->setMaterial(new Lambertian(new ConstantTexture(vec3(0.3f, 0.4f, 0.3f))));
 						break;
 					case 1:
 						objects->at(selected)->setMaterial(new Metal(vec3(0.1f, 0.1f, 0.1f), 0.1f));

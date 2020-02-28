@@ -10,7 +10,7 @@ namespace Trixs
 		{
 			return false;
 		}
-		virtual vec3 emitted(const vec3& p) const 
+		virtual vec3 emitted(float u, float v, const vec3& p) const 
 		{
 			return *emit;
 		}

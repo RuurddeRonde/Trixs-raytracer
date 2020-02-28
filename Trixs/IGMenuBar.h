@@ -59,7 +59,7 @@ namespace Trixs
 					if (fileBrowser.render(isImportClicked, path))
 					{
 						isImportClicked = false;
-						MainManager::getInstance().getProject()->getCurrentScene()->submit(ModelLoader::LoadMesh(path, new Lambertian(vec3(0.8f, 0.2f, 0.2f))));
+						MainManager::getInstance().getProject()->getCurrentScene()->submit(ModelLoader::LoadMesh(path, new Lambertian(new ConstantTexture(vec3(0.8f, 0.2f, 0.2f)))));
 					}
 					end();
 				}

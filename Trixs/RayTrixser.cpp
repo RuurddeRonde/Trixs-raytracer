@@ -24,7 +24,7 @@ namespace Trixs
 			world = submission->scene->getTestGraph();
 		}
 
-		vec3 lookfrom(13, 2, 10);
+		vec3 lookfrom(13, 5, 10);
 		vec3 lookat(0, 2, 0);
 		float dist_to_focus = 11.0;
 		float aperture = 0.0;
@@ -82,7 +82,7 @@ namespace Trixs
 		if (world->hit(r, 0.001, FLT_MAX, rec)) {
 			Ray scattered;
 			vec3 attenuation;
-			vec3 emitted = rec.matPtr->emitted(rec.p);
+			vec3 emitted = rec.matPtr->emitted(rec.u, rec.v, rec.p);
 			if (depth < 50 && rec.matPtr->scatter(r, rec, attenuation, scattered))
 				return emitted + attenuation * color(scattered, world, depth + 1);
 			else

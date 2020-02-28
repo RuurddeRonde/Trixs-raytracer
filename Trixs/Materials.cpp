@@ -16,7 +16,7 @@ namespace Trixs
 	{
 		vec3 target = rec.p + rec.normal + Trixs::Core::Random::random_in_unit_sphere();
 		scattered = Ray(rec.p, target - rec.p);
-		attenuation = albedo;
+		attenuation = albedo->value(rec.u, rec.v, rec.p);
 		return true;
 	}
 	bool Dielectric::scatter(Ray r_in, const hitRecord& rec, vec3& attenuation, Ray& scattered)const

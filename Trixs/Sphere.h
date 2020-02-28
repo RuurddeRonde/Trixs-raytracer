@@ -2,7 +2,6 @@
 #include "Hitable.h"
 namespace Trixs
 {
-
 	class Sphere : public Hittable
 	{
 	public:
