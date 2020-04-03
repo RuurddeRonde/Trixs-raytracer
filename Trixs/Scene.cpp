@@ -163,16 +163,25 @@ namespace Trixs
 		Texture *checker = new CheckerTexture(
 			new ConstantTexture(vec3(0.2, 0.3, 0.1)),
 			new ConstantTexture(vec3(0.9, 0.9, 0.9)));
-		int nx, ny, nn;
-		unsigned char *tex_data = stbi_load("earthmap.jpg", &nx, &ny, &nn, 0);
-		Material *mat = new Lambertian(new Imagetexture(tex_data, nx, ny));
-
 		list[0] = new Sphere(vec3(0, -1000, 0), 1000, new Lambertian(checker));
-		list[1] = new Sphere(vec3(0, 2, 0), 2, mat);
-		//list[2] = new Sphere(vec3(0, 7, 0), 2, new diffuseLight(new vec3(4, 4, 4)));
+		{
+			int nx, ny, nn;
+			unsigned char *tex_data = stbi_load("earthmap.jpg", &nx, &ny, &nn, 0);
+			Material *mat = new Lambertian(new Imagetexture(tex_data, nx, ny));
+			list[1] = new Sphere(vec3(0, 2, 0), 2, mat);
+		}
+		{
+			int nx, ny, nn;
+			unsigned char *tex_data = stbi_load("moon.jpg", &nx, &ny, &nn, 0);
+			Material *mat = new Lambertian(new Imagetexture(tex_data, nx, ny));
+			list[2] = new Sphere(vec3(4, 4, -1), 1, mat);
+		}
+
+
+		list[3] = new Sphere(vec3(0, 7, 0), 2, new diffuseLight(new vec3(4, 4, 4)));
 		//list[2] = new Sphere(vec3(-1, 7, 5), 2, new diffuseLight(new vec3(4, 4, 4)));
 
-		return new HittableList(list, 2);
+		return new HittableList(list, 4);
 	}
 
 	void Scene::submit(Hittable* nh)

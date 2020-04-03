@@ -6,8 +6,8 @@
 #include <vector>
 namespace Trixs
 {
-	constexpr int maxTriangles = 100;
-	constexpr int maxDivisions = 5;
+	constexpr int maxTriangles = 10000;
+	constexpr int maxDivisions = 100;
 
 
 	class BvhMesh : public Hittable

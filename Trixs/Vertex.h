@@ -8,5 +8,6 @@ namespace Trixs
 		Vertex(vec3 pos, vec3 norm) : Position(pos), Normal(norm) {}
 		vec3 Position;
 		vec3 Normal;
+		//vec2
 	};
 }

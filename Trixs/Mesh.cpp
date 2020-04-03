@@ -5,12 +5,13 @@
 #include <glad\glad.h>
 #include <GLFW\glfw3.h>
 
+#include <chrono>  // for high_resolution_clock
 
 #include "objLoader.h"
 namespace Trixs
 {
 
-	Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices,  Material* matPtr, std::string filePath, vec3 min, vec3 max)
+	Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material* matPtr, std::string filePath, vec3 min, vec3 max)
 	{
 		this->filepath = filePath;
 		this->vertices = vertices;
@@ -37,11 +38,19 @@ namespace Trixs
 		}
 		nTriangles = triangles.size();
 		//todo merge loops
+
+		// Record start time
+		auto start = std::chrono::high_resolution_clock::now();
+
 		for (auto i = 0; i < triangles.size(); i++)
 		{
 			triangles.at(i).setVerticesPointer(&this->vertices);
 			root.addTriangle(&triangles.at(i));
 		}
+		// Record end time
+		auto finish = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<double> elapsed = finish - start;
+		std::cout << "Elapsed time: " << elapsed.count() << " s\n";
 	}
 
 	bool Mesh::init()

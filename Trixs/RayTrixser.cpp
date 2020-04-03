@@ -1,4 +1,5 @@
 #include "RayTrixser.h"
+#include <chrono>
 namespace Trixs
 {
 
@@ -21,17 +22,19 @@ namespace Trixs
 		}
 		else
 		{
-			world = submission->scene->getTestGraph();
+			world = submission->scene->getGraph();
 		}
 
-		vec3 lookfrom(13, 5, 10);
+		/*vec3 lookfrom(13, 5, 10);
 		vec3 lookat(0, 2, 0);
 		float dist_to_focus = 11.0;
 		float aperture = 0.0;
 		cam  = new Camera(lookfrom, lookat, vec3(0, 1, 0), 20.0f, float(width) / float(height), aperture, dist_to_focus);
+*/
+		cam = &submission->scene->getCamera();
 
-		//cam = &submission->scene->getCamera();
-
+		// Record start time
+		auto start = std::chrono::high_resolution_clock::now();
 		for (int j = height - 1; j >= 0; j--) {
 			for (int i = 0; i < width; i++) {
 				vec3 col = calcPixel(submission, i, j);
@@ -47,6 +50,11 @@ namespace Trixs
 				pixels[index++] = ib;
 			}
 		}
+
+		// Record end time
+		auto finish = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<double> elapsed = finish - start;
+		std::cout << "Elapsed time render: " << elapsed.count() << " s\n";
 
 		std::string filepath = "renders\\" + submission->outputfile;
 		switch (submission->outputType)

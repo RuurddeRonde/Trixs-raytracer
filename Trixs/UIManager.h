@@ -11,6 +11,7 @@ namespace Trixs
 	class UIManager
 	{
 	public:
+		UIManager(){}
 		UIManager(Window* window);
 		~UIManager();
 		virtual void update() = 0;

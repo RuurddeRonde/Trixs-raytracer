@@ -11,12 +11,14 @@ namespace Trixs
 		public UIManager
 	{
 	public:
+		ImGuiUIManager(){}
 		ImGuiUIManager(Window* window);
 		~ImGuiUIManager();
 		void update() override;
 		void render() override;
 	private:
 		void initWindows(Window* window) override;
+		std::vector<ImGuiWindow> windows;
 		UIWindow* startup;
 		UIWindow* viewPort;
 		UIWindow* renderSettings;

@@ -6,7 +6,6 @@ namespace Trixs
 {
 	Mesh* ModelLoader::LoadMesh(std::string path, Material* mat)
 	{
-
 		std::vector<Vertex> vertices;
 		std::vector<unsigned int> indices;
 		//std::vector<Texture> textures;
@@ -34,6 +33,7 @@ namespace Trixs
 			vector.e[1] = mesh->mVertices[i].y;
 			vector.e[2] = mesh->mVertices[i].z;
 			vertex.Position = vector;
+			
 
 			if (vector.e[0] < min.x()) { min.setx(vector.e[0]); }
 			if (vector.e[0] > max.x()) { max.setx(vector.e[0]); }
@@ -52,18 +52,14 @@ namespace Trixs
 			}
 			vertices.push_back(vertex);
 		}
-		std::vector<Triangle> triangles;
-		// now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
 		for (unsigned int i = 0; i < mesh->mNumFaces; i++)
 		{
 			aiFace face = mesh->mFaces[i];
-			// retrieve all indices of the face and store them in the indices vector
 			for (unsigned int j = 0; j < face.mNumIndices; j++)
 			{
 				indices.push_back(face.mIndices[j]);
 			}
-			//todo add normals
-			triangles.push_back(Triangle(face.mIndices[0], face.mIndices[1], face.mIndices[2], &vertices, mat));
+			
 		}
 		return new Mesh(vertices, indices,  mat, path, min, max);
 	}

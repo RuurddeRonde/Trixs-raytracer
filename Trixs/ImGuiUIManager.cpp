@@ -138,7 +138,7 @@ namespace Trixs
 		renderSettings = new IGRenderWindow();
 		showImage = new IGShowImageWindow();
 		SceneObjects = new IGSceneObjectListWindow();
-		TimeLine = new IGTimeLineWindow();
+		//TimeLine = new IGTimeLineWindow();
 		MenuBar = new IGMenuBar();
 		Settings = new IGSettingsWindow();
 		Settings->Hide();
@@ -154,7 +154,7 @@ namespace Trixs
 		viewPort->update();
 		renderSettings->update();
 		SceneObjects->update();
-		TimeLine->update();
+		//TimeLine->update();
 		MenuBar->update();
 		Settings->update();
 		SceneManagement->update();
@@ -204,7 +204,7 @@ namespace Trixs
 		delete renderSettings;
 		delete showImage;
 		delete SceneObjects;
-		delete TimeLine;
+		//delete TimeLine;
 		delete MenuBar;
 		delete Settings;
 		delete SceneManagement;
